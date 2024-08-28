@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import LandingPage from "./components/LandingPage";
+import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [isVisible, setIsVisible] = useState(true);
   return (
-    <>
+    <Router>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        hello
+        <Routes>
+          {isVisible ? (
+            <Route
+              path="/"
+              element={<LandingPage setIsVisible={setIsVisible} />}
+            />
+          ) : (
+            <Route path="/" element={<Home />} />
+          )}
+
+          <Route path="/auth" element={<NotFound />} />
+          <Route path="/registration" element={<NotFound />} />
+          <Route path="/caterer" element={<NotFound />} />
+          <Route path="/decorator" element={<NotFound />} />
+          <Route path="/photographer" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
