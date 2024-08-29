@@ -7,13 +7,15 @@ import {
 import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
+import Caterer from "./components/Caterer";
+import Decorator from "./components/Decorator";
+import Photographer from "./components/Photographer";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
   return (
     <Router>
       <div>
-        hello
         <Routes>
           {isVisible ? (
             <Route
@@ -26,9 +28,9 @@ function App() {
 
           <Route path="/auth" element={<NotFound />} />
           <Route path="/registration" element={<NotFound />} />
-          <Route path="/caterer" element={<NotFound />} />
-          <Route path="/decorator" element={<NotFound />} />
-          <Route path="/photographer" element={<NotFound />} />
+          <Route path="/caterer" element={<Caterer />} />
+          <Route path="/decorator" element={<Decorator />} />
+          <Route path="/photographer" element={<Photographer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
