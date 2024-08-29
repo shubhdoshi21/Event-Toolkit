@@ -5,15 +5,14 @@ import {
   Route,
 } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import NotFound from "./components/NotFound";
 
 function App() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <Router>
       <div>
-        hello
         <Routes>
           {isVisible ? (
             <Route
