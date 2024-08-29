@@ -1,12 +1,5 @@
 import React, { useState, useRef } from "react";
-import Navbar from "../components/Navbar";
-import Modal from "../components/Modal";
-import ModalButton from "../components/ModalButton";
-import LocationCard from "../components/LocationCard";
-import Footer from "../components/Footer";
-import ReviewCard from "../components/ReviewCard";
-import Carousal from "../components/Carousal";
-import Sidebar from "../components/Sidebar";
+import {Navbar, Modal, ModalButton, LocationCard, Footer, ReviewCard, Carousal, Sidebar} from "../components/index.js"
 
 const Home = () => {
   const modalConfigs = [
