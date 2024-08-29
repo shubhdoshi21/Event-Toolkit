@@ -10,7 +10,7 @@
 
   .dark {
     --background: 0, 0, 0; /* Dark background */
-    --foreground: 255, 255, 255; /* Dark text color */
+    --foreground: #F2F2F2; /* Dark text color */
   }
   * {
     margin: 0;

@@ -32,13 +32,13 @@ const Signin = () => {
             />
           </div>
 
-          <button className="w-full bg-blue-500 text-white p-2 rounded-md mt-4 hover:bg-blue-600">
+          <button className="w-full text-white p-2 rounded-md mt-4 bg-[#FF5364] hover:bg-[#FF5364]/80 ">
             Sign In
           </button>
 
           <p className="mt-4 text-center text-sm">
             Don't have an account?
-            <Link to="/auth/signup" className="text-blue-500 hover:underline px-1">
+            <Link to="/auth/signup" className="text-[#FF5364] hover:underline px-1">
               Sign Up
             </Link>
           </p>

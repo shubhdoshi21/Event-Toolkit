@@ -32,7 +32,7 @@ const LandingPage = ({ setIsVisible }) => {
             <option value="corporate">Corporate Meeting</option>
           </select>
           <button
-            className="bg-blue-600 px-8 py-4 rounded-lg text-xl xs:text-base mt-6 text-white"
+            className="bg-[#FF5364] hover:bg-[#FF5364]/80 px-8 py-4 rounded-lg text-xl xs:text-base mt-6 text-white"
             onClick={() => setIsVisible(false)}
           >
             Get Started

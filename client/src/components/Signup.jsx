@@ -118,7 +118,7 @@ const Signup = () => {
             />
           </fieldset>
 
-          <button className="w-full bg-blue-500 text-white p-2 rounded-md mt-4 hover:bg-blue-600">
+          <button className="w-full bg-[#FF5364] hover:bg-[#FF5364]/80  text-white p-2 rounded-md mt-4">
             Sign Up
           </button>
 
@@ -126,7 +126,7 @@ const Signup = () => {
             Already have an account?
             <Link
               to="/auth/signin"
-              className="text-blue-500 hover:underline px-1"
+              className="text-[#FF5364] hover:underline px-1"
             >
               Sign In
             </Link>
