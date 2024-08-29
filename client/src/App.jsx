@@ -1,19 +1,18 @@
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
+import Signup from "./components/Signup";
+import Signin from "./components/Signin";
+import ThemeConverter from "./components/ThemeConvertor";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
   return (
     <Router>
       <div>
-        hello
+        <ThemeConverter />
         <Routes>
           {isVisible ? (
             <Route
@@ -24,7 +23,8 @@ function App() {
             <Route path="/" element={<Home />} />
           )}
 
-          <Route path="/auth" element={<NotFound />} />
+          <Route path="/auth/signup" element={<Signup />} />
+          <Route path="/auth/signin" element={<Signin />} />
           <Route path="/registration" element={<NotFound />} />
           <Route path="/caterer" element={<NotFound />} />
           <Route path="/decorator" element={<NotFound />} />
