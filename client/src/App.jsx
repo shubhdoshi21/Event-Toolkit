@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
+import LandingPage from "./pages/LandingPage";
+import NotFound from "./pages/NotFound";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import ThemeConverter from "./components/ThemeConvertor";
+import Home from "./pages/Home";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
