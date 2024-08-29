@@ -3,7 +3,7 @@ import { FaSearch, FaBars } from "react-icons/fa";
 
 const Navbar = ({ onSidebarToggle }) => {
   return (
-    <nav className="h-16 w-full flex items-center justify-between bg-white text-black p-4 shadow-lg bg-opacity-90">
+    <nav className="h-16 w-full flex items-center justify-between bg-white text-black p-4 shadow-lg bg-opacity-90 fixed z-50 top-0">
       <div className="text-xl font-bold">logo</div>
 
       <div className="hidden sm:flex lg:space-x-12">

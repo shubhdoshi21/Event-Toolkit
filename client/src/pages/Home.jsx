@@ -160,12 +160,12 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-gray-800 min-h-screen text-white">
+    <div className="min-h-screen text-white">
       <Navbar onSidebarToggle={toggleSidebar} />
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
       {/* Modals for diff cities */}
-      <div className="flex items-center justify-center py-6 relative">
+      <div className="flex items-center justify-center py-6 mt-12 relative">
         <button
           onClick={() => scroll("left")}
           className="absolute left-4 z-10 bg-gray-600 text-white p-2 rounded-full text-2xl font-bold hover:bg-gray-500 transition-colors"
