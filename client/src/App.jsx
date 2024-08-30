@@ -10,7 +10,7 @@ import NotFound from "./pages/NotFound";
 import Registration from "./pages/Registration";
 
 function App() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <Router>
       <div>
