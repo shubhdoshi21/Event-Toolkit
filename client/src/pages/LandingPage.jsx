@@ -1,3 +1,4 @@
+
 import React from "react";
 import image from "../assets/landing.jpg";
 
@@ -44,3 +45,4 @@ const LandingPage = ({ setIsVisible }) => {
 };
 
 export default LandingPage;
+
