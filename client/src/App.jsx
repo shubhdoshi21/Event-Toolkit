@@ -4,9 +4,10 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
+import LandingPage from "./pages/LandingPage";
 import Home from "./pages/Home";
-import NotFound from "./components/NotFound";
+import NotFound from "./pages/NotFound";
+import Registration from "./pages/Registration";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,7 +25,7 @@ function App() {
           )}
 
           <Route path="/auth" element={<NotFound />} />
-          <Route path="/registration" element={<NotFound />} />
+          <Route path="/registration" element={<Registration />} />
           <Route path="/caterer" element={<NotFound />} />
           <Route path="/decorator" element={<NotFound />} />
           <Route path="/photographer" element={<NotFound />} />
