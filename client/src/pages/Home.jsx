@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import {Navbar, Modal, ModalButton, LocationCard, Footer, ReviewCard, Carousal, Sidebar} from "../components/index.js"
 
@@ -237,3 +238,4 @@ const Home = () => {
 };
 
 export default Home;
+
