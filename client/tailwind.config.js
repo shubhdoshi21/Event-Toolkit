@@ -13,6 +13,7 @@ export default {
         mediumGray: '#B3B3B3',
         lightGray: '#F2F2F2',
       },
+  
     },
   },
   plugins: [],

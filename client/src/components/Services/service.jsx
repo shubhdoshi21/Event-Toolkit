@@ -9,6 +9,7 @@ import 'swiper/css/autoplay';
 import {Swiper,SwiperSlide} from "swiper/react"
 import { FreeMode, Pagination, Autoplay, Navigation } from 'swiper/modules';
 import TandC from "../Common/TandC"
+import Recommended from "./Recommended"
 const service = ({
     imageArray, 
     serviceName, 
@@ -34,7 +35,7 @@ const service = ({
                   1024: {
                     slidesPerView: 1,
                   },
-                }} className='w-full h-[60vh]'>
+                }} className='w-full sm:h-[60vh]'>
                     {
                         imageArray.map((img,index)=>(
                           <SwiperSlide key={index}>
@@ -45,7 +46,9 @@ const service = ({
                 </Swiper>
 
                 {/* header section */}
-                <div className=' bg-lightGray/10 w-[70%] rounded-md p-10 flex justify-between items-center'>
+                <div className='sm:flex-row flex flex-col gap-10'>
+                <div className='flex flex-col gap-10  sm:w-[60%]'>
+                <div className=' bg-lightGray/10 rounded-md p-10 flex justify-between items-center'>
                     <div className='flex flex-col gap-3 '>
                     <h2 className='font-bold text-3xl text-primaryPeach '>{serviceName}</h2>
                     <p>{location}</p>
@@ -54,20 +57,23 @@ const service = ({
                     <span className='w-16 h-16 bg-lightGray/80 text-primaryPeach flex justify-center items-center text-3xl font-bold'>{rating}</span>
                 </div>
                 {/* about section */}
-                <div className=' bg-lightGray/10 w-[70%] rounded-md p-10 flex flex-col gap-3'>
+                <div className=' bg-lightGray/10  rounded-md p-10 flex flex-col gap-3'>
                     <h2 className='font-bold text-3xl text-primaryPeach'>About {serviceName}</h2>
                     <div>{about}</div>
                 </div>
-
-
+                </div>
+                <div className='sm:w-[40%]'>
+                  <Recommended/>
+                </div>
+                </div>
                 {/* all packages */}
-                <div className=' bg-lightGray/10 w-[70%] rounded-md p-10 flex flex-col gap-6'>
+                <div className=' bg-lightGray/10  rounded-md p-10 flex flex-col gap-6'>
                 <h2 className='font-bold text-3xl text-primaryPeach '>Our Packages</h2>
                 {packages.map((pkg, index) => (
                      <details key={index} className=''>
                          <summary className='flex gap-10 justify-between px-10 h-24 items-center bg-lightGray/40 rounded-t-xl'>
 
-                           <div className='font-semibold text-2xl '>  {pkg.title} - ${pkg.price}</div>
+                           <div className='font-semibold sm:text-2xl text-md'>  {pkg.title} - ${pkg.price}</div>
                              <button>BUY NOW</button>
                          </summary>
                  <div className='bg-lightGray text-darkGray rounded-b-xl flex flex-col p-3 gap-4 text-lg'>
