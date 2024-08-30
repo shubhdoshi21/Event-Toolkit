@@ -5,10 +5,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
 import { FaStar } from "react-icons/fa";
-import i1 from "../images/download.jpeg"
-import i2 from "../images/download (1).jpeg"
-import i3 from "../images/download (2).jpeg"
-import i4 from "../images/download (3).jpeg"
+import i1 from "../assets/images/download.jpeg"
+import i2 from "../assets/images/download (1).jpeg"
+import i3 from "../assets/images/download (2).jpeg"
+import i4 from "../assets/images/download (3).jpeg"
 import ReactStars from "react-rating-stars-component";
 
 
@@ -80,6 +80,7 @@ function ReviewSlider() {
             delay: 2000,
             disableOnInteraction: false,
           }}
+          navigation={true}
           modules={[FreeMode, Pagination, Autoplay]}
           className="w-full"
         >

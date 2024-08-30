@@ -1,11 +1,11 @@
 import React from "react";
-import GallerySlider from "../assets/components/GallerySlider";
+import GallerySlider from "../components/GallerySlider";
 import i1 from "../assets/images/download.jpeg";
 import i2 from "../assets/images/download (1).jpeg";
 import i3 from "../assets/images/download (2).jpeg";
 import i4 from "../assets/images/download (3).jpeg";
-import RegForm from "../assets/components/RegForm";
-import ReviewSlider from "../assets/components/ReviewSlider";
+import RegForm from "../components/RegForm";
+import ReviewSlider from "../components/ReviewSlider";
 
 const Registration = () => {
   return (

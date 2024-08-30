@@ -7,23 +7,15 @@ import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import ThemeConverter from "./components/ThemeConvertor";
 import Home from "./pages/Home";
-
-
-
-import NotFound from "./components/NotFound";
 import Caterer from "./components/Caterer";
 import Decorator from "./components/Decorator";
 import Photographer from "./components/Photographer";
-
-import LandingPage from "./pages/LandingPage";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
 import Registration from "./pages/Registration";
 
 
 
 function App() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   return (
     <Router>
       <div>
@@ -56,3 +48,4 @@ function App() {
 }
 
 export default App;
+
