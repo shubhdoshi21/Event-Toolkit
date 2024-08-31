@@ -1,34 +1,56 @@
-require("dotenv").config();
-
+const dotenv = require("dotenv");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const express = require("express");
 
-const app = express();
-app.use(express.json());
+const { ApiError } = require("./utils/ApiError.js");
 
+const vendorRouter = require("./routes/vendor.route.js");
+const packageRouter = require("./routes/package.route.js");
+
+// Initialize dotenv to load environment variables from a .env file
+dotenv.config();
+
+const app = express();
+
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+app.use(cookieParser());
 
 app.get("/", (req, res) => res.send("Hello World!"));
+app.use("/api/v1/vendor", vendorRouter);
+app.use("/api/v1/package", packageRouter);
 
 //Error catch configuration
 app.all("*", (req, res, next) => {
   res.status(404).json({ success: false, message: "Resource not found" });
 });
 
-app.use(async (err, req, res, next) => {
-  console.error(err.stack); // Log the error stack for debugging
-
-  // Handle specific error types
-  if (err.name === "UnauthorizedError") {
-    return res.status(401).json({ message: "Unauthorized" });
-  } else if (err.name === "NotFoundError") {
-    return res.status(404).json({ message: "Resource not found" });
+app.use((err, req, res, next) => {
+  if (err instanceof ApiError) {
+    return res.status(err.statusCode).json({
+      success: err.success,
+      message: err.message,
+      errors: err.errors,
+    });
   }
 
-  // Generic error handling
-  return res.status(500).json({ message: "Internal server error" });
+  // Default to 500 Internal Server Error
+  return res.status(500).json({
+    success: false,
+    message: "Internal Server Error",
+  });
 });
 
-const port = 3001 || process.env.PORT;
+const port = process.env.PORT || 3001;
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
