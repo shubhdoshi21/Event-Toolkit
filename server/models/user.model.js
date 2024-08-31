@@ -26,14 +26,21 @@ const userSchema = new Schema(
         "please enter a valid email address",
       ],
     },
+
+    contactNumber: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (v) {
+          return /^\d{10}$/.test(v);
+        },
+        message: (props) => `${props.value} is not a valid 10-digit number!`,
+      },
+    },
     password: {
       type: String,
       required: [true, "password is required"],
       trim: true,
-      match: [
-        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
-        "Password should contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long",
-      ],
     },
 
     verifyCode: {
@@ -82,6 +89,7 @@ userSchema.methods.generateAccessToken = function () {
       firstName: this.firstName,
       lastName: this.lastName,
       userType: this.userType,
+      contactNumber: this.contactNumber,
     },
     process.env.ACCESS_TOKEN_SECRET,
     {

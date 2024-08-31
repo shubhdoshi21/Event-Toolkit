@@ -46,11 +46,16 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    contactNumber: "",
   });
+  
 
   const [passwordValid, setPasswordValid] = useState("initial"); // Start with "initial" state
   const [passwordErrors, setPasswordErrors] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
+  const [isVendor, setIsVendor] = useState(false);
+  const [userType, setUserType] = useState();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,9 +106,12 @@ const Signup = () => {
       return;
     }
 
-    try {
-      console.log(formData);
+    if (!/^\d{10}$/.test(formData.contactNumber)) {
+      toast.error("Contact number must be exactly 10 digits");
+      return;
+    }
 
+    try {
       const response = await axios.post(
         "http://localhost:8080/api/v1/users/register",
         {
@@ -111,6 +119,8 @@ const Signup = () => {
           lastName: formData.lastName,
           email: formData.email,
           password: formData.password,
+          contactNumber: formData.contactNumber,
+          ...(isVendor && userType && { userType }),
         }
       );
       const { accessToken, refreshToken } = response.data.data;
@@ -207,6 +217,36 @@ const Signup = () => {
               required
             />
           </fieldset>
+          <fieldset className="border-2 border-gray-300 rounded-lg mb-4">
+            <legend className="text-left px-1">Contact Number</legend>
+            <input
+              type="text"
+              id="contactNumber"
+              className="p-2 w-full border-none outline-none bg-transparent rounded-md"
+              placeholder="Enter your contact number"
+              value={formData.contactNumber}
+              onChange={handleChange}
+              required
+            />
+          </fieldset>
+
+          {isVendor && (
+            <fieldset className="border-2 border-gray-300 rounded-lg mb-4">
+              <legend className="text-left px-1">Vendor Type</legend>
+              <select
+                id="userType"
+                className="p-2 w-full border-none outline-none bg-transparent rounded-md"
+                value={userType}
+                onChange={(e) => setUserType(e.target.value)}
+                required
+              >
+                <option value="">Select Type</option>
+                <option value="caterer">Caterer</option>
+                <option value="decorator">Decorator</option>
+                <option value="photographer">Photographer</option>
+              </select>
+            </fieldset>
+          )}
 
           <fieldset
             className={`border-2 rounded-lg mb-4 ${
@@ -243,7 +283,7 @@ const Signup = () => {
             <legend className="text-left px-1">Confirm Password</legend>
 
             <input
-             type={showPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               id="confirmPassword"
               className="p-2 w-full border-none outline-none bg-transparent rounded-md"
               placeholder="Confirm your password"
@@ -252,6 +292,7 @@ const Signup = () => {
               required
             />
           </fieldset>
+
           <div className="flex items-center justify-end mb-4 px-2 text-sm">
             <input
               type="checkbox"
@@ -261,6 +302,17 @@ const Signup = () => {
             />
             <label htmlFor="showPassword" className="ml-2">
               Show Password
+            </label>
+          </div>
+          <div className="flex items-center justify-center mb-4 px-2 text-sm">
+            <input
+              type="checkbox"
+              id="isVendor"
+              checked={isVendor}
+              onChange={() => setIsVendor((prev) => !prev)}
+            />
+            <label htmlFor="isVendor" className="ml-2">
+              Sign up as a vendor
             </label>
           </div>
 
@@ -289,5 +341,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-

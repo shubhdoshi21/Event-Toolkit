@@ -15,6 +15,9 @@ const Profile = () => {
   const [passwordErrors, setPasswordErrors] = useState([]);
   const [passwordValid, setPasswordValid] = useState("initial"); // Initial state for new password
   const [showPassword, setShowPassword] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -23,7 +26,11 @@ const Profile = () => {
           "http://localhost:8080/api/v1/users/current-user",
           { withCredentials: true }
         );
-        setUser(response.data.data);
+        const userData = response.data.data;
+        setUser(userData);
+        setFirstName(userData.firstName || "");
+        setLastName(userData.lastName || "");
+        setContactNumber(userData.contactNumber || "");
       } catch (err) {
         setError(err);
       } finally {
@@ -103,13 +110,40 @@ const Profile = () => {
       );
     }
   };
+  const handleUpdateAccountDetails = async (e) => {
+    e.preventDefault();
 
+    if (contactNumber.length < 10) {
+      setContactNumber(contactNumber.padStart(10, "0"));
+    }
+
+    try {
+      const response = await axios.patch(
+        "http://localhost:8080/api/v1/users/update-account",
+        {
+          firstName,
+          lastName,
+          contactNumber,
+        },
+        { withCredentials: true }
+      );
+      setUser(response.data.data);
+      toast.success("Account details updated successfully!", {
+        autoClose: 1500,
+        closeButton: false,
+      });
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Error updating account details."
+      );
+    }
+  };
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error fetching user details: {error.message}</div>;
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="w-11/12 flex p-6 shadow-md border-gray-300 border-2 rounded-md flex-row max-[990px]:flex-col">
+      <div className="w-full flex flex-row max-[990px]:flex-col">
         {/* Sidebar */}
         <div className="w-1/4 max-[990px]:w-full p-4 border-r-2 border-gray-400 max-[990px]:border-r-0 max-[990px]:border-b-2">
           <nav className="flex flex-col max-[990px]:flex-row max-[990px]:justify-evenly max-[990px]:items-center flex-wrap gap-2">
@@ -123,52 +157,61 @@ const Profile = () => {
         </div>
 
         {/* Main Content */}
-        <div className="w-3/4 max-[990px]:w-full pl-6">
-          <div className="mt-6 space-y-4">
-            <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1">
-              <div>
-                <label className="block">First Name:</label>
+        <div className="w-3/4 max-[990px]:w-full px-6">
+          <div className="mt-6">
+            <form onSubmit={handleUpdateAccountDetails} >
+              <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
+                <div>
+                  <label className="block">First Name:</label>
+                  <input
+                    type="text"
+                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block">Last Name:</label>
+                  <input
+                    type="text"
+                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <label className="block">Communication Email address:</label>
                 <input
-                  type="text"
-                  className="w-full mt-1 p-2 border rounded-md bg-transparent"
-                  value={user?.firstName || ""}
+                  type="email"
+                  className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                  value={user?.email || ""}
                   readOnly
                 />
               </div>
+
               <div>
-                <label className="block">Last Name:</label>
+                <label className="block">Phone Number:</label>
                 <input
                   type="text"
-                  className="w-full mt-1 p-2 border rounded-md bg-transparent"
-                  value={user?.lastName || ""}
-                  readOnly
+                  className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                  value={contactNumber}
+                  onChange={(e) => setContactNumber(e.target.value)}
                 />
               </div>
-            </div>
 
-            <div>
-              <label className="block">Communication Email address:</label>
-              <input
-                type="email"
-                className="w-full mt-1 p-2 border rounded-md bg-transparent"
-                value={user?.email || ""}
-                readOnly
-              />
-            </div>
-
-            <div>
-              <label className="block">Phone Number:</label>
-              <input
-                type="text"
-                className="w-full mt-1 p-2 border rounded-md bg-transparent"
-                value={user?.phone || ""}
-                readOnly
-              />
-            </div>
+              <button
+                type="submit"
+                className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md mt-4"
+              >
+                Update Account Details
+              </button>
+            </form>
 
             {/* Change Password Form */}
             <div>
-              <h2 className="text-lg font-semibold">Change Password</h2>
+              <h2 className="text-lg font-semibold py-2">Change Password</h2>
               {changePasswordError && (
                 <div className="text-red my-4">{changePasswordError}</div>
               )}
@@ -177,7 +220,7 @@ const Profile = () => {
                   <label className="block">Current Password:</label>
                   <input
                     type="password"
-                    className="w-full mt-1 p-2 border rounded-md bg-transparent"
+                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     required
@@ -187,7 +230,7 @@ const Profile = () => {
                   <label className="block">New Password:</label>
                   <input
                     type="password"
-                    className={`w-full mt-1 p-2 border rounded-md bg-transparent ${
+                    className={`w-full mt-1 p-2 border rounded-md bg-transparent outline-none ${
                       passwordValid === "initial"
                         ? ""
                         : passwordValid
@@ -211,17 +254,17 @@ const Profile = () => {
                     </div>
                   )}
                 </div>
-                <div className="mb-4">
+                <div className="mb-2">
                   <label className="block">Confirm New Password:</label>
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="w-full mt-1 p-2 border rounded-md bg-transparent"
+                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                   />
                 </div>
-                <div className="flex items-center justify-end mb-4 px-2 text-sm">
+                <div className="flex items-center justify-end px-2 text-sm mb-2">
                   <input
                     type="checkbox"
                     id="showPassword"

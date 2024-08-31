@@ -26,52 +26,60 @@ const generateAccessAndRefreshTokens = async (userId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, userType, contactNumber } =
+    req.body;
+
   if (
     [firstName, lastName, email, password].some((field) => field?.trim() === "")
   ) {
     throw new ApiError(400, "All fields are required");
   }
+
   const existingUserVerifiedByEmail = await User.findOne({ email });
 
   const verifyUserCode = Math.floor(100000 + Math.random() * 900000).toString();
 
   if (existingUserVerifiedByEmail) {
-    if (existingUserVerifiedByEmail.isVerified) {
-      throw new ApiError(409, "User with this email already exists");
-    } else {
-      existingUserVerifiedByEmail.verifyCode = verifyUserCode;
-      existingUserVerifiedByEmail.verifyCodeExpiry = new Date(
-        Date.now() + 3600000
-      ); // 1 hour expiry
-      await existingUserVerifiedByEmail.save();
-
-      // Send the verification email
-      const emailResponse = await sendVerificationEmail(
-        email,
-        `${firstName} ${lastName}`,
-        verifyUserCode
-      );
-
-      if (!emailResponse.success) {
-        throw new ApiError(
-          500,
-          emailResponse.message || "Failed to send verification email"
-        );
-      }
-
-      return res.status(201).json(
-        new ApiResponse(
-          201,
-          {
-            message: "User registered successfully. Please verify your email",
-            emailResponse,
-          },
-          "User registered"
-        )
-      );
-    }
+    throw new ApiError(409, "User with this email already exists");
   }
+
+  // if (existingUserVerifiedByEmail) {
+  //   if (existingUserVerifiedByEmail.isVerified) {
+  //     throw new ApiError(409, "User with this email already exists");
+  //   } else {
+  //     existingUserVerifiedByEmail.verifyCode = verifyUserCode;
+  //     existingUserVerifiedByEmail.verifyCodeExpiry = new Date(
+  //       Date.now() + 3600000
+  //     ); // 1 hour expiry
+  //     existingUserVerifiedByEmail.userType = userType;
+  //     await existingUserVerifiedByEmail.save();
+
+  //     // Send the verification email
+  //     const emailResponse = await sendVerificationEmail(
+  //       email,
+  //       `${firstName} ${lastName}`,
+  //       verifyUserCode
+  //     );
+
+  //     if (!emailResponse.success) {
+  //       throw new ApiError(
+  //         500,
+  //         emailResponse.message || "Failed to send verification email"
+  //       );
+  //     }
+
+  //     return res.status(201).json(
+  //       new ApiResponse(
+  //         201,
+  //         {
+  //           message: "User registered successfully. Please verify your email",
+  //           emailResponse,
+  //         },
+  //         "User registered"
+  //       )
+  //     );
+  //   }
+  // }
 
   // Create a new user
   const expiryDate = new Date();
@@ -81,10 +89,12 @@ const registerUser = asyncHandler(async (req, res) => {
     firstName,
     lastName,
     email,
+    contactNumber: String(contactNumber),
     password,
     verifyCode: verifyUserCode,
     verifyCodeExpiry: expiryDate,
     isVerified: false,
+    userType: userType ?? "ordinary",
   });
 
   const emailResponse = await sendVerificationEmail(
@@ -105,6 +115,7 @@ const registerUser = asyncHandler(async (req, res) => {
   );
 
   user.refreshToken = refreshToken;
+
   await user.save();
 
   const createdUser = await User.findById(user._id).select(
@@ -285,9 +296,9 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 });
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email } = req.body;
+  const { firstName, lastName, contactNumber } = req.body;
 
-  if (!firstName || !lastName || !email) {
+  if (!firstName || !lastName || !contactNumber) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -297,7 +308,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
       $set: {
         firstName,
         lastName,
-        email,
+        contactNumber,
       },
     },
     { new: true }
