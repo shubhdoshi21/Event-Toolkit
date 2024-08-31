@@ -67,7 +67,7 @@ const registerUser = asyncHandler(async (req, res) => {
   //         emailResponse.message || "Failed to send verification email"
   //       );
   //     }
-
+ 
   //     return res.status(201).json(
   //       new ApiResponse(
   //         201,

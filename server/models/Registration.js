@@ -26,6 +26,7 @@ const registrationSchema = new mongoose.Schema({
     },
     hasHappened:{
         type:Boolean,
+        default:false,
     },
     eventImages:[{
         type:String,
@@ -45,6 +46,10 @@ const registrationSchema = new mongoose.Schema({
     cost:{
         type:Number,
     },
+    venue:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Venue",
+    }
 
 });
 

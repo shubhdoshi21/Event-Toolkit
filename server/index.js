@@ -3,7 +3,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const express = require("express");
-
+const cron = require('node-cron');
 const { ApiError } = require("./utils/ApiError.js");
 
 const userRouter = require("./routes/user.routes.js");
@@ -51,6 +51,19 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 3001;
+
+cron.schedule('0 0 * * *', async () => {
+  try {
+      const currentDate = new Date();
+      await Registration.updateMany(
+          { endDate: { $lt: currentDate }, hasHappened: false },
+          { $set: { hasHappened: true } }
+      );
+      console.log('Updated hasHappened for events that have ended.');
+  } catch (error) {
+      console.error('Error updating hasHappened:', error);
+  }
+});
 
 mongoose
   .connect(process.env.MONGO_URI)
