@@ -13,7 +13,7 @@ const Registration = () => {
       <GallerySlider images={[i1, i2, i3, i4]} slides={2} height={500} />
       <p className="text-offwhite text-6xl pb-2 px-10 font-bold">XYZ VENUE</p>
       <div className=" bg-mauve w-[40%] h-[5px] mx-10 mb-10 rounded-full"></div>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-row md:flex-col">
         <p className="text-grey px-10 my-10 w-[100%] md:w-[60%] text-xl">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui culpa a
           laborum, impedit iusto fugit velit illum perferendis. Minus quo
