@@ -7,6 +7,8 @@ const express = require("express");
 const { ApiError } = require("./utils/ApiError.js");
 
 const userRouter = require("./routes/user.routes.js");
+const cityRouter = require("./routes/cities.routes.js");
+const reviewRouter = require("./routes/reviews.routes.js");
 
 // Initialize dotenv to load environment variables from a .env file
 dotenv.config();
@@ -25,6 +27,8 @@ app.use(cookieParser());
 
 app.get("/", (req, res) => res.send("Hello World!"));
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/cities", cityRouter);
+app.use("/api/v1/reviews", reviewRouter);
 
 // Error catch configuration
 app.all("*", (req, res, next) => {
