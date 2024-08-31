@@ -6,9 +6,13 @@ const express = require("express");
 
 const { ApiError } = require("./utils/ApiError.js");
 
+const vendorRouter = require("./routes/vendor.route.js");
+const packageRouter = require("./routes/package.route.js");
+
 const userRouter = require("./routes/user.routes.js");
 const cityRouter = require("./routes/cities.routes.js");
 const reviewRouter = require("./routes/reviews.routes.js");
+
 
 // Initialize dotenv to load environment variables from a .env file
 dotenv.config();
@@ -26,9 +30,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", (req, res) => res.send("Hello World!"));
+app.use("/api/v1/vendor", vendorRouter);
+app.use("/api/v1/package", packageRouter);
+
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/cities", cityRouter);
 app.use("/api/v1/reviews", reviewRouter);
+
 
 // Error catch configuration
 app.all("*", (req, res, next) => {
@@ -38,6 +46,7 @@ app.all("*", (req, res, next) => {
 });
 
 // Global error handler
+
 app.use((err, req, res, next) => {
   if (err instanceof ApiError) {
     return res.status(err.statusCode).json({
