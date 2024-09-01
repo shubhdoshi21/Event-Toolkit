@@ -18,6 +18,7 @@ import Registration from "./pages/Registration";
 import Cookies from "js-cookie";
 import VerifyAccount from "./components/VerifyAccount";
 import Profile from "./pages/Profile";
+import Payment from "./components/Payment";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -57,6 +58,7 @@ function App() {
           <Route path="/photographer" element={<Photographer />} />
 
           <Route path="/registration" element={<Registration />} />
+          <Route path="/payment" element={<Payment />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
