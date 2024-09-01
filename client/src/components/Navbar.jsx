@@ -1,9 +1,11 @@
 import React from "react";
 import { FaSearch, FaBars } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import ThemeConverter from "./ThemeConvertor";
 
 const Navbar = ({ onSidebarToggle }) => {
   return (
-    <nav className="h-16 w-full flex items-center justify-between bg-white text-black p-4 shadow-lg bg-opacity-90 fixed z-50 top-0">
+    <nav className="h-16 w-full flex items-center justify-between bg-white text-black p-4 shadow-lg bg-opacity-90 backdrop-blur-sm fixed z-50 top-0">
       <div className="text-xl font-bold">logo</div>
 
       <div className="hidden sm:flex lg:space-x-12">
@@ -33,21 +35,26 @@ const Navbar = ({ onSidebarToggle }) => {
         </a>
       </div>
 
-      <div className="relative lg:block">
-        <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600">
-          <FaSearch />
-        </button>
-        <input
-          type="text"
-          placeholder="Search..."
-          className="pl-3 pr-10 py-1 rounded-full text-black bg-lightgrey"
-        />
+      <div className="flex items-center ">
+        <div className="relative lg:block">
+          <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
+            <FaSearch />
+          </button>
+          <input
+            type="text"
+            placeholder="Search..."
+            className="pl-3 pr-10 py-1 rounded-full text-black bg-lightgrey"
+          />
+        </div>
+        <div className="hidden sm:flex sm:items-center sm:justify-center sm:h-full sm:p-2">
+          <ThemeConverter/>
+        </div>
+        <div className="hidden sm:flex sm:items-center sm:justify-center sm:h-full sm:p-2">
+          <CgProfile size={24} />
+        </div>
       </div>
 
-      <button
-        className="sm:hidden text-2xl"
-        onClick={onSidebarToggle}
-      >
+      <button className="sm:hidden text-2xl" onClick={onSidebarToggle}>
         <FaBars />
       </button>
     </nav>

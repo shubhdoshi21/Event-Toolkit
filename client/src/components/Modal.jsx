@@ -1,6 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const Modal = ({ isOpen, onClose, title, children }) => {
+const Modal = ({
+  isOpen,
+  handleExploreClick,
+  name,
+  onClose,
+  title,
+  children,
+}) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (e) => {
@@ -25,6 +32,10 @@ const Modal = ({ isOpen, onClose, title, children }) => {
         <div className="flex justify-end mt-4">
           <button
             className="px-4 py-2 w-full bg-red text-white rounded hover:bg-reddark"
+            onClick={() => {
+              handleExploreClick(name);
+              onClose();
+            }}
           >
             Explore now
           </button>
