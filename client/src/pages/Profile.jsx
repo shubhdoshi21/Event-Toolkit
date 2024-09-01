@@ -3,17 +3,19 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDetails, logoutUser } from "../features/user/userSlice.js";
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user); 
+
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [changePasswordError, setChangePasswordError] = useState(null);
   const [passwordErrors, setPasswordErrors] = useState([]);
-  const [passwordValid, setPasswordValid] = useState("initial"); // Initial state for new password
+  const [passwordValid, setPasswordValid] = useState("initial");
   const [showPassword, setShowPassword] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -26,20 +28,32 @@ const Profile = () => {
           "http://localhost:8080/api/v1/users/current-user",
           { withCredentials: true }
         );
-        const userData = response.data.data;
-        setUser(userData);
-        setFirstName(userData.firstName || "");
-        setLastName(userData.lastName || "");
-        setContactNumber(userData.contactNumber || "");
+        const obj = response.data.data;
+        dispatch(
+          setUserDetails({
+            _id: obj._id,
+            email: obj.email,
+            firstName: obj.firstName,
+            lastName: obj.lastName,
+            userType: obj.userType,
+            contactNumber: obj.contactNumber,
+          })
+        );
+        setFirstName(obj.firstName || "");
+        setLastName(obj.lastName || "");
+        setContactNumber(obj.contactNumber || "");
       } catch (err) {
-        setError(err);
+        toast.error("error fetching user details!", {
+          autoClose: 1500,
+          closeButton: false,
+        });
       } finally {
         setLoading(false);
       }
     };
 
     fetchUserDetails();
-  }, []);
+  }, [dispatch]);
 
   const handleLogout = async () => {
     try {
@@ -48,9 +62,19 @@ const Profile = () => {
         {},
         { withCredentials: true }
       );
-      window.location.href = "/auth/signin";
+      dispatch(logoutUser());
+      toast.success("Logged out successfully!", {
+        autoClose: 1500,
+        closeButton: false,
+      });
+      setTimeout(() => {
+        window.location.href = "/auth/signin";
+      }, 1500);
     } catch (err) {
-      setError(err);
+      toast.success(err.response?.data?.message || "Error logging out!.", {
+        autoClose: 1500,
+        closeButton: false,
+      });
     }
   };
 
@@ -73,17 +97,24 @@ const Profile = () => {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      setChangePasswordError("New password and confirm password do not match.");
+      toast.info("New password and confirm password do not match.", {
+        autoClose: 1500,
+        closeButton: false,
+      });
       return;
     }
     if (newPassword === currentPassword) {
-      setChangePasswordError(
-        "New password and Old password must be different."
-      );
+      toast.info("New password and Old password must be different.", {
+        autoClose: 1500,
+        closeButton: false,
+      });
       return;
     }
     if (!passwordValid) {
-      setChangePasswordError("New password does not meet the requirements.");
+      toast.info("New password does not meet the requirements.", {
+        autoClose: 1500,
+        closeButton: false,
+      });
       return;
     }
 
@@ -99,23 +130,20 @@ const Profile = () => {
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
-      setChangePasswordError(null);
       toast.success("Password changed successfully!", {
         autoClose: 1500,
         closeButton: false,
       });
     } catch (err) {
-      setChangePasswordError(
-        err.response?.data?.message || "Error changing password."
-      );
+      toast.error(err.response?.data?.message || "Error changing password.", {
+        autoClose: 1500,
+        closeButton: false,
+      });
     }
   };
+
   const handleUpdateAccountDetails = async (e) => {
     e.preventDefault();
-
-    if (contactNumber.length < 10) {
-      setContactNumber(contactNumber.padStart(10, "0"));
-    }
 
     try {
       const response = await axios.patch(
@@ -127,19 +155,33 @@ const Profile = () => {
         },
         { withCredentials: true }
       );
-      setUser(response.data.data);
+      const obj = response.data.data;
+      dispatch(
+        setUserDetails({
+          _id: obj._id,
+          email: obj.email,
+          firstName: obj.firstName,
+          lastName: obj.lastName,
+          userType: obj.userType,
+          contactNumber: obj.contactNumber,
+        })
+      );
       toast.success("Account details updated successfully!", {
         autoClose: 1500,
         closeButton: false,
       });
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Error updating account details."
+      toast.error(
+        err.response?.data?.message || "Error updating account details.",
+        {
+          autoClose: 1500,
+          closeButton: false,
+        }
       );
     }
   };
+
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching user details: {error.message}</div>;
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -159,7 +201,7 @@ const Profile = () => {
         {/* Main Content */}
         <div className="w-3/4 max-[990px]:w-full px-6">
           <div className="mt-6">
-            <form onSubmit={handleUpdateAccountDetails} >
+            <form onSubmit={handleUpdateAccountDetails}>
               <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
                 <div>
                   <label className="block">First Name:</label>
@@ -212,9 +254,6 @@ const Profile = () => {
             {/* Change Password Form */}
             <div>
               <h2 className="text-lg font-semibold py-2">Change Password</h2>
-              {changePasswordError && (
-                <div className="text-red my-4">{changePasswordError}</div>
-              )}
               <form onSubmit={handleChangePassword}>
                 <div className="mb-4">
                   <label className="block">Current Password:</label>
