@@ -7,11 +7,11 @@ const ReviewCard = ({ review }) => {
 
   return (
     <div key={review.id} className="bg-gray-700 rounded-lg shadow-lg p-4">
-      <h3 className="text-xl font-bold mb-2">{review.user}</h3>
+      <h3 className="text-xl font-bold mb-2">{review.userId.firstName} {review.userId.lastName}</h3>
       <p className="text-yellow-400">
         Rating: {renderStars(review.rating)} ({review.rating}/5)
       </p>
-      <p className="text-gray-300 mt-2">{review.content}</p>
+      <p className="text-gray-300 mt-2">{review.review}</p>
     </div>
   );
 };

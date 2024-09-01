@@ -1,119 +1,68 @@
-
-import React, { useState, useRef } from "react";
-import {Navbar, Modal, ModalButton, LocationCard, Footer, ReviewCard, Carousal, Sidebar} from "../components/index.js"
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
+import {
+  Navbar,
+  Modal,
+  ModalButton,
+  LocationCard,
+  Footer,
+  ReviewCard,
+  Carousal,
+  Sidebar,
+} from "../components/index.js";
 
 const Home = () => {
-  const modalConfigs = [
-    {
-      id: "Agra",
-      title: "Agra",
-      content:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit, aliquid natus illo aliquam autem rerum fugiat perferendis totam enim optio dolorum quasi animi delectus accusamus assumenda consequuntur adipisci iusto vero. Placeat ducimus reiciendis numquam sunt. Repellendus fugit ullam libero fuga eveniet doloribus. Fugiat, numquam recusandae.",
-      image:
-        "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
-    },
-    {
-      id: "Delhi1",
-      title: "Delhi1",
-      content: "This is the content for Delhi1.",
-      image:
-        "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
-    },
-    {
-      id: "Mumbai",
-      title: "Mumbai",
-      content: "This is the content for Mumbai.",
-      image:
-        "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
-    },
-    {
-      id: "Kolkata",
-      title: "Kolkata",
-      content: "This is the content for Kolkata.",
-      image:
-        "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
-    },
-    {
-      id: "Chennai",
-      title: "Chennai",
-      content: "This is the content for Chennai.",
-      image:
-        "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
-    },
-    {
-      id: "Bangalore",
-      title: "Bangalore",
-      content: "This is the content for Bangalore.",
-      image:
-        "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
-    },
-    {
-      id: "Ahmedabad",
-      title: "Ahmedabad",
-      content: "This is the content for Ahmedabad.",
-      image:
-        "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
-    },
-    {
-      id: "Surat",
-      title: "Surat",
-      content: "This is the content for Surat.",
-      image:
-        "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
-    },
-  ];
-
-  const reviews = [
-    {
-      id: "1",
-      user: "John Doe",
-      rating: 5,
-      content:
-        "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-    },
-    {
-      id: "1",
-      user: "John Doe",
-      rating: 5,
-      content:
-        "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-    },
-    {
-      id: "1",
-      user: "John Doe",
-      rating: 5,
-      content:
-        "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-    },
-    {
-      id: "1",
-      user: "John Doe",
-      rating: 5,
-      content:
-        "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-    },
-    {
-      id: "1",
-      user: "John Doe",
-      rating: 5,
-      content:
-        "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-    },
-    {
-      id: "2",
-      user: "Jane Smith",
-      rating: 4,
-      content:
-        "Delhi has a rich history and vibrant culture. Enjoyed the street food and monuments. Will visit again!",
-    },
-    {
-      id: "3",
-      user: "Sam Wilson",
-      rating: 4.5,
-      content:
-        "Mumbai's energy is contagious! The city never sleeps. Loved the marine drive and the local markets.",
-    },
-  ];
+  // const reviews = [
+  //   {
+  //     id: "1",
+  //     user: "John Doe",
+  //     rating: 5,
+  //     content:
+  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
+  //   },
+  //   {
+  //     id: "1",
+  //     user: "John Doe",
+  //     rating: 5,
+  //     content:
+  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
+  //   },
+  //   {
+  //     id: "1",
+  //     user: "John Doe",
+  //     rating: 5,
+  //     content:
+  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
+  //   },
+  //   {
+  //     id: "1",
+  //     user: "John Doe",
+  //     rating: 5,
+  //     content:
+  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
+  //   },
+  //   {
+  //     id: "1",
+  //     user: "John Doe",
+  //     rating: 5,
+  //     content:
+  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
+  //   },
+  //   {
+  //     id: "2",
+  //     user: "Jane Smith",
+  //     rating: 4,
+  //     content:
+  //       "Delhi has a rich history and vibrant culture. Enjoyed the street food and monuments. Will visit again!",
+  //   },
+  //   {
+  //     id: "3",
+  //     user: "Sam Wilson",
+  //     rating: 4.5,
+  //     content:
+  //       "Mumbai's energy is contagious! The city never sleeps. Loved the marine drive and the local markets.",
+  //   },
+  // ];
 
   const images = [
     {
@@ -130,9 +79,52 @@ const Home = () => {
     },
   ];
 
+  const [cities, setCities] = useState([]);
+  const [venues, setVenues] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [openModals, setOpenModals] = useState({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const containerRef = useRef(null);
+  const [selectedCity, setSelectedCity] = useState(null);
+
+  useEffect(() => {
+    const getCities = async () => {
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/cities/getAllCitiesExceptSelected",
+        { excludedCity: selectedCity ? selectedCity : "Agra1" }
+      );
+      if (response.data.statusCode <= 200)
+        setCities(response?.data?.data?.data);
+    };
+
+    getCities();
+  }, [selectedCity]);
+
+  useEffect(() => {
+    const getReviews = async () => {
+      const response = await axios.get(
+        "http://localhost:8080/api/v1/reviews/getAllReviews"
+      );
+      if (response?.data?.statusCode <= 200) {
+        setReviews(response.data.data?.data);
+      }
+    };
+    getReviews();
+  }, [reviews]);
+
+  useEffect(() => {
+    const getVenues = async () => {
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/cities/getAllVenuesAtCity",
+        { cityName: selectedCity ? selectedCity : "Agra1" }
+      );
+      if (response?.data?.statusCode <= 200) {
+        setVenues(response.data.data?.data);
+        console.log(venues);
+      }
+    };
+    getVenues();
+  }, [venues]);
 
   const openModal = (modalId) => {
     setOpenModals({ ...openModals, [modalId]: true });
@@ -153,13 +145,17 @@ const Home = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const handleExploreClick = (cityName) => {
+    setSelectedCity(cityName);
+  };
+
   return (
     <div className="min-h-screen text-white">
       <Navbar onSidebarToggle={toggleSidebar} />
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
       {/* Modals for diff cities */}
-      <div className="flex items-center justify-center py-6 mt-12 relative">
+      <div className="flex items-center justify-center py-6 pt-20 relative">
         <button
           onClick={() => scroll("left")}
           className="absolute left-4 z-10 bg-gray-600 text-white p-2 rounded-full text-2xl font-bold hover:bg-gray-500 transition-colors"
@@ -171,11 +167,11 @@ const Home = () => {
           className="flex gap-4 p-4 overflow-x-auto hide-scrollbar"
           style={{ maxHeight: "200px", whiteSpace: "nowrap" }}
         >
-          {modalConfigs.map((modal) => (
+          {cities.map((city) => (
             <ModalButton
-              key={modal.id}
-              modal={modal}
-              onClick={() => openModal(modal.id)}
+              key={city._id}
+              modal={city}
+              onClick={() => openModal(city._id)}
             />
           ))}
         </div>
@@ -186,19 +182,21 @@ const Home = () => {
           &gt;
         </button>
 
-        {modalConfigs.map((modal) => (
+        {cities.map((city) => (
           <Modal
-            key={modal.id}
-            isOpen={openModals[modal.id]}
-            onClose={() => closeModal(modal.id)}
-            title={modal.title}
+            key={city._id}
+            isOpen={openModals[city._id]}
+            onClose={() => closeModal(city._id)}
+            title={city.cityName}
+            handleExploreClick={handleExploreClick}
+            name={city.cityName}
           >
             <img
-              src={modal.image}
-              alt={modal.title}
+              src={city.cityImage}
+              alt={city.cityName}
               className=" min-w-90 min-h"
             />
-            <p className="text-black mt-2">{modal.content}</p>
+            <p className="text-black mt-2">{city.cityDescription}</p>
           </Modal>
         ))}
       </div>
@@ -215,8 +213,11 @@ const Home = () => {
           Explore Locations at Your City
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {modalConfigs.map((modal) => (
-            <LocationCard modal={modal} />
+          {venues.map((venue) => (
+            <LocationCard
+              modal={venue}
+              handleExploreClick={handleExploreClick}
+            />
           ))}
         </div>
       </div>
@@ -238,4 +239,3 @@ const Home = () => {
 };
 
 export default Home;
-
