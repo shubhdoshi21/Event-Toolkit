@@ -22,16 +22,16 @@ const ThemeConverter = () => {
   }, [darkMode]);
 
   return (
-    <div className="absolute top-2 right-2 z-50">
+    <div className=" z-50">
       {darkMode ? (
         <IoSunnySharp
-          size={30}
+          size={24}
           className="text-white m-2"
           onClick={() => setDarkMode(!darkMode)}
         />
       ) : (
         <IoMoonSharp
-          size={30}
+          size={24}
           className="text-black m-2"
           onClick={() => setDarkMode(!darkMode)}
         />

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import ThemeConverter from "./ThemeConvertor";
 
 const Navbar = ({ onSidebarToggle }) => {
   return (
@@ -44,6 +45,9 @@ const Navbar = ({ onSidebarToggle }) => {
             placeholder="Search..."
             className="pl-3 pr-10 py-1 rounded-full text-black bg-lightgrey"
           />
+        </div>
+        <div className="hidden sm:flex sm:items-center sm:justify-center sm:h-full sm:p-2">
+          <ThemeConverter/>
         </div>
         <div className="hidden sm:flex sm:items-center sm:justify-center sm:h-full sm:p-2">
           <CgProfile size={24} />

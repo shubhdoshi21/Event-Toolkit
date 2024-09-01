@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import { FaCity, FaMapMarkerAlt, FaCommentDots } from "react-icons/fa";
 import {
   Navbar,
   Modal,
@@ -98,7 +99,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen">
       <Navbar onSidebarToggle={toggleSidebar} />
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
@@ -115,13 +116,22 @@ const Home = () => {
           className="flex gap-4 p-4 overflow-x-auto hide-scrollbar"
           style={{ maxHeight: "200px", whiteSpace: "nowrap" }}
         >
-          {cities.map((city) => (
-            <ModalButton
-              key={city._id}
-              modal={city}
-              onClick={() => openModal(city._id)}
-            />
-          ))}
+          {cities.length !== 0 ? (
+            cities.map((city) => (
+              <ModalButton
+                key={city._id}
+                modal={city}
+                onClick={() => openModal(city._id)}
+              />
+            ))
+          ) : (
+            <div className="flex flex-col items-center text-center p-6">
+              <FaCity className="text-6xl text-gray-400 mb-4" />
+              <h1 className="text-xl font-semibold uppercase">
+                No cities to display currently
+              </h1>
+            </div>
+          )}
         </div>
         <button
           onClick={() => scroll("right")}
@@ -157,16 +167,25 @@ const Home = () => {
 
       {/* exploring locations */}
       <div className="py-8 px-4">
-        <h2 className="text-3xl font-bold mb-6 text-left">
+        <h2 className="text-3xl font-bold mb-6 text-center">
           Explore Locations at Your City
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {venues.map((venue) => (
-            <LocationCard
-              modal={venue}
-              handleExploreClick={handleExploreClick}
-            />
-          ))}
+          {venues.length !== 0 ? (
+            venues.map((venue) => (
+              <LocationCard
+                modal={venue}
+                handleExploreClick={handleExploreClick}
+              />
+            ))
+          ) : (
+            <div className="flex flex-col items-center text-center p-6 w-screen">
+              <FaMapMarkerAlt className="text-6xl text-gray-400 mb-4" />
+              <h1 className="text-2xl font-semibold uppercase">
+                No venues available at the city...
+              </h1>
+            </div>
+          )}
         </div>
       </div>
 
@@ -174,9 +193,16 @@ const Home = () => {
       <div className="py-8 px-4 bg-gray-900">
         <h2 className="text-3xl font-bold mb-6 text-center">Latest Reviews</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {reviews.map((review) => (
-            <ReviewCard review={review} />
-          ))}
+          {reviews.length !== 0 ? (
+            reviews.map((review) => <ReviewCard review={review} />)
+          ) : (
+            <div className="flex flex-col items-center p-6 w-screen ">
+            <FaCommentDots className="text-6xl text-gray-400 mb-4" />
+            <h1 className="text-2xl font-semibold uppercase text-white">
+              No reviews to display
+            </h1>
+          </div>
+          )}
         </div>
       </div>
 
