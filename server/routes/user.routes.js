@@ -8,6 +8,7 @@ const {
   getCurrentUser,
   updateAccountDetails,
   verifyUser,
+  resendOTP,
 } = require("../controllers/user.controller.js");
 const { verifyJWT } = require("../middlewares/auth.middleware.js");
 
@@ -18,6 +19,7 @@ router.route("/login").post(loginUser);
 
 // Secured routes
 router.post("/verify", verifyJWT, verifyUser);
+router.post("/resend-otp", verifyJWT, resendOTP);
 router.route("/logout").post(verifyJWT, logoutUser);
 router.route("/refresh-token").post(refreshAccessToken);
 router.route("/change-password").post(verifyJWT, changeCurrentPassword);
