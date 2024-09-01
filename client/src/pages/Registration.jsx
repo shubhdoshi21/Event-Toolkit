@@ -8,12 +8,13 @@ import RegForm from "../components/RegForm";
 import ReviewSlider from "../components/ReviewSlider";
 import {loadStripe} from '@stripe/stripe-js';
 
+
 const Registration = () => {
   const makePayment = async (amount) => {
-    const stripe = await loadStripe("pk_test_51Pu6ToP341NfhX740hUbxFhSyt9JSXluyq5xrcOiXchH6ZjzMC7Z7GCQF5AYDIoKoSoia9kAlCQpFeDLS06vrLFG000RLBpap3");
+    const stripe = await loadStripe(process.env.STRIPE_API_KEY);
 
     // Make a POST request to your backend to create the checkout session
-    const response = await fetch('http://localhost:8080/api/v1/register/create-checkout-session', {
+    const response = await fetch('http://localhost:8080/api/v1/registration/pay', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -38,7 +39,7 @@ const Registration = () => {
       <GallerySlider images={[i1, i2, i3, i4]} slides={2} height={500} />
       <p className="text-offwhite text-6xl pb-2 px-10 font-bold">XYZ VENUE</p>
       <div className=" bg-mauve w-[40%] h-[5px] mx-10 mb-10 rounded-full"></div>
-      <div className="flex flex-row md:flex-col">
+      <div className="flex flex-col md:flex-row">
         <p className="text-grey px-10 my-10 w-[100%] md:w-[60%] text-xl">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui culpa a
           laborum, impedit iusto fugit velit illum perferendis. Minus quo

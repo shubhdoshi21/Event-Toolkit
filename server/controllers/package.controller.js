@@ -6,8 +6,8 @@ const { ApiResponse } = require("../utils/ApiResponse.js");
 
 const createPackages = asyncHandler(async (req, res) => {
   try {
-    const { packageName, price, items  } = req.body;
-    const vendorId = req.user.id;
+    const { packageName, price, items,vendorId  } = req.body;
+   
     console.log(vendorId,packageName,price,items)
     if (!packageName || !price || !items) {
       throw new ApiError(400, "All fields are required in a package");
@@ -52,7 +52,7 @@ const createPackages = asyncHandler(async (req, res) => {
         new ApiResponse(
           error.statusCode || 500,
           null,
-          "Internal server error in creating package details"
+         error.message
         )
       );
   }
@@ -97,7 +97,7 @@ const deletePackages = asyncHandler(async (req, res) => {
 
 const updatePackages = asyncHandler(async (req, res) => {
     try {
-        const { vendorId,packageId } = req.body;
+        const {packageId } = req.body;
       const {packageName, price, items } = req.body;
       if (!packageId || !packageName || !price || !items) {
         throw new ApiError(400, "All fields are required to update a package");

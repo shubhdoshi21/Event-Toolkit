@@ -57,7 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
   //     // Send the verification email
   //     const emailResponse = await sendVerificationEmail(
   //       email,
-  //       `${firstName} ${lastName}`,
+  //       ${firstName} ${lastName},
   //       verifyUserCode
   //     );
 
@@ -338,7 +338,6 @@ const verifyUser = asyncHandler(async (req, res) => {
     user.isVerified = true;
     user.verifyCode = 0; // clear the code after verification
     user.verifyCodeExpiry = 0; // clear the expiry date after verification
-    console.log(user);
     await user.save();
 
     return res
@@ -359,6 +358,30 @@ const verifyUser = asyncHandler(async (req, res) => {
   }
 });
 
+const resendOTP = asyncHandler(async (req, res) => {
+  const user = await User.findOne({ email: req.user?.email });
+
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+
+  const emailResponse = await sendVerificationEmail(
+    user.email,
+    `${user.firstName} ${user.lastName}`,
+    user.verifyCode
+  );
+
+  if (!emailResponse.success) {
+    throw new ApiError(
+      500,
+      emailResponse.message || "Failed to send verification email"
+    );
+  }
+  return res
+    .status(200)
+    .json(new ApiResponse(200, null, "OTP resent successfully"));
+});
+
 module.exports = {
   registerUser,
   loginUser,
@@ -368,6 +391,5 @@ module.exports = {
   getCurrentUser,
   updateAccountDetails,
   verifyUser,
+  resendOTP,
 };
-
-// throw new ApiError(404, "ahiya sudhi locho nthi");

@@ -12,7 +12,7 @@ const packageRouter = require("./routes/package.route.js");
 const userRouter = require("./routes/user.routes.js");
 const cityRouter = require("./routes/cities.routes.js");
 const reviewRouter = require("./routes/reviews.routes.js");
-const registerRouter = require("./routes/register.routes.js")
+const registrationRouter = require("./routes/registration.routes.js");
 
 
 // Initialize dotenv to load environment variables from a .env file
@@ -36,7 +36,8 @@ app.use("/api/v1/package", packageRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/cities", cityRouter);
 app.use("/api/v1/reviews", reviewRouter);
-app.use("/api/v1/",registerRouter);
+app.use("/api/v1/registration", registrationRouter);
+
 
 // Error catch configuration
 app.all("*", (req, res, next) => {

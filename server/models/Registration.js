@@ -48,9 +48,8 @@ const registrationSchema = new mongoose.Schema({
     },
     venue:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Venue",
-    }
-
+        ref:"Venues",
+    } 
 });
 
 module.exports = mongoose.model("Registration",registrationSchema);
