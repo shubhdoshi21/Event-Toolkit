@@ -6,8 +6,33 @@ import i3 from "../assets/images/download (2).jpeg";
 import i4 from "../assets/images/download (3).jpeg";
 import RegForm from "../components/RegForm";
 import ReviewSlider from "../components/ReviewSlider";
+import {loadStripe} from '@stripe/stripe-js';
 
 const Registration = () => {
+  const makePayment = async (amount) => {
+    const stripe = await loadStripe("pk_test_51Pu6ToP341NfhX740hUbxFhSyt9JSXluyq5xrcOiXchH6ZjzMC7Z7GCQF5AYDIoKoSoia9kAlCQpFeDLS06vrLFG000RLBpap3");
+
+    // Make a POST request to your backend to create the checkout session
+    const response = await fetch('http://localhost:8080/api/v1/register/create-checkout-session', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ amount }) // Send the amount to the backend
+    });
+
+    const session = await response.json();
+
+    // Redirect the user to Stripe's hosted checkout page
+    const { error } = await stripe.redirectToCheckout({
+        sessionId: session.id,
+    });
+
+    if (error) {
+        console.error("Stripe checkout error:", error);
+    }
+};
+
   return (
     <div className="bg-black min-h-screen w-full pt-20">
       <GallerySlider images={[i1, i2, i3, i4]} slides={2} height={500} />
@@ -41,6 +66,8 @@ const Registration = () => {
 
         <RegForm />
       </div>
+
+      <button onClick={() => makePayment(2000)} className="text-white">Buy Now for $20</button> 
       <p className="text-offwhite text-6xl text-center mt-20 font-semibold">Reviews from user conducting event here!</p>
       <ReviewSlider />
       <p className="text-offwhite text-6xl text-center mt-20 font-semibold">CATERER</p>

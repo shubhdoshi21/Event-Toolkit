@@ -19,8 +19,6 @@ const GallerySlider = ({ images, slides, height }) => {
       }}
       navigation={true}
       modules={[Autoplay, Navigation]} // Ensure modules are correctly imported
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
       style={{ padding: "20px" }}
     >
       {images.map((image, index) => (

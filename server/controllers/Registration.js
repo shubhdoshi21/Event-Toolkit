@@ -2,6 +2,8 @@ const Registration = require('../models/Registration.js');
 const { ApiError } = require("../utils/ApiError.js");
 const { ApiResponse } = require("../utils/ApiResponse.js");
 const User = require('../models/user.model.js');
+const Vendor = require('../models/vendor.model.js')
+const Package = require('../models/package.model.js');
 
 exports.register = async(req,res) => {
     try {
@@ -16,13 +18,21 @@ exports.register = async(req,res) => {
         const firstName = user.firstName;
         const lastName = user.lastName;
         const email = user.email;
-        const {startDate, endDate, caterer, decorator, photographer} = req.body;
-        if(!startDate || !endDate || !caterer || !decorator || !photographer){
+        const {startDate, endDate, caterer, decorator, photographer, decPackId, catPackId, phoPackId} = req.body;
+        if(!startDate || !endDate || !caterer || !decorator || !photographer || !decPackId || !catPackId || !phoPackId ){
             throw new ApiError(
                 400,
                 "Enter all details"
               );
         }
+        
+        const dec = await Package.findById(decPackId)
+        const cat = await Package.findById(catPackId);
+        const photo = await Package.findById(phoPackId);
+
+        const totalCost = dec.price + cat.price + photo.price;
+        totalCost = totalCost*1.1;
+
         const userDetails = await Registration.create({
             firstName,
             lastName,
@@ -33,9 +43,9 @@ exports.register = async(req,res) => {
             caterer,
             decorator,
             photographer,
+            cost:totalCost,
             hasHappened:false,  
         });
-
 
     return res
     .status(200)
@@ -48,6 +58,8 @@ exports.register = async(req,res) => {
           );
     }
 }
+
+
 
 exports.addImageToEvent = async(req,res) => {
     try {
