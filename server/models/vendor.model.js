@@ -24,9 +24,9 @@ const vendorSchema = new Schema({
     },
 
 
-    ratingAndReviews:[{
+    ratingAndReview:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"RatingAndReview"
+        ref:"Reviews"
     }],
 
 

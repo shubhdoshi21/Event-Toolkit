@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Import useEffect
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Cookies from "js-cookie";
 
 const VerifyAccount = () => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const [errorMessage, setErrorMessage] = useState("");
+  const [resendCooldown, setResendCooldown] = useState(30);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (resendCooldown > 0) {
+      const timer = setTimeout(
+        () => setResendCooldown(resendCooldown - 1),
+        1000
+      );
+      return () => clearTimeout(timer);
+    }
+  }, [resendCooldown]);
 
   const handleChange = (e, index) => {
     const { value } = e.target;
@@ -42,7 +52,7 @@ const VerifyAccount = () => {
     const otpCode = otp.join("");
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:8080/api/v1/users/verify",
         {
           code: otpCode,
@@ -51,7 +61,7 @@ const VerifyAccount = () => {
           withCredentials: true,
         }
       );
-      toast.success("User Vefiried successfully!", {
+      toast.success("User Verified successfully!", {
         autoClose: 1500,
         closeButton: false,
       });
@@ -67,14 +77,34 @@ const VerifyAccount = () => {
     }
   };
 
+  const handleResend = async () => {
+    if (resendCooldown > 0) return;
+
+    try {
+      await axios.post(
+        "http://localhost:8080/api/v1/users/resend-otp",
+        {},
+        { withCredentials: true }
+      );
+      toast.success("OTP resent successfully!", {
+        autoClose: 1500,
+        closeButton: false,
+      });
+      setResendCooldown(30); // Start 30-second cooldown
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to resend OTP", {
+        autoClose: 1500,
+        closeButton: false,
+      });
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="text-3xl font-bold">Verify your account</h1>
-          <p className="mt-2 text-sm">
-            Enter the 6-digit code sent to your email.
-          </p>
+          <p className="mt-2 text-sm">Enter the 6-digit code sent to your email.</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-8">
           <div className="flex justify-center">
@@ -103,10 +133,13 @@ const VerifyAccount = () => {
         <div className="text-center text-sm">
           Didn’t receive the code?
           <button
-            onClick={() => alert("Resend feature not implemented")}
-            className="text-[#FF5364] hover:underline px-1"
+            onClick={handleResend}
+            disabled={resendCooldown > 0}
+            className={`text-[#FF5364] hover:underline px-1 ${
+              resendCooldown > 0 ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Resend
+            Resend {resendCooldown > 0 ? (`${resendCooldown}s`) : ""}
           </button>
         </div>
       </div>

@@ -6,4 +6,5 @@ const venueSchema = new mongoose.Schema({
     venueCity: {type: String, required: true}
 })
 
-module.exports = mongoose.model("Venues", venueSchema);
+const Venues = mongoose.model("Venues", venueSchema);
+module.exports= {Venues}

@@ -3,24 +3,25 @@ const {Package} = require("../models/package.model.js")
 const { ApiError } = require("../utils/ApiError.js");
 const { asyncHandler } = require("../utils/asyncHandler.js");
 const { ApiResponse } = require("../utils/ApiResponse.js");
-
+// const {reviews} = require()
 
 const getVendorDetails = asyncHandler(async(req,res)=>{
     try {
-        const vendorId = req.body;
+        const {vendorId} = req.body;
+        console.log(vendorId)
         if(!vendorId){
             throw new ApiError(400, "Vendor id is required");
         }
-        const vendorDetails = await Vendor.findById(vendorId)
-                              .populate("ratingAndReview")
-                              .populate("packages");
+        const vendorDetails = await Vendor.findById(vendorId).populate("packages").populate("ratingAndReview");
+                            //   
+                             
         return res.status(200).json(
             new ApiResponse(200,{data:vendorDetails},"Vendor Details fetched successfully")
         )
 
     } catch (error) {
         return res.status(error.statusCode || 500).json(
-            new ApiResponse(error.statusCode || 500, null,  "Internal server error in getting service details")
+            new ApiResponse(error.statusCode || 500, null, error.message)
         );
     }
 })
@@ -60,10 +61,10 @@ const addServiceDetails = asyncHandler(async(req,res)=>{
 
 const updateServiceDetails = asyncHandler(async(req,res)=>{
     try {
-        const {serviceName,location,about} = req.body;
-     const vendorId = req.body;
+        const {serviceName,location,about,vendorId} = req.body;
+    //  const vendorId = req.body.vendorId;
     //  const vendorId = req.params.vendorId;
-    //  console.log(serviceName,location,about,vendorId);
+      console.log(serviceName,location,about,vendorId);
     if(!serviceName || !location || !about){
         throw new  ApiError(400, "Everything is required to add service details");
     }
@@ -82,7 +83,7 @@ const updateServiceDetails = asyncHandler(async(req,res)=>{
     )  
     } catch (error) {
         return res.status(error.statusCode || 500).json(
-            new ApiResponse(error.statusCode || 500, null, "Internal server error in updating service")
+            new ApiResponse(error.statusCode || 500, null, error.message)
         );
     }
     
@@ -95,7 +96,7 @@ const updateServiceDetails = asyncHandler(async(req,res)=>{
 const deleteServiceDetails = asyncHandler(async(req,res)=>{
     try {
         console.log("hello")
-        const vendorId = req.body;
+        const {vendorId} = req.body;
         console.log(vendorId)
         const service = await Vendor.findByIdAndDelete(vendorId);
         if (!service) {

@@ -14,9 +14,9 @@ const multer = require("multer");
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.get("/getAllCitiesExceptSelected", getAllCitiesExceptSelected);
+router.post("/getAllCitiesExceptSelected", getAllCitiesExceptSelected);
 router.get("/getCityById", getCityById);
-router.get("/getAllVenuesAtCity", getAllVenuesAtCity);
+router.post("/getAllVenuesAtCity", getAllVenuesAtCity);
 router.post("/postCity", upload.single("image"), postCity);
 router.post("/postVenueAtCity", postVenueAtCity);
 router.delete("/deleteCity", deleteCity);

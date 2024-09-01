@@ -18,6 +18,7 @@ const storage = getStorage(firebaseApp);
 
 const getAllCitiesExceptSelected = asyncHandler(async (req, res) => {
   try {
+    console.log(req.body)
     if (!req.body.excludedCity) {
       throw new ApiError(400, "Excluded city is required");
     }
