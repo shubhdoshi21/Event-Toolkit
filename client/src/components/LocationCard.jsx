@@ -12,8 +12,9 @@ const LocationCard = ({ modal }) => {
         className="w-full h-40 object-cover"
       />
       <div className="p-4">
-        <h3 className="text-xl font-bold">{modal.venueName}</h3>
-        <p className="text-gray-300 mt-2">{modal.venueDescription}</p>
+        <h3 className=" text-lg font-bold mt-1 uppercase">{modal.venueName}</h3>
+        <p className="text-gray-300 text-md">{modal.venueDescription}</p>
+        <p className="text-gray-300 text-xl mt-3">₹{modal.venuePrice}</p>
       </div>
       <button className="w-full h-[50px] bg-red">See Location</button>
     </div>

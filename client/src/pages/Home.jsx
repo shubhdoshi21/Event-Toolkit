@@ -12,58 +12,6 @@ import {
 } from "../components/index.js";
 
 const Home = () => {
-  // const reviews = [
-  //   {
-  //     id: "1",
-  //     user: "John Doe",
-  //     rating: 5,
-  //     content:
-  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-  //   },
-  //   {
-  //     id: "1",
-  //     user: "John Doe",
-  //     rating: 5,
-  //     content:
-  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-  //   },
-  //   {
-  //     id: "1",
-  //     user: "John Doe",
-  //     rating: 5,
-  //     content:
-  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-  //   },
-  //   {
-  //     id: "1",
-  //     user: "John Doe",
-  //     rating: 5,
-  //     content:
-  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-  //   },
-  //   {
-  //     id: "1",
-  //     user: "John Doe",
-  //     rating: 5,
-  //     content:
-  //       "Agra was an amazing experience! The Taj Mahal is truly a wonder of the world. Highly recommend visiting.",
-  //   },
-  //   {
-  //     id: "2",
-  //     user: "Jane Smith",
-  //     rating: 4,
-  //     content:
-  //       "Delhi has a rich history and vibrant culture. Enjoyed the street food and monuments. Will visit again!",
-  //   },
-  //   {
-  //     id: "3",
-  //     user: "Sam Wilson",
-  //     rating: 4.5,
-  //     content:
-  //       "Mumbai's energy is contagious! The city never sleeps. Loved the marine drive and the local markets.",
-  //   },
-  // ];
-
   const images = [
     {
       src: "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
