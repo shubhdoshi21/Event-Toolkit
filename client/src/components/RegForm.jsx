@@ -7,7 +7,7 @@ const RegForm = () => {
 
   const catererPackages = {
     caterer1: ['Package 1', 'Package 2', 'Package 3'],
-    caterer2: ['Package A', 'Package B'],
+    caterer2: ['Package A', 'Package B'], 
     caterer3: ['Package X', 'Package Y', 'Package Z'],
   };
 
