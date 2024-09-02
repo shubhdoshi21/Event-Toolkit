@@ -17,6 +17,7 @@ import Registration from "./pages/Registration";
 import Cookies from "js-cookie";
 import VerifyAccount from "./components/VerifyAccount";
 import Profile from "./pages/Profile";
+import PasswordReset from "./components/PasswordReset";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <Router>
+      <PasswordReset />
       <div>
         <Routes>
           {isVisible ? (
@@ -37,8 +39,6 @@ function App() {
           ) : (
             <Route path="/" element={<Home />} />
           )}
-
-          {/* Redirect authenticated users away from auth routes */}
           {isAuthenticated() ? (
             <Route path="/" element={<Home />} />
           ) : (
