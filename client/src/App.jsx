@@ -22,6 +22,7 @@ import MyServices from "./components/Panel/MyServices";
 import Vendor from "./components/Vendor";
 
 import PasswordReset from "./components/PasswordReset";
+import { Navbar } from "./components";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -32,6 +33,7 @@ function App() {
 
   return (
     <Router>
+      {/* {!isVisible && <Navbar/>} */}
       <div>
         <Routes>
           {isVisible ? (
@@ -43,32 +45,29 @@ function App() {
             <Route path="/" element={<Home />} />
           )}
           {isAuthenticated() ? (
-            <Route path="/profile" element={<Profile />} />
+            1
           ) : (
+            // <Route path="/profile" element={<Profile />} />
             <>
               <Route path="/auth/signup" element={<Signup />} />
               <Route path="/auth/signin" element={<Signin />} />
               <Route path="/auth/verify" element={<VerifyAccount />} />
 
               <Route path="/auth/reset-password" element={<PasswordReset />} />
-
             </>
           )}
-<Route element={<Panel/>}>
-<Route path="/profile" element={<Profile/>} /> 
-<Route path="/panel/add-services" element={<AddServices/>} /> 
-<Route path="/panel/my-services" element={<MyServices/>} /> 
-</Route>
+          <Route element={<Panel />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/panel/add-services" element={<AddServices />} />
+            <Route path="/panel/my-services" element={<MyServices />} />
+          </Route>
 
-
-
-          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/vendor/:vendorId" element={<Vendor />} />
 
-{/*           <Route path="/caterer" element={<Caterer />} />
+          {/*           <Route path="/caterer" element={<Caterer />} />
           <Route path="/decorator" element={<Decorator />} />
           <Route path="/photographer" element={<Photographer />} /> */}
-
 
           <Route path="/registration" element={<Registration />} />
 
