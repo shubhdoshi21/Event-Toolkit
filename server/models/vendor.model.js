@@ -39,7 +39,12 @@ const vendorSchema = new Schema({
     gallery:[{
         type:String,
     }],
-  
+    vendorType:{
+        type: String,
+        enum: ["caterer", "photographer", "decorator"],
+        
+        required: true,
+      },
 
 },
 {
