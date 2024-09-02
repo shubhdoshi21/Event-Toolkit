@@ -65,9 +65,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/vendor/:vendorId" element={<Vendor />} />
 
-          <Route path="/caterer" element={<Caterer />} />
+{/*           <Route path="/caterer" element={<Caterer />} />
           <Route path="/decorator" element={<Decorator />} />
-          <Route path="/photographer" element={<Photographer />} />
+          <Route path="/photographer" element={<Photographer />} /> */}
 
 
           <Route path="/registration" element={<Registration />} />
