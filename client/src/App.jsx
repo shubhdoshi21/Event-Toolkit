@@ -10,9 +10,7 @@ import NotFound from "./pages/NotFound";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import Home from "./pages/Home";
-import Caterer from "./components/Caterer";
-import Decorator from "./components/Decorator";
-import Photographer from "./components/Photographer";
+import Caterer from "./components/Vendor";
 import Registration from "./pages/Registration";
 import Cookies from "js-cookie";
 import VerifyAccount from "./components/VerifyAccount";
@@ -20,6 +18,7 @@ import Profile from "./pages/Profile";
 import Panel from "./pages/Panel";
 import AddServices from "./components/Panel/AddServices";
 import MyServices from "./components/Panel/MyServices";
+import Vendor from "./components/Vendor";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -60,9 +59,8 @@ function App() {
 
 
           <Route path="/profile" element={<Profile />} />
-          <Route path="/caterer" element={<Caterer />} />
-          <Route path="/decorator" element={<Decorator />} />
-          <Route path="/photographer" element={<Photographer />} />
+          <Route path="/vendor/:vendorId" element={<Vendor />} />
+         
 
           <Route path="/registration" element={<Registration />} />
 
