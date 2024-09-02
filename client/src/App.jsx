@@ -17,6 +17,9 @@ import Registration from "./pages/Registration";
 import Cookies from "js-cookie";
 import VerifyAccount from "./components/VerifyAccount";
 import Profile from "./pages/Profile";
+import Panel from "./pages/Panel";
+import AddServices from "./components/Panel/AddServices";
+import MyServices from "./components/Panel/MyServices";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -46,8 +49,15 @@ function App() {
               <Route path="/auth/signup" element={<Signup />} />
               <Route path="/auth/signin" element={<Signin />} />
               <Route path="/auth/verify" element={<VerifyAccount />} />
+              
             </>
           )}
+<Route element={<Panel/>}>
+<Route path="/profile" element={<Profile/>} /> 
+<Route path="/panel/add-services" element={<AddServices/>} /> 
+<Route path="/panel/my-services" element={<MyServices/>} /> 
+</Route>
+
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/caterer" element={<Caterer />} />

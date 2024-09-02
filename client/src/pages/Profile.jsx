@@ -55,28 +55,8 @@ const Profile = () => {
     fetchUserDetails();
   }, [dispatch]);
 
-  const handleLogout = async () => {
-    try {
-      await axios.post(
-        "http://localhost:8080/api/v1/users/logout",
-        {},
-        { withCredentials: true }
-      );
-      dispatch(logoutUser());
-      toast.success("Logged out successfully!", {
-        autoClose: 1500,
-        closeButton: false,
-      });
-      setTimeout(() => {
-        window.location.href = "/auth/signin";
-      }, 1500);
-    } catch (err) {
-      toast.success(err.response?.data?.message || "Error logging out!.", {
-        autoClose: 1500,
-        closeButton: false,
-      });
-    }
-  };
+ 
+ 
 
   const validateNewPassword = (password) => {
     const errors = [];
@@ -184,23 +164,22 @@ const Profile = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-full flex flex-row max-[990px]:flex-col">
+    <div className="w-[100vw] min-h-[100%] flex items-center justify-center ">
+      <div className="w-full flex flex-row max-[990px]:flex-col ml-9">
         {/* Sidebar */}
-        <div className="w-1/4 max-[990px]:w-full p-4 border-r-2 border-gray-400 max-[990px]:border-r-0 max-[990px]:border-b-2">
+        {/* <div className="w-1/4 max-[990px]:w-full p-4 border-r-2 border-gray-400 max-[990px]:border-r-0 max-[990px]:border-b-2">
           <nav className="flex flex-col max-[990px]:flex-row max-[990px]:justify-evenly max-[990px]:items-center flex-wrap gap-2">
             <div className="block p-2">My Profile</div>
             <div className="block p-2">History</div>
             <div className="block p-2">My Cart</div>
-            <div onClick={handleLogout} className="block p-2 cursor-pointer">
-              Logout
-            </div>
+            
           </nav>
-        </div>
+        </div> */}
 
         {/* Main Content */}
         <div className="w-3/4 max-[990px]:w-full px-6">
-          <div className="mt-6">
+          <div className="">
+         
             <form onSubmit={handleUpdateAccountDetails}>
               <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
                 <div>

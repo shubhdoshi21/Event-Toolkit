@@ -152,5 +152,21 @@ const getAllPhotographer = asyncHandler(async(req,res)=>{
         );
     }
 })
-module.exports ={getVendorDetails,addServiceDetails,updateServiceDetails,deleteServiceDetails,getAllCaterer,getAllDecorator,getAllPhotographer}
+
+const getAllByServiceType = asyncHandler(async(req,res)=>{
+    try {
+        const {vendorType} = req.body;
+        const vendors = await Vendor.find({vendorType:vendorType}).populate("packages").populate("ratingAndReview");;
+        return res.status(200).json(
+            new ApiResponse(200,{data:vendors},"Vendor Details fetched successfully")
+        )
+    } catch (error) {
+        return res.status(error.statusCode || 500).json(
+            new ApiResponse(error.statusCode || 500, null, error.message)
+        );
+    }
+})
+module.exports ={getVendorDetails,addServiceDetails,updateServiceDetails,deleteServiceDetails,getAllCaterer,getAllDecorator,getAllPhotographer,getAllByServiceType}
+
+
 
