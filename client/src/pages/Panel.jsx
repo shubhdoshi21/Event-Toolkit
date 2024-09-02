@@ -4,12 +4,10 @@ import Sidebar from '../components/Panel/Sidebar';
 
 const Panel = () => {
   return (
-    <div className='relative w-[100vw]  bg-primaryBlack flex h-[100vh]'>
+    <div className='w-[100vw] bg-primaryBlack flex h-[100vh] overflow-scroll'>
         <Sidebar/>
-        <div className='h-[calc[100vh-3.5rem]] w-[5%]'>
-            <div className=' w-[100%] h-[100%]  '>
+        <div className='w-[85vw] ml-[15vw] overflow-scroll'>
             <Outlet/>
-            </div> 
         </div>
     </div>
   )
