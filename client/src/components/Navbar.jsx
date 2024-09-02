@@ -10,11 +10,7 @@ const Navbar = ({ onSidebarToggle }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Fetch the access token from cookies
     const userToken = Cookies.get("accessToken");
-    console.log(userToken);
-
-    // Set login state based on the presence of the token
     setIsLoggedIn(!!userToken);
   }, []);
 
