@@ -28,8 +28,8 @@ const getVendorDetails = asyncHandler(async(req,res)=>{
 
 const addServiceDetails = asyncHandler(async(req,res)=>{
     try {
-        const {serviceName,location,about} = req.body;
-        if(!serviceName || !location || !about){
+        const {serviceName,location,about,vendorType} = req.body;
+        if(!serviceName || !location || !about || !vendorType){
             throw new  ApiError(400, "Everything is required to add service details");
         }
 
@@ -45,6 +45,7 @@ const addServiceDetails = asyncHandler(async(req,res)=>{
             serviceName,
             location,
             about,
+            vendorType
         })
 
         return res.status(200).json(
@@ -112,4 +113,44 @@ const deleteServiceDetails = asyncHandler(async(req,res)=>{
     }
 })
 
-module.exports ={getVendorDetails,addServiceDetails,updateServiceDetails,deleteServiceDetails}
+const getAllCaterer = asyncHandler(async(req,res)=>{
+    try {
+        const catererList = await Vendor.find({vendorType:"caterer"}).populate("packages").populate("ratingAndReview");;
+        return res.status(200).json(
+            new ApiResponse(200,{data:catererList},"Caterer Details fetched successfully")
+        )
+    } catch (error) {
+        return res.status(error.statusCode || 500).json(
+            new ApiResponse(error.statusCode || 500, null, error.message)
+        );
+    }
+})
+
+
+const getAllDecorator = asyncHandler(async(req,res)=>{
+    try {
+        const decoratorList = await Vendor.find({vendorType:"decorator"}).populate("packages").populate("ratingAndReview");;
+        return res.status(200).json(
+            new ApiResponse(200,{data:decoratorList},"Decorator Details fetched successfully")
+        )
+    } catch (error) {
+        return res.status(error.statusCode || 500).json(
+            new ApiResponse(error.statusCode || 500, null, error.message)
+        );
+    }
+})
+
+const getAllPhotographer = asyncHandler(async(req,res)=>{
+    try {
+        const photographerList = await Vendor.find({vendorType:"photographer"}).populate("packages").populate("ratingAndReview");;
+        return res.status(200).json(
+            new ApiResponse(200,{data:photographerList},"Photographer Details fetched successfully")
+        )
+    } catch (error) {
+        return res.status(error.statusCode || 500).json(
+            new ApiResponse(error.statusCode || 500, null, error.message)
+        );
+    }
+})
+module.exports ={getVendorDetails,addServiceDetails,updateServiceDetails,deleteServiceDetails,getAllCaterer,getAllDecorator,getAllPhotographer}
+
