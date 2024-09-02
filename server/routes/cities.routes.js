@@ -18,7 +18,7 @@ router.post("/getAllCitiesExceptSelected", getAllCitiesExceptSelected);
 router.get("/getCityById", getCityById);
 router.post("/getAllVenuesAtCity", getAllVenuesAtCity);
 router.post("/postCity", upload.single("image"), postCity);
-router.post("/postVenueAtCity", postVenueAtCity);
+router.post("/postVenueAtCity", upload.single("image"),postVenueAtCity);
 router.delete("/deleteCity", deleteCity);
 router.post("/deleteVenueAtCity", deleteVenueAtCity);
 router.put("/updateCity", updateCity);

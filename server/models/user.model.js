@@ -60,7 +60,7 @@ const userSchema = new Schema(
     },
     userType: {
       type: String,
-      enum: ["ordinary", "caterer", "decorator", "photographer", "admin"],
+      enum: ["ordinary", "vendor", "admin"],
       default: "ordinary",
       required: true,
     },

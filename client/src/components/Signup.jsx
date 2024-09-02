@@ -48,13 +48,11 @@ const Signup = () => {
     confirmPassword: "",
     contactNumber: "",
   });
-  
 
   const [passwordValid, setPasswordValid] = useState("initial"); // Start with "initial" state
   const [passwordErrors, setPasswordErrors] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [isVendor, setIsVendor] = useState(false);
-  const [userType, setUserType] = useState();
 
   const navigate = useNavigate();
 
@@ -120,7 +118,7 @@ const Signup = () => {
           email: formData.email,
           password: formData.password,
           contactNumber: formData.contactNumber,
-          ...(isVendor && userType && { userType }),
+          userType: isVendor ? "vendor" : "ordinary",
         }
       );
       const { accessToken, refreshToken } = response.data.data;
@@ -230,7 +228,7 @@ const Signup = () => {
             />
           </fieldset>
 
-          {isVendor && (
+          {/* {isVendor && (
             <fieldset className="border-2 border-gray-300 rounded-lg mb-4">
               <legend className="text-left px-1">Vendor Type</legend>
               <select
@@ -246,7 +244,7 @@ const Signup = () => {
                 <option value="photographer">Photographer</option>
               </select>
             </fieldset>
-          )}
+          )} */}
 
           <fieldset
             className={`border-2 rounded-lg mb-4 ${

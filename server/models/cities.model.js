@@ -4,7 +4,7 @@ const citySchema = new mongoose.Schema({
   cityName: { type: String, required: true },
   cityImage: { type: String, required: true },
   cityImageName: { type: String, required: true },
-  cityDescription: {type: String, required: true},
+  cityDescription: { type: String, required: true },
   venuesAtCity: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -14,4 +14,4 @@ const citySchema = new mongoose.Schema({
 });
 
 const Cities = mongoose.model("Cities", citySchema);
-module.exports = {Cities}
+module.exports = { Cities };

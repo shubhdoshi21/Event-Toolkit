@@ -9,7 +9,6 @@ import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/NotFound";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
-import ThemeConverter from "./components/ThemeConvertor";
 import Home from "./pages/Home";
 import Caterer from "./components/Caterer";
 import Decorator from "./components/Decorator";
@@ -30,7 +29,6 @@ function App() {
   return (
     <Router>
       <div>
-        <ThemeConverter />
         <Routes>
           {isVisible ? (
             <Route

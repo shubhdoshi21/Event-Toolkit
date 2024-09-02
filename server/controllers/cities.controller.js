@@ -18,7 +18,6 @@ const storage = getStorage(firebaseApp);
 
 const getAllCitiesExceptSelected = asyncHandler(async (req, res) => {
   try {
-    console.log(req.body)
     if (!req.body.excludedCity) {
       throw new ApiError(400, "Excluded city is required");
     }
@@ -128,17 +127,31 @@ const postCity = asyncHandler(async (req, res) => {
 });
 
 const postVenueAtCity = asyncHandler(async (req, res) => {
-  const { venueCity, venueName, venueDescription } = req.body;
+  const { venueCity, venueName, venueDescription, venuePrice } = req.body;
+  const file = req.file;
 
-  if (!venueCity || !venueName || !venueDescription) {
+  if (!venueCity || !venueName || !venueDescription || !file || !venuePrice) {
     throw new ApiError(400, "All venue details are required");
   }
 
   try {
+    const fileName = `${Date.now()}_${file.originalname}`;
+    const storageRef = ref(storage, `images/${fileName}`);
+    const metadata = { contentType: file.mimetype };
+    const uploadTask = await uploadBytesResumable(
+      storageRef,
+      file.buffer,
+      metadata
+    );
+    const downloadURL = await getDownloadURL(uploadTask.ref);
+
     const venue = new Venues({
       venueCity,
       venueName,
       venueDescription,
+      venuePrice,
+      venueImage: downloadURL,
+      venueImageName: fileName,
     });
     await venue.save();
 
