@@ -59,7 +59,7 @@ const Home = () => {
       }
     };
     getReviews();
-  }, [reviews]);
+  }, []);
 
   useEffect(() => {
     const getVenues = async () => {
@@ -69,11 +69,10 @@ const Home = () => {
       );
       if (response?.data?.statusCode <= 200) {
         setVenues(response.data.data?.data);
-        console.log(venues);
       }
     };
     getVenues();
-  }, [venues]);
+  }, []);
 
   const openModal = (modalId) => {
     setOpenModals({ ...openModals, [modalId]: true });
