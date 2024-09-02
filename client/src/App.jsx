@@ -10,15 +10,18 @@ import NotFound from "./pages/NotFound";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import Home from "./pages/Home";
-import Caterer from "./components/Vendor";
+
 import Registration from "./pages/Registration";
 import Cookies from "js-cookie";
 import VerifyAccount from "./components/VerifyAccount";
 import Profile from "./pages/Profile";
+
 import Panel from "./pages/Panel";
 import AddServices from "./components/Panel/AddServices";
 import MyServices from "./components/Panel/MyServices";
 import Vendor from "./components/Vendor";
+
+import PasswordReset from "./components/PasswordReset";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -39,16 +42,16 @@ function App() {
           ) : (
             <Route path="/" element={<Home />} />
           )}
-
-          {/* Redirect authenticated users away from auth routes */}
           {isAuthenticated() ? (
-            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
           ) : (
             <>
               <Route path="/auth/signup" element={<Signup />} />
               <Route path="/auth/signin" element={<Signin />} />
               <Route path="/auth/verify" element={<VerifyAccount />} />
-              
+
+              <Route path="/auth/reset-password" element={<PasswordReset />} />
+
             </>
           )}
 <Route element={<Panel/>}>
@@ -58,9 +61,14 @@ function App() {
 </Route>
 
 
+
           <Route path="/profile" element={<Profile />} />
           <Route path="/vendor/:vendorId" element={<Vendor />} />
-         
+
+          <Route path="/caterer" element={<Caterer />} />
+          <Route path="/decorator" element={<Decorator />} />
+          <Route path="/photographer" element={<Photographer />} />
+
 
           <Route path="/registration" element={<Registration />} />
 

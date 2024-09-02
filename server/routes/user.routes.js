@@ -9,6 +9,10 @@ const {
   updateAccountDetails,
   verifyUser,
   resendOTP,
+  forgetPassword,
+  verifyOtp,
+  resetPassword,
+  resetPasswordWithOtp,
 } = require("../controllers/user.controller.js");
 const { verifyJWT } = require("../middlewares/auth.middleware.js");
 
@@ -16,6 +20,8 @@ const router = Router();
 
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
+router.post("/forgot-password/request-otp", forgetPassword);
+router.post("/forgot-password/verify-otp", resetPasswordWithOtp);
 
 // Secured routes
 router.post("/verify", verifyJWT, verifyUser);
