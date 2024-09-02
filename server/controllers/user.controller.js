@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const {
   sendVerificationEmail,
 } = require("../helpers/sendVerificationEmail.js");
+const { sendForgotPasswordEmail } = require("../helpers/sendForgotPasswordEmail.js");
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -82,8 +83,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // }
 
   // Create a new user
-  const expiryDate = new Date();
-  expiryDate.setHours(expiryDate.getHours() + 1);
+  const expiryDate = Date.now() + 10 * 60 * 1000;
 
   const user = await User.create({
     firstName,
@@ -382,6 +382,74 @@ const resendOTP = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, null, "OTP resent successfully"));
 });
 
+const forgetPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    throw new ApiError(400, "Email is required");
+  }
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  user.verifyCode = otp;
+  user.verifyCodeExpiry = Date.now() + 10 * 60 * 1000;
+
+  await user.save();
+
+  const emailResponse = await sendForgotPasswordEmail(
+    user.email,
+    `${user.firstName} ${user.lastName}`,
+    otp
+  );
+
+  if (!emailResponse.success) {
+    throw new ApiError(500, "Failed to send OTP email");
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, null, "OTP sent successfully to your email"));
+});
+
+const resetPasswordWithOtp = asyncHandler(async (req, res) => {
+
+    const { email, otp, newPassword } = req.body;
+
+    if (!email || !otp || !newPassword) {
+      throw new ApiError(400, "Email, OTP, and new password are required");
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      throw new ApiError(404, "User not found");
+    }
+
+    const isOtpValid = user.verifyCode === otp;
+    const isOtpExpired = Date.now() > user.verifyCodeExpiry;
+
+    if (!isOtpValid || isOtpExpired) {
+      throw new ApiError(400, "Invalid or expired OTP");
+    }
+
+    // OTP is valid and not expired, reset the password
+    user.password = newPassword;
+    user.verifyCode = 0;
+    user.verifyCodeExpiry = 0;
+
+    await user.save();
+
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, null, "Password reset successfully"));
+});
+
 module.exports = {
   registerUser,
   loginUser,
@@ -392,4 +460,6 @@ module.exports = {
   updateAccountDetails,
   verifyUser,
   resendOTP,
+  forgetPassword,
+  resetPasswordWithOtp,
 };
