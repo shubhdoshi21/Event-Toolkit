@@ -11,7 +11,7 @@ import {loadStripe} from '@stripe/stripe-js';
 
 const Registration = () => {
   const makePayment = async (amount) => {
-    const stripe = await loadStripe(process.env.STRIPE_API_KEY);
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_API_KEY);
 
     // Make a POST request to your backend to create the checkout session
     const response = await fetch('http://localhost:8080/api/v1/registration/pay', {
