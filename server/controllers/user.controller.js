@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const {
   sendVerificationEmail,
 } = require("../helpers/sendVerificationEmail.js");
+const { sendForgotPasswordEmail } = require("../helpers/sendForgotPasswordEmail.js");
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -397,11 +398,10 @@ const forgetPassword = asyncHandler(async (req, res) => {
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
   user.verifyCode = otp;
   user.verifyCodeExpiry = Date.now() + 10 * 60 * 1000;
-  console.log(user.verifyCode, user.verifyCodeExpiry);
 
   await user.save();
 
-  const emailResponse = await sendVerificationEmail(
+  const emailResponse = await sendForgotPasswordEmail(
     user.email,
     `${user.firstName} ${user.lastName}`,
     otp
@@ -417,7 +417,7 @@ const forgetPassword = asyncHandler(async (req, res) => {
 });
 
 const resetPasswordWithOtp = asyncHandler(async (req, res) => {
-  try {
+
     const { email, otp, newPassword } = req.body;
 
     if (!email || !otp || !newPassword) {
@@ -443,9 +443,7 @@ const resetPasswordWithOtp = asyncHandler(async (req, res) => {
     user.verifyCodeExpiry = 0;
 
     await user.save();
-  } catch (error) {
-    console.log(error);
-  }
+
 
   return res
     .status(200)

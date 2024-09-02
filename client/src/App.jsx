@@ -28,7 +28,6 @@ function App() {
 
   return (
     <Router>
-      <PasswordReset />
       <div>
         <Routes>
           {isVisible ? (
@@ -40,16 +39,16 @@ function App() {
             <Route path="/" element={<Home />} />
           )}
           {isAuthenticated() ? (
-            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
           ) : (
             <>
               <Route path="/auth/signup" element={<Signup />} />
               <Route path="/auth/signin" element={<Signin />} />
               <Route path="/auth/verify" element={<VerifyAccount />} />
+              <Route path="/auth/reset-password" element={<PasswordReset />} />
             </>
           )}
 
-          <Route path="/profile" element={<Profile />} />
           <Route path="/caterer" element={<Caterer />} />
           <Route path="/decorator" element={<Decorator />} />
           <Route path="/photographer" element={<Photographer />} />
