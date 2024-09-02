@@ -1,4 +1,4 @@
-const Registration = require("../models/Registration.js");
+const Registration = require("../models/registration.model.js");
 const { ApiError } = require("../utils/ApiError.js");
 const { ApiResponse } = require("../utils/ApiResponse.js");
 const { User } = require("../models/user.model.js");
@@ -6,7 +6,7 @@ const { Vendor } = require("../models/vendor.model.js");
 const { Package } = require("../models/package.model.js");
 const { initializeApp } = require("firebase/app");
 const { firebaseConfig } = require("../config/firebase.config.js");
-
+const { Venues } = require("../models/venues.model.js");
 require("dotenv").config();
 const {
   getStorage,
@@ -33,33 +33,28 @@ exports.register = async (req, res) => {
     const {
       startDate,
       endDate,
-      caterer,
-      decorator,
-      photographer,
-      decPackId,
-      catPackId,
-      phoPackId,
+      vendors,
       venue,
     } = req.body;
     if (
       !startDate ||
       !endDate ||
-      !caterer ||
-      !decorator ||
-      !photographer ||
-      !decPackId ||
-      !catPackId ||
-      !phoPackId
+      !vendors ||
+      !venue
     ) {
       throw new ApiError(400, "Enter all details");
     }
 
-    const dec = await Package.findById(decPackId);
-    const cat = await Package.findById(catPackId);
-    const photo = await Package.findById(phoPackId);
+    let sum=0;
+    vendors.map(async(obj)=>{
+      let pkg = obj.packageId;
+      let pack = await Package.findById(pkg);
+      sum += pack.price;
+    });
 
-    let totalCost = dec.price + cat.price + photo.price;
-    totalCost = totalCost * 1.1;
+    let ven = await Venues.findById(venue);
+    sum += ven.venuePrice;
+
 
     const userDetails = await Registration.create({
       firstName,
@@ -67,11 +62,9 @@ exports.register = async (req, res) => {
       email,
       startDate,
       endDate,
-      caterer,
+      vendors,
       venue,
-      decorator,
-      photographer,
-      cost: totalCost,
+      cost: sum,
       hasHappened: false,
     });
 

@@ -31,18 +31,17 @@ const registrationSchema = new mongoose.Schema({
     eventImages:[{
         type:String,
     }],
-    caterer:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Caterer",
-    },
-    decorator:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Decorator",
-    },
-    photographer:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Photographer",
-    },
+    vendors:[
+        {
+            vendorId:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Vendor",
+        },
+        packageId:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Package",
+        }
+    }],
     cost:{
         type:Number,
     },

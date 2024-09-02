@@ -4,7 +4,7 @@ const {
   register,
   addImageToEvent,
   payment,
-} = require("../controllers/Registration");
+} = require("../controllers/registration.controller.js");
 const multer = require("multer");
 
 const upload = multer({ storage: multer.memoryStorage() });
