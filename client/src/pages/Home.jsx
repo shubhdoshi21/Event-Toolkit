@@ -72,7 +72,7 @@ const Home = () => {
       }
     };
     getVenues();
-  }, []);
+  }, [selectedCity]);
 
   const openModal = (modalId) => {
     setOpenModals({ ...openModals, [modalId]: true });
