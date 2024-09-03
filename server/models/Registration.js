@@ -32,15 +32,15 @@ const registrationSchema = new mongoose.Schema({
     }],
     caterer:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Caterer",
+        ref:"Vendor",
     },
     decorator:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Decorator",
+        ref:"Vendor",
     },
     photographer:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Photographer",
+        ref:"Vendor",
     },
     cost:{
         type:Number,

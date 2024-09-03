@@ -10,8 +10,6 @@ const {
   verifyUser,
   resendOTP,
   forgetPassword,
-  verifyOtp,
-  resetPassword,
   resetPasswordWithOtp,
 } = require("../controllers/user.controller.js");
 const { verifyJWT } = require("../middlewares/auth.middleware.js");
