@@ -126,11 +126,12 @@ const postCity = asyncHandler(async (req, res) => {
   }
 });
 
+//doubtful to use cityname or id used cityname because it would not require store for cities
 const postVenueAtCity = asyncHandler(async (req, res) => {
-  const { venueCity, venueName, venueDescription, venuePrice } = req.body;
+  const { venueCity, venueName, venueDescription } = req.body;
   const file = req.file;
 
-  if (!venueCity || !venueName || !venueDescription || !file || !venuePrice) {
+  if (!venueCity || !venueName || !venueDescription || !file ) {
     throw new ApiError(400, "All venue details are required");
   }
 
@@ -149,7 +150,6 @@ const postVenueAtCity = asyncHandler(async (req, res) => {
       venueCity,
       venueName,
       venueDescription,
-      venuePrice,
       venueImage: downloadURL,
       venueImageName: fileName,
     });
