@@ -131,7 +131,7 @@ const postVenueAtCity = asyncHandler(async (req, res) => {
   const { venueCity, venueName, venueDescription } = req.body;
   const file = req.file;
 
-  if (!venueCity || !venueName || !venueDescription || !file ) {
+  if (!venueCity || !venueName || !venueDescription || !file) {
     throw new ApiError(400, "All venue details are required");
   }
 
