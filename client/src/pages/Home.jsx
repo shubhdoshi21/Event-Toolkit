@@ -51,8 +51,8 @@ const Home = () => {
 
   useEffect(() => {
     const getReviews = async () => {
-      const response = await axios.get(
-        "http://localhost:8080/api/v1/reviews/getAllReviews"
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/reviews/getReviewsByType"
       );
       if (response?.data?.statusCode <= 200) {
         setReviews(response.data.data?.data);
@@ -193,7 +193,7 @@ const Home = () => {
         <h2 className="text-3xl font-bold mb-6 text-center">Latest Reviews</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {reviews.length !== 0 ? (
-            reviews.map((review) => <ReviewCard review={review} />)
+            reviews.map((review) => <ReviewCard key={review._id} review={review} />)
           ) : (
             <div className="flex flex-col items-center p-6 w-screen ">
             <FaCommentDots className="text-6xl text-gray-400 mb-4" />

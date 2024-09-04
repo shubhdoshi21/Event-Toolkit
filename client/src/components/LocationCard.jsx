@@ -14,7 +14,7 @@ const LocationCard = ({ modal }) => {
       <div className="p-4">
         <h3 className=" text-lg font-bold mt-1 uppercase">{modal.venueName}</h3>
         <p className="text-gray-300 text-md">{modal.venueDescription}</p>
-        <p className="text-gray-300 text-xl mt-3">₹{modal.venuePrice}</p>
+        <p className="text-gray-300 text-xl mt-3">₹</p>
       </div>
       <button className="w-full h-[50px] bg-red">See Location</button>
     </div>
