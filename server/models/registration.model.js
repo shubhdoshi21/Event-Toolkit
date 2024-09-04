@@ -26,22 +26,22 @@ const registrationSchema = new mongoose.Schema({
     },
     hasHappened:{
         type:Boolean,
+        default:false,
     },
     eventImages:[{
         type:String,
     }],
-    caterer:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Vendor",
-    },
-    decorator:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Vendor",
-    },
-    photographer:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Vendor",
-    },
+    vendors:[
+        {
+            vendorId:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Vendor",
+        },
+        packageId:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Package",
+        }
+    }],
     cost:{
         type:Number,
     },

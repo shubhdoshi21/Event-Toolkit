@@ -1,4 +1,4 @@
-const Registration = require("../models/Registration.js");
+const Registration = require("../models/registration.model.js");
 const { ApiError } = require("../utils/ApiError.js");
 const { ApiResponse } = require("../utils/ApiResponse.js");
 const { User } = require("../models/user.model.js");
@@ -6,6 +6,8 @@ const { Vendor } = require("../models/vendor.model.js");
 const { Package } = require("../models/package.model.js");
 const { initializeApp } = require("firebase/app");
 const { firebaseConfig } = require("../config/firebase.config.js");
+const { Venues } = require("../models/venues.model.js");
+require("dotenv").config();
 const {
   getStorage,
   ref,
@@ -16,6 +18,7 @@ const {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const storage = getStorage(firebaseApp);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.register = async (req, res) => {
   try {
@@ -30,33 +33,28 @@ exports.register = async (req, res) => {
     const {
       startDate,
       endDate,
-      caterer,
-      decorator,
-      photographer,
-      decPackId,
-      catPackId,
-      phoPackId,
+      vendors,
       venue,
     } = req.body;
     if (
       !startDate ||
       !endDate ||
-      !caterer ||
-      !decorator ||
-      !photographer ||
-      !decPackId ||
-      !catPackId ||
-      !phoPackId
+      !vendors ||
+      !venue
     ) {
       throw new ApiError(400, "Enter all details");
     }
 
-    const dec = await Package.findById(decPackId);
-    const cat = await Package.findById(catPackId);
-    const photo = await Package.findById(phoPackId);
+    let sum=0;
+    vendors.map(async(obj)=>{
+      let pkg = obj.packageId;
+      let pack = await Package.findById(pkg);
+      sum += pack.price;
+    });
 
-    let totalCost = dec.price + cat.price + photo.price;
-    totalCost = totalCost * 1.1;
+    let ven = await Venues.findById(venue);
+    sum += ven.venuePrice;
+
 
     const userDetails = await Registration.create({
       firstName,
@@ -64,11 +62,9 @@ exports.register = async (req, res) => {
       email,
       startDate,
       endDate,
-      caterer,
+      vendors,
       venue,
-      decorator,
-      photographer,
-      cost: totalCost,
+      cost: sum,
       hasHappened: false,
     });
 
@@ -130,6 +126,36 @@ exports.addImageToEvent = async (req, res) => {
   }
 };
 
+exports.payment = async (req, res) => {
+  try {
+    const { products } = req.body;
+    const lineItems = products.map((product) => ({
+      price_data: {
+        currency: "inr",
+        product_data: {
+          name: product.name,
+          images: [product.image],
+        },
+        unit_amount: product.price * 100,
+      },
+      quantity: product.quantity, 
+    }));
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: lineItems,
+      mode: "payment",
+      success_url: "http://localhost:5173/payment/success",
+      cancel_url: "http://localhost:5173/payment/failed",
+    });
+
+    res.json({ id: session.id });
+  } catch (error) {
+    console.error("Error creating Stripe Checkout session:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 exports.getUserEvents = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -140,9 +166,10 @@ exports.getUserEvents = async (req, res) => {
     }
 
     const userEvents = await Registration.find({ email: user.email })
-      .populate("caterer", "serviceName")
-      .populate("decorator", "serviceName")
-      .populate("photographer", "serviceName")
+      .populate({
+        path: "vendors.vendorId",
+        select: "serviceName vendorType",
+      })
       .populate("venue", "venueName");
 
     if (!userEvents || userEvents.length === 0) {
@@ -162,3 +189,4 @@ exports.getUserEvents = async (req, res) => {
     return res.status(500).json(new ApiResponse(500, null, error.message));
   }
 };
+

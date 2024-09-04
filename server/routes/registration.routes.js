@@ -9,6 +9,7 @@ const { verifyJWT } = require("../middlewares/auth.middleware.js");
 
 router.post("/registerEvent", register);
 router.post("/addImageToEvent",upload.single('eventImage'),addImageToEvent);
+router.post("/payment", payment);
 router.get("/getUserEvents", verifyJWT, getUserEvents);
 
 module.exports = router;

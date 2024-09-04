@@ -58,9 +58,12 @@ const History = () => {
               <div className="mt-4">
                 <h3 className="text-lg font-medium">Services:</h3>
                 <ul className="list-disc list-inside">
-                  <li>Caterer: {event.caterer?.serviceName || "N/A"}</li>
-                  <li>Decorator: {event.decorator?.serviceName || "N/A"}</li>
-                  <li>Photographer: {event.photographer?.serviceName || "N/A"}</li>
+                  {event.vendors.map((vendor, i) => (
+                    <li key={i}>
+                      {vendor.vendorId.vendorType}:{" "}
+                      {vendor.vendorId.serviceName || "N/A"}
+                    </li>
+                  ))}
                   <li>Venue: {event.venue?.venueName || "N/A"}</li>
                 </ul>
               </div>
