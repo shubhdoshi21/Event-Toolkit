@@ -39,8 +39,10 @@ const getVendorDetails = asyncHandler(async(req,res)=>{
 
 const addServiceDetails = asyncHandler(async(req,res)=>{
     try {
-        const {serviceName,location,about,vendorType,booking,cancellation,terms} = req.body;
-        if(!serviceName || !location || !about || !vendorType){
+        console.log("hi")
+        const {serviceName,location,about,vendorType,booking,cancellation,terms,venue} = req.body;
+        console.log(serviceName,location,about,vendorType,booking,cancellation,terms,venue)
+        if(!serviceName || !location || !about || !vendorType || !venue){
             throw new  ApiError(400, "Everything is required to add service details");
         }
 
@@ -56,7 +58,7 @@ const addServiceDetails = asyncHandler(async(req,res)=>{
             serviceName,
             location,
             about,
-            vendorType,booking,cancellation,terms
+            vendorType,booking,cancellation,terms,venue
         })
 
         return res.status(200).json(
@@ -76,7 +78,7 @@ const updateServiceDetails = asyncHandler(async(req,res)=>{
         const {serviceName,location,about,booking,cancellation,terms,vendorId} = req.body;
     //  const vendorId = req.body.vendorId;
     //  const vendorId = req.params.vendorId;
-      console.log(serviceName,location,about,vendorId,booking,cancellation,terms);
+      console.log("huhu",serviceName,location,about,vendorId,booking,cancellation,terms);
     if(!serviceName || !location || !about){
         throw new  ApiError(400, "Everything is required to add service details");
     }

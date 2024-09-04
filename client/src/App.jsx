@@ -25,6 +25,9 @@ import Vendor from "./components/Vendor";
 import Cart from "./pages/Cart";
 
 import PasswordReset from "./components/PasswordReset";
+
+import Service from "./components/Panel/Service";
+
 import { Navbar } from "./components";
 
 function App() {
@@ -59,11 +62,21 @@ function App() {
               <Route path="/auth/reset-password" element={<PasswordReset />} />
             </>
           )}
+
+<Route element={<Panel/>}>
+<Route path="/profile" element={<Profile/>} /> 
+{/* <Route path="service" element={<Service/>}/> */}
+<Route path="/panel/add-services" element={<AddServices/>} /> 
+<Route path="/panel/my-services" element={<MyServices/>} /> 
+</Route>
+
+
           <Route element={<Panel />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/panel/add-services" element={<AddServices />} />
             <Route path="/panel/my-services" element={<MyServices />} />
           </Route>
+
 
           {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/vendor/:vendorId" element={<Vendor />} />
