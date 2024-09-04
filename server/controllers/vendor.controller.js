@@ -168,8 +168,10 @@ const getAllPhotographer = asyncHandler(async(req,res)=>{
 
 const getAllByServiceType = asyncHandler(async(req,res)=>{
     try {
-        const {vendorType} = req.body;
-        const vendors = await Vendor.find({vendorType:vendorType}).populate("packages").populate("ratingAndReview");;
+        const {vendorType, venue} = req.body;
+        const vendors = await Vendor.find({vendorType:vendorType,
+            venue:venue,
+        }).populate("packages").populate("ratingAndReview");;
         return res.status(200).json(
             new ApiResponse(200,{data:vendors},"Vendor Details fetched successfully")
         )

@@ -3,11 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-
-// Directly import Autoplay and Navigation from 'swiper' package
 import { Autoplay, Navigation } from "swiper/modules";
 
-const GallerySlider = ({ images, slides, height }) => {
+const GallerySlider = ({ slides, height, halls, btn }) => {
   return (
     <Swiper
       spaceBetween={10}
@@ -18,23 +16,28 @@ const GallerySlider = ({ images, slides, height }) => {
         disableOnInteraction: false,
       }}
       navigation={true}
-      modules={[Autoplay, Navigation]} // Ensure modules are correctly imported
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
+      modules={[Autoplay, Navigation]}
       style={{ padding: "20px" }}
     >
-      {images.map((image, index) => (
+      {halls.map((hall, index) => (
         <SwiperSlide key={index}>
-          <img
-            src={image}
-            alt={`Slide ${index}`}
-            className="w-full h-auto object-cover"
-            style={{ height: `${height}px`, borderRadius: "8px" }}
-          />
+          <div className="relative overflow-hidden rounded-lg">
+            <img
+              src={hall.image}
+              alt={`Slide ${index}`}
+              className="w-full h-auto object-cover transition-transform duration-300 ease-in-out"
+              style={{ height: `${height}px`, borderRadius: "8px" }}
+            />
+            <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out">
+              <h2 className="text-white text-2xl font-bold mb-2">{hall.name}</h2>
+              <p className="text-white text-xl mb-4">Price: ${hall.price}</p>
+              <button className="bg-mauve text-white px-4 py-2 rounded-full hover:scale-105 transition-scale duration-300">
+                {btn}
+              </button>
+            </div>
+          </div>
         </SwiperSlide>
       ))}
-      {/* <div className="swiper-button-next text-grey"></div>
-      <div className="swiper-button-prev text-grey"></div> */}
     </Swiper>
   );
 };
