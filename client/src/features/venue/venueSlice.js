@@ -1,16 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-
+    venues: [],
+    selectedVenueId: null 
 }
 
 const venueSlice = createSlice({
     name: "venue",
     initialState,
     reducers: {
-
+        setVenues: (state, action) => {
+            state.venues = action.payload;
+        },
+        setSelectedVenue: (state, action) => {
+            state.selectedVenueId = action.payload;
+        }
     }
 })
 
-export const {} = venueSlice.actions;
+export const {setVenues, setSelectedVenue} = venueSlice.actions;
 export default venueSlice.reducer;
