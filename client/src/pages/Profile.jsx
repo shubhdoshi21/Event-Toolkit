@@ -4,11 +4,11 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserDetails, logoutUser } from "../features/user/userSlice.js";
+import { setUserDetails } from "../features/user/userSlice.js";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user); 
+  const user = useSelector((state) => state.user);
 
   const [loading, setLoading] = useState(true);
   const [currentPassword, setCurrentPassword] = useState("");
@@ -54,29 +54,6 @@ const Profile = () => {
 
     fetchUserDetails();
   }, [dispatch]);
-
-  const handleLogout = async () => {
-    try {
-      await axios.post(
-        "http://localhost:8080/api/v1/users/logout",
-        {},
-        { withCredentials: true }
-      );
-      dispatch(logoutUser());
-      toast.success("Logged out successfully!", {
-        autoClose: 1500,
-        closeButton: false,
-      });
-      setTimeout(() => {
-        window.location.href = "/auth/signin";
-      }, 1500);
-    } catch (err) {
-      toast.success(err.response?.data?.message || "Error logging out!.", {
-        autoClose: 1500,
-        closeButton: false,
-      });
-    }
-  };
 
   const validateNewPassword = (password) => {
     const errors = [];
@@ -184,145 +161,126 @@ const Profile = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-full flex flex-row max-[990px]:flex-col">
-        {/* Sidebar */}
-        <div className="w-1/4 max-[990px]:w-full p-4 border-r-2 border-gray-400 max-[990px]:border-r-0 max-[990px]:border-b-2">
-          <nav className="flex flex-col max-[990px]:flex-row max-[990px]:justify-evenly max-[990px]:items-center flex-wrap gap-2">
-            <div className="block p-2">My Profile</div>
-            <div className="block p-2">History</div>
-            <div className="block p-2">My Cart</div>
-            <div onClick={handleLogout} className="block p-2 cursor-pointer">
-              Logout
-            </div>
-          </nav>
-        </div>
-
-        {/* Main Content */}
-        <div className="w-3/4 max-[990px]:w-full px-6">
-          <div className="mt-6">
-            <form onSubmit={handleUpdateAccountDetails}>
-              <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
-                <div>
-                  <label className="block">First Name:</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label className="block">Last Name:</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <label className="block">Communication Email address:</label>
-                <input
-                  type="email"
-                  className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                  value={user?.email || ""}
-                  readOnly
-                />
-              </div>
-
-              <div>
-                <label className="block">Phone Number:</label>
-                <input
-                  type="text"
-                  className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                  value={contactNumber}
-                  onChange={(e) => setContactNumber(e.target.value)}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md mt-4"
-              >
-                Update Account Details
-              </button>
-            </form>
-
-            {/* Change Password Form */}
+    <div className="w-full min-h-[100%] flex items-center justify-center ">
+      <div className="w-full max-[990px]:w-full p-8">
+        <form onSubmit={handleUpdateAccountDetails}>
+          <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
             <div>
-              <h2 className="text-lg font-semibold py-2">Change Password</h2>
-              <form onSubmit={handleChangePassword}>
-                <div className="mb-4">
-                  <label className="block">Current Password:</label>
-                  <input
-                    type="password"
-                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block">New Password:</label>
-                  <input
-                    type="password"
-                    className={`w-full mt-1 p-2 border rounded-md bg-transparent outline-none ${
-                      passwordValid === "initial"
-                        ? ""
-                        : passwordValid
-                        ? "border-green-500"
-                        : "border-red"
-                    }`}
-                    value={newPassword}
-                    onChange={(e) => {
-                      setNewPassword(e.target.value);
-                      validateNewPassword(e.target.value);
-                    }}
-                    required
-                  />
-                  {passwordValid !== "initial" && !passwordValid && (
-                    <div className="text-left text-red text-sm m-2">
-                      <ul>
-                        {passwordErrors.map((error, index) => (
-                          <li key={index}>{error}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-                <div className="mb-2">
-                  <label className="block">Confirm New Password:</label>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="flex items-center justify-end px-2 text-sm mb-2">
-                  <input
-                    type="checkbox"
-                    id="showPassword"
-                    checked={showPassword}
-                    onChange={() => setShowPassword((prev) => !prev)}
-                  />
-                  <label htmlFor="showPassword" className="ml-2">
-                    Show Password
-                  </label>
-                </div>
-                <button
-                  type="submit"
-                  className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md"
-                >
-                  Change Password
-                </button>
-              </form>
+              <label className="block">First Name:</label>
+              <input
+                type="text"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="block">Last Name:</label>
+              <input
+                type="text"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
             </div>
           </div>
+
+          <div className="mb-4">
+            <label className="block">Communication Email address:</label>
+            <input
+              type="email"
+              className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+              value={user?.email || ""}
+              readOnly
+            />
+          </div>
+
+          <div>
+            <label className="block">Phone Number:</label>
+            <input
+              type="text"
+              className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+              value={contactNumber}
+              onChange={(e) => setContactNumber(e.target.value)}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md mt-4"
+          >
+            Update Account Details
+          </button>
+        </form>
+        <div>
+          <h2 className="text-lg font-semibold py-2">Change Password</h2>
+          <form onSubmit={handleChangePassword}>
+            <div className="mb-4">
+              <label className="block">Current Password:</label>
+              <input
+                type="password"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block">New Password:</label>
+              <input
+                type="password"
+                className={`w-full mt-1 p-2 border rounded-md bg-transparent outline-none ${
+                  passwordValid === "initial"
+                    ? ""
+                    : passwordValid
+                    ? "border-green-500"
+                    : "border-red"
+                }`}
+                value={newPassword}
+                onChange={(e) => {
+                  setNewPassword(e.target.value);
+                  validateNewPassword(e.target.value);
+                }}
+                required
+              />
+              {passwordValid !== "initial" && !passwordValid && (
+                <div className="text-left text-red text-sm m-2">
+                  <ul>
+                    {passwordErrors.map((error, index) => (
+                      <li key={index}>{error}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            <div className="mb-2">
+              <label className="block">Confirm New Password:</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="flex items-center justify-end px-2 text-sm mb-2">
+              <input
+                type="checkbox"
+                id="showPassword"
+                checked={showPassword}
+                onChange={() => setShowPassword((prev) => !prev)}
+              />
+              <label htmlFor="showPassword" className="ml-2">
+                Show Password
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md"
+            >
+              Change Password
+            </button>
+          </form>
         </div>
       </div>
       <ToastContainer />

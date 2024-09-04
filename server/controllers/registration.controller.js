@@ -138,7 +138,7 @@ exports.payment = async (req, res) => {
         },
         unit_amount: product.price * 100,
       },
-      quantity: product.quantity,
+      quantity: product.quantity, 
     }));
 
     const session = await stripe.checkout.sessions.create({

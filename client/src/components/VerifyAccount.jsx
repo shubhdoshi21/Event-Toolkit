@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // Import useEffect
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -34,7 +34,7 @@ const VerifyAccount = () => {
 
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace") {
-      e.preventDefault(); // Prevent default backspace action
+      e.preventDefault(); 
 
       const newOtp = [...otp];
       newOtp[index] = "";
@@ -90,7 +90,7 @@ const VerifyAccount = () => {
         autoClose: 1500,
         closeButton: false,
       });
-      setResendCooldown(30); // Start 30-second cooldown
+      setResendCooldown(30);
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to resend OTP", {
         autoClose: 1500,

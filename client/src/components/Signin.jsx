@@ -84,7 +84,7 @@ const Signin = () => {
               Password
             </label>
             <input
-               type={showPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               id="password"
               className="mt-1 p-2 w-full border rounded-md outline-none bg-transparent"
               placeholder="Enter your password"
@@ -103,6 +103,12 @@ const Signin = () => {
               Show Password
             </label>
           </div>
+          <Link
+            to="/auth/reset-password"
+            className="w-full flex justify-center items-center text-sm text-[#FF5364] hover:underline"
+          >
+            Forgot Password?
+          </Link>
 
           <button
             type="submit"

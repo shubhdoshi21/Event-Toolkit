@@ -10,14 +10,22 @@ import NotFound from "./pages/NotFound";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import Home from "./pages/Home";
-import Caterer from "./components/Caterer";
-import Decorator from "./components/Decorator";
-import Photographer from "./components/Photographer";
+
 import Registration from "./pages/Registration";
 import Cookies from "js-cookie";
 import VerifyAccount from "./components/VerifyAccount";
 import Profile from "./pages/Profile";
 import Payment from "./components/Payment";
+
+import Panel from "./pages/Panel";
+import AddServices from "./components/Panel/AddServices";
+import MyServices from "./components/Panel/MyServices";
+import Vendor from "./components/Vendor";
+
+import Cart from "./pages/Cart";
+
+import PasswordReset from "./components/PasswordReset";
+import { Navbar } from "./components";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -28,6 +36,7 @@ function App() {
 
   return (
     <Router>
+      {/* {!isVisible && <Navbar/>} */}
       <div>
         <Routes>
           {isVisible ? (
@@ -38,25 +47,34 @@ function App() {
           ) : (
             <Route path="/" element={<Home />} />
           )}
-
-          {/* Redirect authenticated users away from auth routes */}
           {isAuthenticated() ? (
-            <Route path="/" element={<Home />} />
+            1
           ) : (
+            // <Route path="/profile" element={<Profile />} />
             <>
               <Route path="/auth/signup" element={<Signup />} />
               <Route path="/auth/signin" element={<Signin />} />
               <Route path="/auth/verify" element={<VerifyAccount />} />
+
+              <Route path="/auth/reset-password" element={<PasswordReset />} />
             </>
           )}
+          <Route element={<Panel />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/panel/add-services" element={<AddServices />} />
+            <Route path="/panel/my-services" element={<MyServices />} />
+          </Route>
 
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/caterer" element={<Caterer />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/vendor/:vendorId" element={<Vendor />} />
+
+          {/*           <Route path="/caterer" element={<Caterer />} />
           <Route path="/decorator" element={<Decorator />} />
-          <Route path="/photographer" element={<Photographer />} />
+          <Route path="/photographer" element={<Photographer />} /> */}
 
           <Route path="/registration" element={<Registration />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/cart" element={<Cart />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

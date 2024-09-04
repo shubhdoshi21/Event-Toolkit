@@ -6,7 +6,7 @@ const RegForm = () => {
   const [selectedPhotographer, setSelectedPhotographer] = useState('');
 
   const catererPackages = {
-    caterer1: ['Package 1', 'Package 2', 'Package 3'],
+    caterer1: ['Package 1', 'Package 2', 'Package 3'], 
     caterer2: ['Package A', 'Package B'], 
     caterer3: ['Package X', 'Package Y', 'Package Z'],
   };

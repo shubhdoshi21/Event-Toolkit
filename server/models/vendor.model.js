@@ -45,6 +45,26 @@ const vendorSchema = new Schema({
         
         required: true,
       },
+    booking:{
+        type:String,
+        required:true,
+        trim:true,
+    },
+    cancellation:{
+        type:String,
+        required:true,
+        trim:true,
+    },
+    terms:{
+        type:String,
+        required:true,
+        trim:true,
+    },
+    venue:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Venues",
+        required:true,
+    }
 
 },
 {
