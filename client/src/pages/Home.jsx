@@ -51,8 +51,8 @@ const Home = () => {
 
   useEffect(() => {
     const getReviews = async () => {
-      const response = await axios.get(
-        "http://localhost:8080/api/v1/reviews/getAllReviews"
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/reviews/getReviewsByType"
       );
       if (response?.data?.statusCode <= 200) {
         setReviews(response.data.data?.data);
