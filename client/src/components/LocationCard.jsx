@@ -7,7 +7,7 @@ const LocationCard = ({ modal }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleBtnClick = () => {
-    dispatch(setSelectedVenue(modal._id))
+    dispatch(setSelectedVenue(modal))
     navigate("/registration");
   }
   return (
