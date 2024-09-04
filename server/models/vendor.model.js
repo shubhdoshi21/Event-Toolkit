@@ -23,18 +23,15 @@ const vendorSchema = new Schema({
         trim:true,
     },
 
-
     ratingAndReview:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Reviews"
     }],
 
-
     packages:[{
         type:Schema.Types.ObjectId,
         ref:"Package"
     }],
-
 
     gallery:[{
         type:String,

@@ -63,16 +63,26 @@ function ReviewSlider() {
       review: "Great event!",
       image: i4
     },
-    // Duplicate reviews removed for simplicity
+    
   ];
 
-  const truncateWords = 20; // Define or adjust as needed
+  const truncateWords = 20; 
 
   return (
     <div className="text-white">
       <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
         <Swiper
-          slidesPerView={4}
+          breakpoints={{
+            320: {
+              slidesPerView: 1, 
+            },
+            640: {
+              slidesPerView: 2, 
+            },
+            1024: {
+              slidesPerView: 4, 
+            },
+          }}
           spaceBetween={25}
           loop={true}
           freeMode={true}
