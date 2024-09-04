@@ -36,13 +36,13 @@ const [halls,setHalls] = useState([]);
 const [venue, setvenueData] = useState({});
 const [caterer, setCaterers] = useState([]);
 const [decorator, setDecorators] = useState([]);
-  const {selectedVenueId} = useSelector((state) => state.venue);
+  const {selectedVenue} = useSelector((state) => state.venue);
   useEffect( ()=>{
     const getHalls = async () => {
-    console.log(selectedVenueId);
+    console.log(selectedVenue);
       
     const response = await axios.post(`http://localhost:8080/api/v1/venues/getAllSubVenuesAtVenue`,{
-      venueId:selectedVenueId
+      venueId:selectedVenue._id,
     });
     console.log(response);
 
@@ -53,10 +53,10 @@ const [decorator, setDecorators] = useState([]);
 
   useEffect( ()=>{
     const getVenueById = async () => {
-    console.log(selectedVenueId);
+    console.log(selectedVenue);
       
     const response = await axios.post(`http://localhost:8080/api/v1/venues/getVenueById`,{
-      venueId:selectedVenueId
+      venueId:selectedVenue._id,
     });
     console.log(response);
     setvenueData(response?.data?.data?.data);
@@ -67,10 +67,10 @@ const [decorator, setDecorators] = useState([]);
   
   useEffect( ()=>{
     const getDecorators = async () => {
-    console.log(selectedVenueId);
+    console.log(selectedVenue);
       
     const response = await axios.post(`http://localhost:8080/api/v1/vendor/getAllByServiceType`,{
-      venue:selectedVenueId,
+      venue:selectedVenue._id,
       vendorType:"decorator",
     });
     console.log(response);
