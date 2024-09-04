@@ -35,4 +35,10 @@ export const sidebarlinks = [
     type: AccountType.Admin,
     icon: "VscAdd",
   },
+  {
+    id: "6",
+    name: "History",
+    path: "/panel/history",
+    icon: "VscHistory",
+  },
 ];

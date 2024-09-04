@@ -155,3 +155,38 @@ exports.payment = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
+exports.getUserEvents = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new ApiError(401, "User not found");
+    }
+
+    const userEvents = await Registration.find({ email: user.email })
+      .populate({
+        path: "vendors.vendorId",
+        select: "serviceName vendorType",
+      })
+      .populate("venue", "venueName");
+
+    if (!userEvents || userEvents.length === 0) {
+      return res
+        .status(404)
+        .json(new ApiResponse(404, null, "No events found for this user"));
+    }
+
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(200, userEvents, "User events fetched successfully")
+      );
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json(new ApiResponse(500, null, error.message));
+  }
+};
+

@@ -29,6 +29,7 @@ import PasswordReset from "./components/PasswordReset";
 import Service from "./components/Panel/Service";
 
 import { Navbar } from "./components";
+import History from "./components/Panel/History";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -75,6 +76,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/panel/add-services" element={<AddServices />} />
             <Route path="/panel/my-services" element={<MyServices />} />
+            <Route path="/panel/history" element={<History />} />
           </Route>
 
 
