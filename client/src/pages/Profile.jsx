@@ -164,7 +164,7 @@ const Profile = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="w-[100vw] min-h-[100%] flex items-center justify-center ">
+    <div className="w-[100%] min-h-[100vh] flex items-center justify-center ">
       <div className="w-full flex flex-row max-[990px]:flex-col ml-9">
         {/* Sidebar */}
         {/* <div className="w-1/4 max-[990px]:w-full p-4 border-r-2 border-gray-400 max-[990px]:border-r-0 max-[990px]:border-b-2">
@@ -299,6 +299,7 @@ const Profile = () => {
                 >
                   Change Password
                 </button>
+                
               </form>
             </div>
           </div>

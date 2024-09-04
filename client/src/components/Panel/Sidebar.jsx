@@ -39,8 +39,8 @@ const Sidebar = () => {
       };
     console.log(userType)
   return (
-    <div>
-      <div className="flex w-[105%] text-white flex-col  border-r-richblack-700 h-[100%] bg-primaryPeach/80">
+    <div className="min-w-[14%]">
+      <div className="flex  text-white flex-col  h-[100%] bg-primaryPeach">
         <div className="flex flex-col">
           {sidebarlinks.map((link) => {
             if (link.type && userType !== link.type) {

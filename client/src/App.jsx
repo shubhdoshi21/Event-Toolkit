@@ -19,7 +19,7 @@ import Panel from "./pages/Panel";
 import AddServices from "./components/Panel/AddServices";
 import MyServices from "./components/Panel/MyServices";
 import Vendor from "./components/Vendor";
-
+import Service from "./components/Panel/Service";
 function App() {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -53,6 +53,7 @@ function App() {
           )}
 <Route element={<Panel/>}>
 <Route path="/profile" element={<Profile/>} /> 
+{/* <Route path="service" element={<Service/>}/> */}
 <Route path="/panel/add-services" element={<AddServices/>} /> 
 <Route path="/panel/my-services" element={<MyServices/>} /> 
 </Route>
