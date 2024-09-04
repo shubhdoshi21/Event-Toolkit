@@ -33,7 +33,24 @@ const Sidebar = () => {
   };
   console.log(userType);
   return (
-    <div className="flex w-[15vw] text-white flex-col border-r-richblack-700 h-[100vh] fixed left-0 bg-primaryPeach/80">
+
+    <div className="min-w-[14%]">
+      <div className="flex  text-white flex-col  h-[100%] bg-primaryPeach">
+        <div className="flex flex-col">
+          {sidebarlinks.map((link) => {
+            if (link.type && userType !== link.type) {
+              return null;
+            }
+            return (
+              <SidebarLink key={link.id} link={link} iconName={link.icon} />
+            );
+          })}
+        </div>
+        <div onClick={handleLogout} className="block p-2 cursor-pointer">
+              Logout
+            </div>
+
+          {/* <div className="flex w-[15vw] text-white flex-col border-r-richblack-700 h-[100vh] fixed left-0 bg-primaryPeach/80">
       <div className="flex flex-col">
         {sidebarlinks.map((link) => {
           if (link.type && userType !== link.type) {
@@ -46,7 +63,8 @@ const Sidebar = () => {
         onClick={handleLogout}
         className="block p-4 cursor-pointer hover:bg-primaryPeach/80"
       >
-        Logout
+        Logout*/}
+
       </div>
     </div>
   );

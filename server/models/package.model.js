@@ -21,7 +21,6 @@ const packageSchema = new Schema(
                 
                  itemQuantity:{
                     type:Number,
-                   
                  },
             }
         ]

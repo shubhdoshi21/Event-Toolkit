@@ -15,13 +15,19 @@ import Registration from "./pages/Registration";
 import Cookies from "js-cookie";
 import VerifyAccount from "./components/VerifyAccount";
 import Profile from "./pages/Profile";
+import Payment from "./components/Payment";
 
 import Panel from "./pages/Panel";
 import AddServices from "./components/Panel/AddServices";
 import MyServices from "./components/Panel/MyServices";
 import Vendor from "./components/Vendor";
 
+import Cart from "./pages/Cart";
+
 import PasswordReset from "./components/PasswordReset";
+
+import Service from "./components/Panel/Service";
+
 import { Navbar } from "./components";
 import History from "./components/Panel/History";
 
@@ -57,12 +63,22 @@ function App() {
               <Route path="/auth/reset-password" element={<PasswordReset />} />
             </>
           )}
+
+<Route element={<Panel/>}>
+<Route path="/profile" element={<Profile/>} /> 
+{/* <Route path="service" element={<Service/>}/> */}
+<Route path="/panel/add-services" element={<AddServices/>} /> 
+<Route path="/panel/my-services" element={<MyServices/>} /> 
+</Route>
+
+
           <Route element={<Panel />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/panel/add-services" element={<AddServices />} />
             <Route path="/panel/my-services" element={<MyServices />} />
             <Route path="/panel/history" element={<History />} />
           </Route>
+
 
           {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/vendor/:vendorId" element={<Vendor />} />
@@ -72,6 +88,8 @@ function App() {
           <Route path="/photographer" element={<Photographer />} /> */}
 
           <Route path="/registration" element={<Registration />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/cart" element={<Cart />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

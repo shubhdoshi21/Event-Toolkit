@@ -34,7 +34,10 @@ const vendorSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:"Package"
     }],
-
+    venue:[{
+        type:Schema.Types.ObjectId,
+        ref:"Venues",required:true
+    }],
 
     gallery:[{
         type:String,
@@ -60,6 +63,11 @@ const vendorSchema = new Schema({
         required:true,
         trim:true,
     },
+    venue:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Venues",
+        required:true,
+    }
 
 },
 {
