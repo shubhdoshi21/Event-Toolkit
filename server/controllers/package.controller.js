@@ -61,7 +61,7 @@ const createPackages = asyncHandler(async (req, res) => {
 const deletePackages = asyncHandler(async (req, res) => {
   try {
      const { packageId, vendorId } = req.body;
-   
+    console.log(packageId, vendorId);
   
     await Vendor.findByIdAndUpdate(vendorId, {
       $pull: { packages: packageId },
@@ -97,8 +97,9 @@ const deletePackages = asyncHandler(async (req, res) => {
 
 const updatePackages = asyncHandler(async (req, res) => {
     try {
-        const {packageId } = req.body;
-      const {packageName, price, items } = req.body;
+     
+      const {packageId,packageName, price, items } = req.body;
+      console.log(packageId,packageName,price,items)
       if (!packageId || !packageName || !price || !items) {
         throw new ApiError(400, "All fields are required to update a package");
       }
