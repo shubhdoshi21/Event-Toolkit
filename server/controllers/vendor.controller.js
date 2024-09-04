@@ -180,7 +180,7 @@ const getAllByServiceType = asyncHandler(async(req,res)=>{
             new ApiResponse(error.statusCode || 500, null, error.message)
         );
     }
-})
+}) 
 
 const addImageToVendor =asyncHandler(async(req,res) => {
     try {
