@@ -15,11 +15,14 @@ import Registration from "./pages/Registration";
 import Cookies from "js-cookie";
 import VerifyAccount from "./components/VerifyAccount";
 import Profile from "./pages/Profile";
+import Payment from "./components/Payment";
 
 import Panel from "./pages/Panel";
 import AddServices from "./components/Panel/AddServices";
 import MyServices from "./components/Panel/MyServices";
 import Vendor from "./components/Vendor";
+
+import Cart from "./pages/Cart";
 
 import PasswordReset from "./components/PasswordReset";
 import { Navbar } from "./components";
@@ -70,6 +73,8 @@ function App() {
           <Route path="/photographer" element={<Photographer />} /> */}
 
           <Route path="/registration" element={<Registration />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/cart" element={<Cart />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -60,6 +60,11 @@ const vendorSchema = new Schema({
         required:true,
         trim:true,
     },
+    venue:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Venues",
+        required:true,
+    }
 
 },
 {
