@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     venues: [],
-    selectedVenueId: null 
+    selectedVenue: null 
 }
 
 const venueSlice = createSlice({
@@ -13,7 +13,7 @@ const venueSlice = createSlice({
             state.venues = action.payload;
         },
         setSelectedVenue: (state, action) => {
-            state.selectedVenueId = action.payload;
+            state.selectedVenue = action.payload;
         }
     }
 })
