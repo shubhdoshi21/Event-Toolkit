@@ -161,59 +161,8 @@ const Profile = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-
     <div className="w-[100%] min-h-[100vh] flex items-center justify-center ">
-      <div className="w-full flex flex-row max-[990px]:flex-col ml-9">
-        {/* Sidebar */}
-        {/* <div className="w-1/4 max-[990px]:w-full p-4 border-r-2 border-gray-400 max-[990px]:border-r-0 max-[990px]:border-b-2">
-          <nav className="flex flex-col max-[990px]:flex-row max-[990px]:justify-evenly max-[990px]:items-center flex-wrap gap-2">
-            <div className="block p-2">My Profile</div>
-            <div className="block p-2">History</div>
-            <div className="block p-2">My Cart</div>
-            
-          </nav>
-        </div> */}
-
-        {/* Main Content */}
-        <div className="w-3/4 max-[990px]:w-full px-6">
-          <div className="">
-         
-            <form onSubmit={handleUpdateAccountDetails}>
-              <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
-                <div>
-                  <label className="block">First Name:</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label className="block">Last Name:</label>
-                  <input
-                    type="text"
-                    className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              {/* <div className="mb-4">
-                <label className="block">Communication Email address:</label>
-                <input
-                  type="email"
-                  className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-                  value={user?.email || ""}
-                  readOnly
-                />
-              </div> */}
-
-                    {/* 
-                    
-                    <div className="w-full min-h-[100%] flex items-center justify-center ">
-      <div className="w-full max-[990px]:w-full p-8">
+      <div className="w-full p-8">
         <form onSubmit={handleUpdateAccountDetails}>
           <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
             <div>
@@ -234,8 +183,7 @@ const Profile = () => {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
-          </div>*/}
-
+          </div>
 
           <div className="mb-4">
             <label className="block">Communication Email address:</label>
@@ -303,9 +251,7 @@ const Profile = () => {
                     ))}
                   </ul>
                 </div>
-
               )}
-
             </div>
             <div className="mb-2">
               <label className="block">Confirm New Password:</label>
@@ -339,7 +285,6 @@ const Profile = () => {
       </div>
       <ToastContainer />
     </div>
-    </div></div>
   );
 };
 
