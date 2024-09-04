@@ -34,11 +34,13 @@ const Vendor = () => {
         location={vendor?.location}
         // contact={vendor?.contact}
         // rating={vendor?.rating}
-        about={vendor?.about}
+         about={vendor?.about}
          packages={vendor?.packages}
          booking={vendor?.booking}
          cancellation={vendor?.cancellation}
          terms={vendor?.terms}
+         singleItems={vendor?.singleItems}
+         addOns={vendor?.addOns}
       />
     </div>
   );

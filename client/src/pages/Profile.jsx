@@ -200,7 +200,7 @@ const Profile = () => {
                 </div>
               </div>
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block">Communication Email address:</label>
                 <input
                   type="email"
@@ -208,9 +208,11 @@ const Profile = () => {
                   value={user?.email || ""}
                   readOnly
                 />
-              </div>
+              </div> */}
 
-                    {/* <div className="w-full min-h-[100%] flex items-center justify-center ">
+                    {/* 
+                    
+                    <div className="w-full min-h-[100%] flex items-center justify-center ">
       <div className="w-full max-[990px]:w-full p-8">
         <form onSubmit={handleUpdateAccountDetails}>
           <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
@@ -337,6 +339,7 @@ const Profile = () => {
       </div>
       <ToastContainer />
     </div>
+    </div></div>
   );
 };
 

@@ -40,7 +40,7 @@ const getVendorDetails = asyncHandler(async(req,res)=>{
 const addServiceDetails = asyncHandler(async(req,res)=>{
     try {
         console.log("hi")
-        const {serviceName,location,about,vendorType,booking,cancellation,terms,venue} = req.body;
+        const {serviceName,location,about,vendorType,booking,cancellation,terms,venue,singleItems,addOns} = req.body;
         console.log(serviceName,location,about,vendorType,booking,cancellation,terms,venue)
         if(!serviceName || !location || !about || !vendorType || !venue){
             throw new  ApiError(400, "Everything is required to add service details");
@@ -58,7 +58,7 @@ const addServiceDetails = asyncHandler(async(req,res)=>{
             serviceName,
             location,
             about,
-            vendorType,booking,cancellation,terms,venue
+            vendorType,booking,cancellation,terms,venue,singleItems,addOns
         })
 
         return res.status(200).json(
@@ -75,7 +75,7 @@ const addServiceDetails = asyncHandler(async(req,res)=>{
 
 const updateServiceDetails = asyncHandler(async(req,res)=>{
     try {
-        const {serviceName,location,about,booking,cancellation,terms,vendorId} = req.body;
+        const {serviceName,location,about,booking,cancellation,terms,vendorId,singleItems,addOns} = req.body;
     //  const vendorId = req.body.vendorId;
     //  const vendorId = req.params.vendorId;
       console.log("huhu",serviceName,location,about,vendorId,booking,cancellation,terms);
@@ -88,7 +88,7 @@ const updateServiceDetails = asyncHandler(async(req,res)=>{
         throw new ApiError(404, "Vendor not found inside update service");
     }
     const newService = await Vendor.findByIdAndUpdate(vendorId, 
-        { serviceName, location, about,booking,cancellation,terms }, 
+        { serviceName, location, about,booking,cancellation,terms,singleItems,addOns }, 
         { new: true });
     await newService.save();
 
@@ -182,7 +182,7 @@ const getAllByServiceType = asyncHandler(async(req,res)=>{
     }
 })
 
-const addImageToVendor =asyncHandler(async(req,res) => {
+const addImageToVendor = asyncHandler(async(req,res) => {
     try {
       const { vendorId } = req.body;
       const file = req.file;

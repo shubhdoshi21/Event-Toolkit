@@ -29,7 +29,21 @@ const vendorSchema = new Schema({
         ref:"Reviews"
     }],
 
-
+    singleItems:[
+        {
+            itemName:{
+                type:String,
+                trim:true,
+            },
+            
+             itemQuantity:{
+                type:Number,
+             },
+             itemPrice:{
+                type:Number,
+             }
+        }
+    ],
     packages:[{
         type:Schema.Types.ObjectId,
         ref:"Package"
@@ -67,6 +81,9 @@ const vendorSchema = new Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Venues",
         required:true,
+    },
+    addOns:{
+        type:String,
     }
 
 },

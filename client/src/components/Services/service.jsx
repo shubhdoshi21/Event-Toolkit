@@ -14,10 +14,9 @@ const service = ({
    gallery=[],
   serviceName,
   location,
-
   about,
   packages = [],
-   booking,cancellation,terms
+   booking,cancellation,terms,singleItems,addOns
 }) => {
   return (
     <div className="bg-darkGray/30 w-11/12 p-5 flex gap-10 flex-col">
@@ -69,6 +68,38 @@ const service = ({
           <Recommended />
         </div>
       </div>
+      {/* single items */}
+      <div className="bg-lightGray/10  rounded-md p-10 flex flex-col gap-6">
+  <h2 className="font-bold text-3xl text-primaryPeach ">Items we provide</h2>
+  
+  {/* Titles for Item Name, Quantity, and Price */}
+  <div className="bg-lightGray/60 w-[100%] h-[100%] rounded-lg">
+    <div className="p-2 flex justify-between items-center text-black">
+      <div><b>Item Name</b>(u can buy in sets of 50 min. 50 provided)</div>
+      <div className="flex gap-10">
+        <div>Quantity</div>
+        <div>Price</div>
+      </div>
+    </div>
+    <span className="bg-mediumGray h-[1px] w-[100%] my-1 block"></span>
+
+    {singleItems && (
+      singleItems.map((item, index) => (
+        <div className="flex flex-col" key={index}>
+          <div className="p-2 flex justify-between items-center text-black">
+            <div>{item.itemName}</div>
+            <div className="flex gap-10">
+              <div>{item.itemQuantity}</div>
+              <div>{item.itemPrice}</div>
+            </div>
+          </div>
+          <span className="bg-mediumGray h-[1px] w-[100%] my-1 block"></span>
+        </div>
+      ))
+    )}
+  </div>
+</div>
+
       {/* all packages */}
       <div className=" bg-lightGray/10  rounded-md p-10 flex flex-col gap-6">
         <h2 className="font-bold text-3xl text-primaryPeach ">Our Packages</h2>
@@ -96,6 +127,20 @@ const service = ({
             </div>
           </details>
         ))}
+      </div>
+      {/* addons */}
+      <div className="bg-lightGray/10  rounded-md p-10 flex flex-col gap-6">
+      <h2 className="font-bold text-3xl text-primaryPeach ">You can add extra</h2>
+   
+              <textarea
+                name="addOns"
+                value={addOns}
+                onChange={(e) => setAaddOns(e.target.value)}
+                className="p-3  rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                placeholder="Enter add ons"
+                rows="1"
+              />
+        
       </div>
       {/* booking,terms,anddcancellation */}
       <TandC booking={booking} cancellation={cancellation} terms={terms}/>
