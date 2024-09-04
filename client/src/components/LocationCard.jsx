@@ -1,6 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setSelectedVenue } from "../features/venue/venueSlice.js";
 
 const LocationCard = ({ modal }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleBtnClick = () => {
+    dispatch(setSelectedVenue(modal._id))
+    navigate("/registration");
+  }
   return (
     <div
       key={modal._id}
@@ -16,7 +25,7 @@ const LocationCard = ({ modal }) => {
         <p className="text-gray-300 text-md">{modal.venueDescription}</p>
         <p className="text-gray-300 text-xl mt-3">₹</p>
       </div>
-      <button className="w-full h-[50px] bg-red">See Location</button>
+      <button className="w-full h-[50px] bg-red" onClick={handleBtnClick}>See Location</button>
     </div>
   );
 };

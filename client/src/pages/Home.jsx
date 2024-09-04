@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { FaCity, FaMapMarkerAlt, FaCommentDots } from "react-icons/fa";
+import {setVenues} from "../features/venue/venueSlice.js"
 import {
   Navbar,
   Modal,
@@ -13,6 +15,7 @@ import {
 } from "../components/index.js";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const images = [
     {
       src: "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
@@ -27,9 +30,9 @@ const Home = () => {
       alt: "Event 3",
     },
   ];
+  const { venues } = useSelector((state) => state.venue)
 
   const [cities, setCities] = useState([]);
-  const [venues, setVenues] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [openModals, setOpenModals] = useState({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -40,7 +43,7 @@ const Home = () => {
     const getCities = async () => {
       const response = await axios.post(
         "http://localhost:8080/api/v1/cities/getAllCitiesExceptSelected",
-        { excludedCity: selectedCity ? selectedCity : "Agra1" }
+        { excludedCity: selectedCity ? selectedCity : "City1111" }
       );
       if (response.data.statusCode <= 200)
         setCities(response?.data?.data?.data);
@@ -65,10 +68,10 @@ const Home = () => {
     const getVenues = async () => {
       const response = await axios.post(
         "http://localhost:8080/api/v1/cities/getAllVenuesAtCity",
-        { cityName: selectedCity ? selectedCity : "Agra1" }
+        { cityName: selectedCity ? selectedCity : "City1111" }
       );
       if (response?.data?.statusCode <= 200) {
-        setVenues(response.data.data?.data);
+        dispatch(setVenues(response.data.data.data))
       }
     };
     getVenues();
@@ -173,8 +176,8 @@ const Home = () => {
           {venues.length !== 0 ? (
             venues.map((venue) => (
               <LocationCard
+                key = {venue._id}
                 modal={venue}
-                handleExploreClick={handleExploreClick}
               />
             ))
           ) : (
