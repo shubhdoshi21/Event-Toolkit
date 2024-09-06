@@ -13,6 +13,7 @@ import {
   Carousal,
   Sidebar,
 } from "../components/index.js";
+// import ReviewSlider from "../components/ReviewSlider.jsx";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -99,7 +100,7 @@ const Home = () => {
   const handleExploreClick = (cityName) => {
     setSelectedCity(cityName);
   };
-
+ 
   return (
     <div className="min-h-screen">
       <Navbar onSidebarToggle={toggleSidebar} />
@@ -196,7 +197,7 @@ const Home = () => {
         <h2 className="text-3xl font-bold mb-6 text-center">Latest Reviews</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {reviews.length !== 0 ? (
-            reviews.map((review) => <ReviewCard key={review._id} review={review} />)
+            reviews.slice(0, 9).map((review) => <ReviewCard key={review._id} review={review} />)
           ) : (
             <div className="flex flex-col items-center p-6 w-screen ">
             <FaCommentDots className="text-6xl text-gray-400 mb-4" />
@@ -206,6 +207,7 @@ const Home = () => {
           </div>
           )}
         </div>
+        {/* <ReviewSlider reviews = {reviews} /> */}
       </div>
 
       {/* footer */}
