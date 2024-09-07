@@ -5,31 +5,27 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 
-const AddSubVenue = () => {
-  const subVenueNameRef = useRef(null);
-  const subVenuePriceRef = useRef(null);
-  const subVenueDescriptionRef = useRef(null);
+const AddCities = () => {
+  const cityNameRef = useRef(null);
+  const cityDescriptionRef = useRef(null);
   const imageRef = useRef(null);
   const navigate = useNavigate()
   const [imageName, setImageName] = useState("");
-  const { selectedVenue } = useSelector((state) => state.venue);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("subVenueName", subVenueNameRef.current.value || "");
-    formData.append("subVenuePrice", subVenuePriceRef.current.value || "");
-    formData.append("venueId", selectedVenue._id || "");
+    formData.append("cityName", cityNameRef.current.value || "");
     formData.append(
-      "subVenueDescription",
-      subVenueDescriptionRef.current.value || ""
+      "cityDescription",
+      cityDescriptionRef.current.value || ""
     );
     formData.append("image", imageRef.current.files[0] || "");
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/venues/postSubVenueAtVenue",
+        "http://localhost:8080/api/v1/cities/postCity",
         formData,
         {
           headers: {
@@ -39,15 +35,15 @@ const AddSubVenue = () => {
       );
 
       if (response.data.statusCode === 200) {
-        toast.success("Sub Venue added successfully!");
+        toast.success("City added successfully!");
         setTimeout(()=>{
-          navigate("/panel/venues")
+          navigate("/panel/cities")
         }, 2000)
       }
     } catch (error) {
       if (error.response && error.response.data) {
         const { message } = error.response.data;
-        toast.error(message || "Failed to add sub venue.");
+        toast.error(message || "Failed to add city.");
       } else {
         toast.error("An unexpected error occurred.");
       }
@@ -69,53 +65,40 @@ const AddSubVenue = () => {
     <div className="h-screen py-[7%] overflow-scroll">
       <div className="bg-gray-900 p-8 rounded-lg max-w-lg mx-auto">
         <h2 className="text-center text-primaryPeach text-2xl font-bold text-red-400 mb-6">
-          Add New Sub Venue
+          Add New City
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="venueName" className="block text-gray-300 mb-2">
-              Sub Venue Name:
+            <label htmlFor="cityName" className="block text-gray-300 mb-2">
+              City Name:
             </label>
             <input
               type="text"
-              id="subVenueName"
-              ref={subVenueNameRef}
-              placeholder="Enter sub venue name"
-              className="w-full p-3 rounded-lg bg-gray-700 text-gray-300"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="venuePrice" className="block text-gray-300 mb-2">
-              Venue Price:
-            </label>
-            <input
-              type="text"
-              id="subVenuePrice"
-              ref={subVenuePriceRef}
-              placeholder="Enter sub venue price"
+              id="cityName"
+              ref={cityNameRef}
+              placeholder="Enter city name"
               className="w-full p-3 rounded-lg bg-gray-700 text-gray-300"
             />
           </div>
 
           <div className="mb-4">
             <label
-              htmlFor="subVenueDescription"
+              htmlFor="cityDescription"
               className="block text-gray-300 mb-2"
             >
-              Sub Venue Description:
+              City Description:
             </label>
             <textarea
               id="subVenueDescription"
-              ref={subVenueDescriptionRef}
-              placeholder="Enter sub venue description"
+              ref={cityDescriptionRef}
+              placeholder="Enter city description"
               className="w-full p-3 rounded-lg bg-gray-700 text-gray-300 h-32"
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="image" className="block text-gray-300 mb-2">
-              Sub Venue Image:
+              City Image:
             </label>
             {/* Hidden file input */}
             <input
@@ -144,7 +127,7 @@ const AddSubVenue = () => {
             type="submit"
             className="w-full p-3 bg-primaryPeach hover:bg-red-600 text-white font-semibold rounded-lg"
           >
-            Add Sub Venue
+            Add City
           </button>
         </form>
       </div>
@@ -153,4 +136,4 @@ const AddSubVenue = () => {
   );
 };
 
-export default AddSubVenue;
+export default AddCities;

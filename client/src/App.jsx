@@ -24,7 +24,7 @@ import Vendor from "./components/Vendor";
 import AddVenue from "./components/Panel/AddVenue";
 import AddSubVenue from "./components/Panel/AddSubVenue";
 import Venues from "./components/Panel/Venues";
-
+import Cities from "./components/Panel/Cities";
 import Cart from "./pages/Cart";
 
 import PasswordReset from "./components/PasswordReset";
@@ -33,6 +33,7 @@ import Service from "./components/Panel/Service";
 
 import { Navbar } from "./components";
 import History from "./components/Panel/History";
+import AddCities from "./components/Panel/AddCities";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -75,6 +76,8 @@ function App() {
             <Route path="/panel/add-venue" element={<AddVenue />} />
             <Route path="/panel/venues" element={<Venues />} />
             <Route path="/panel/add-sub-venues" element={<AddSubVenue />} />
+            <Route path="/panel/add-city" element={<AddCities />} />
+            <Route path="/panel/cities" element={<Cities />} />
           </Route>
 
           {/* <Route path="/profile" element={<Profile />} /> */}

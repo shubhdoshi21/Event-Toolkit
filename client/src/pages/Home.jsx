@@ -3,6 +3,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCity, FaMapMarkerAlt, FaCommentDots } from "react-icons/fa";
 import {setVenues} from "../features/venue/venueSlice.js"
+import { setSelectedCity } from "../features/city/citySlice.js";
+import { setSelectedVenue } from "../features/venue/venueSlice.js";
 import {
   Navbar,
   Modal,
@@ -17,6 +19,7 @@ import {
 
 const Home = () => {
   const dispatch = useDispatch();
+
   const images = [
     {
       src: "https://imgs.search.brave.com/VSRlleNOw75OCz3Eh-mDotX0sOSSReg7Xyhl70wv85E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8w/My8xMi8yMC8xOS9p/bmRpYS00MDUxNzUz/XzY0MC5qcGc",
@@ -32,19 +35,20 @@ const Home = () => {
     },
   ];
   const { venues } = useSelector((state) => state.venue)
+  const {selectedCity} = useSelector((state) => state.city)
 
   const [cities, setCities] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [openModals, setOpenModals] = useState({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const containerRef = useRef(null);
-  const [selectedCity, setSelectedCity] = useState(null);
+  // const [selectedCity, setSelectedCity] = useState(null);
 
   useEffect(() => {
     const getCities = async () => {
       const response = await axios.post(
         "http://localhost:8080/api/v1/cities/getAllCitiesExceptSelected",
-        { excludedCity: selectedCity ? selectedCity : "City1111" }
+        { excludedCity: selectedCity.cityName ? selectedCity.cityName : "City1111" }
       );
       if (response.data.statusCode <= 200)
         setCities(response?.data?.data?.data);
@@ -69,7 +73,7 @@ const Home = () => {
     const getVenues = async () => {
       const response = await axios.post(
         "http://localhost:8080/api/v1/cities/getAllVenuesAtCity",
-        { cityName: selectedCity ? selectedCity : "City1111" }
+        { cityName: selectedCity.cityName ? selectedCity.cityName : "City1111" }
       );
       if (response?.data?.statusCode <= 200) {
         dispatch(setVenues(response.data.data.data))
@@ -97,8 +101,8 @@ const Home = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleExploreClick = (cityName) => {
-    setSelectedCity(cityName);
+  const handleExploreClick = (city) => {
+    dispatch(setSelectedCity(city));
   };
  
   return (
@@ -148,9 +152,8 @@ const Home = () => {
             key={city._id}
             isOpen={openModals[city._id]}
             onClose={() => closeModal(city._id)}
-            title={city.cityName}
+            city = {city}
             handleExploreClick={handleExploreClick}
-            name={city.cityName}
           >
             <img
               src={city.cityImage}
@@ -181,6 +184,7 @@ const Home = () => {
                 modal={venue}
                 message={"See Location"}
                 navigateTo={"/registration"}
+                dispatchAction={setSelectedVenue}
               />
             ))
           ) : (

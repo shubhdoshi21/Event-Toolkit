@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { LocationCard } from "../index.js";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { setSelectedVenue } from "../../features/venue/venueSlice.js";
 import axios from "axios";
 
 const Venues = () => {
@@ -33,6 +34,7 @@ const Venues = () => {
               modal={venue}
               message={"Add Sub Venue"}
               navigateTo={"/panel/add-sub-venues"}
+              dispatchAction={setSelectedVenue}
             />
           ))
         ) : (

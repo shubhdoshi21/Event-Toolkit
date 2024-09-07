@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 
@@ -8,6 +10,8 @@ const AddVenue = () => {
   const venueCityRef = useRef(null);
   const venueDescriptionRef = useRef(null);
   const imageRef = useRef(null);
+  const navigate = useNavigate()
+  const { selectedCity } = useSelector((state) => state.city);
   const [imageName, setImageName] = useState("");
 
   const handleSubmit = async (e) => {
@@ -15,7 +19,10 @@ const AddVenue = () => {
 
     const formData = new FormData();
     formData.append("venueName", venueNameRef.current.value || "");
-    formData.append("venueCity", venueCityRef.current.value || "");
+    formData.append(
+      "venueCity",
+      selectedCity?.cityName ? selectedCity.cityName : venueCityRef.current.value
+    );
     formData.append(
       "venueDescription",
       venueDescriptionRef.current.value || ""
@@ -35,6 +42,9 @@ const AddVenue = () => {
 
       if (response.data.statusCode === 200) {
         toast.success("Venue added successfully!");
+        setTimeout(()=>{
+          navigate("/panel/cities")
+        }, 2000)
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -47,7 +57,7 @@ const AddVenue = () => {
   };
 
   const handleImageClick = () => {
-    imageRef.current.click(); 
+    imageRef.current.click();
   };
 
   const handleImageChange = () => {
@@ -87,6 +97,8 @@ const AddVenue = () => {
               ref={venueCityRef}
               placeholder="Enter venue city"
               className="w-full p-3 rounded-lg bg-gray-700 text-gray-300"
+              value={selectedCity?.cityName || ""}
+              disabled={!!selectedCity}  
             />
           </div>
 

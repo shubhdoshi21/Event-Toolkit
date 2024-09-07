@@ -18,12 +18,14 @@ const storage = getStorage(firebaseApp);
 
 const getAllCitiesExceptSelected = asyncHandler(async (req, res) => {
   try {
-    if (!req.body.excludedCity) {
-      throw new ApiError(400, "Excluded city is required");
+    let cities;
+    if (req.body.excludedCity) {
+      cities = await Cities.find({
+        cityName: { $ne: req.body.excludedCity },
+      });
+    } else {
+      cities = await Cities.find();
     }
-    const cities = await Cities.find({
-      cityName: { $ne: req.body.excludedCity },
-    });
 
     if (cities.length === 0) {
       throw new ApiError(404, "No cities found");
