@@ -4,6 +4,7 @@ import userReducer from "../features/user/userSlice";
 import vendorReducer from "../features/vendorSlice";
 import venueReducer from "../features/venue/venueSlice.js"
 import cartReducer from "../features/cartSlice.js"
+import cityReducer from "../features/city/citySlice.js";
 
 
 export const store = configureStore({
@@ -14,6 +15,7 @@ export const store = configureStore({
 
     venue: venueReducer,
     cart:cartReducer,
+    city:cityReducer
 
   },
 });
