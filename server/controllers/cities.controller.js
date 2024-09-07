@@ -145,6 +145,11 @@ const postVenueAtCity = asyncHandler(async (req, res) => {
       metadata
     );
     const downloadURL = await getDownloadURL(uploadTask.ref);
+    const city = await Cities.findOne({ cityName: venueCity });
+
+    if (!city) {
+      throw new ApiError(404, "City not found");
+    }
 
     const venue = new Venues({
       venueCity,
@@ -154,12 +159,6 @@ const postVenueAtCity = asyncHandler(async (req, res) => {
       venueImageName: fileName,
     });
     await venue.save();
-
-    const city = await Cities.findOne({ cityName: venueCity });
-
-    if (!city) {
-      throw new ApiError(404, "City not found");
-    }
 
     city.venuesAtCity.push(venue._id);
     await city.save();
