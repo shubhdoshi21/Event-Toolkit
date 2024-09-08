@@ -49,7 +49,7 @@ const AddPackages = () => {
     e.preventDefault();
     if(isediting){
       try {
-        console.log(editPackageId,packageName,price,items)
+        console.log("Inside is editing",editPackageId,packageName,price,items)
         const updated = await axios.put("http://localhost:8080/api/v1/package/updatePackages", {
           packageId: editPackageId,
           packageName,
