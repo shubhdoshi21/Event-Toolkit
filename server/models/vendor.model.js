@@ -80,6 +80,10 @@ const vendorSchema = new Schema({
     },
     addOns:{
         type:String,
+    },
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
     }
 
 },

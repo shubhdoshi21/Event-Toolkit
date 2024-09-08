@@ -9,6 +9,7 @@ const ShowPackage = ({currentPackage,onDeletePackage,onUpdatePackage}) => {
     const {vendor,_id} = useSelector((state)=>state.vendor);
     const [packages, setPackages] = useState(Array.isArray(currentPackage) ? currentPackage : [currentPackage]);
     useEffect(() => {
+      
         setPackages(Array.isArray(currentPackage) ? currentPackage : [currentPackage]);
     }, [currentPackage]);
    
@@ -25,7 +26,9 @@ const ShowPackage = ({currentPackage,onDeletePackage,onUpdatePackage}) => {
                 {" "}
                 {pkg.packageName} - {pkg.price}
               </div>
-             
+              <div className="text-sm text-darkGray">
+                <strong>Package ID:</strong> {pkg.package_id}
+              </div>
             </summary>
             <div className="bg-lightGray text-darkGray rounded-b-xl flex flex-col p-3 gap-4 text-lg">
               <ul>
