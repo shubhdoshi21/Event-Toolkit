@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Cities = () => {
   const [cities, setCities] = useState([]);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const getCities = async () => {
@@ -25,21 +25,11 @@ const Cities = () => {
     getCities();
   }, []);
 
-  const handleAddCity = () => {
-    navigate("/panel/add-city");
-  };
-
   return (
     <div className="h-screen overflow-scroll p-4">
       <h2 className="text-3xl font-bold mb-6 text-center text-white">Cities</h2>
 
       <div className="flex justify-center mb-6">
-        <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
-          onClick={handleAddCity}
-        >
-          Add New City
-        </button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

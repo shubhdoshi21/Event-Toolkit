@@ -25,6 +25,7 @@ import AddVenue from "./components/Panel/AddVenue";
 import AddSubVenue from "./components/Panel/AddSubVenue";
 import Venues from "./components/Panel/Venues";
 import Cities from "./components/Panel/Cities";
+import AddImages from "./components/Panel/AddImages";
 import Cart from "./pages/Cart";
 
 import PasswordReset from "./components/PasswordReset";
@@ -78,6 +79,7 @@ function App() {
             <Route path="/panel/add-sub-venues" element={<AddSubVenue />} />
             <Route path="/panel/add-city" element={<AddCities />} />
             <Route path="/panel/cities" element={<Cities />} />
+            <Route path="/panel/addImage" element={<AddImages />} />
           </Route>
 
           {/* <Route path="/profile" element={<Profile />} /> */}
