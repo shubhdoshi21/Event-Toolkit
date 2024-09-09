@@ -155,7 +155,7 @@ const AddVenue = () => {
 
           <button
             type="submit"
-            className="w-full p-3 bg-primaryPeach hover:bg-red-600 text-white font-semibold rounded-lg"
+            className="w-full p-3 bg-primaryPeach hover:bg-red-600 text-white font-semibold rounded-lg h-[60px] text-lg"
           >
             {loader ? (
               <l-hourglass
