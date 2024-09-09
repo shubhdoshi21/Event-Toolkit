@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,61 +10,72 @@ import i2 from "../assets/images/download (1).jpeg"
 import i3 from "../assets/images/download (2).jpeg"
 import i4 from "../assets/images/download (3).jpeg"
 import ReactStars from "react-rating-stars-component";
-
+import axios from 'axios'
 
 function ReviewSlider() {
-  const reviews = [
-    {
-      user: "Priyal Rawal",
-      rating: 4,
-      review: "Great event!",
-      image: i1
-    },
-    {
-      user: "Riddhi Thakkar",
-      rating: 4,
-      review: "Great event!",
-      image: i2
-    },
-    {
-      user: "Shubh DOshi",
-      rating: 4,
-      review: "Great event!",
-      image: i3
-    },
-    {
-      user: "Megh Prajapati",
-      rating: 4,
-      review: "Great event!",
-      image: i4
-    },
+  const [reviews,setReview] = useState([]);
+  // const reviews = [
+  //   {
+  //     user: "Priyal Rawal",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i1
+  //   },
+  //   {
+  //     user: "Riddhi Thakkar",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i2
+  //   },
+  //   {
+  //     user: "Shubh DOshi",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i3
+  //   },
+  //   {
+  //     user: "Megh Prajapati",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i4
+  //   },
 
-    {
-      user: "Priyal Rawal",
-      rating: 4,
-      review: "Great event!",
-      image: i1
-    },
-    {
-      user: "Riddhi Thakkar",
-      rating: 4,
-      review: "Great event!",
-      image: i2
-    },
-    {
-      user: "Shubh DOshi",
-      rating: 4,
-      review: "Great event!",
-      image: i3
-    },
-    {
-      user: "Megh Prajapati",
-      rating: 4,
-      review: "Great event!",
-      image: i4
-    },
+  //   {
+  //     user: "Priyal Rawal",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i1
+  //   },
+  //   {
+  //     user: "Riddhi Thakkar",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i2
+  //   },
+  //   {
+  //     user: "Shubh DOshi",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i3
+  //   },
+  //   {
+  //     user: "Megh Prajapati",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i4
+  //   },
     
-  ];
+  // ];
+
+  useEffect( ()=>{
+    const getReview= async () => {
+    const response = await axios.post(`http://localhost:8080/api/v1/reviews/getReviewsByType`,{
+      reviewType:"Venues"
+    });
+    console.log(response);
+    setReview(response?.data?.data?.data);
+  };getReview();
+  },[])
 
   const truncateWords = 20; 
 
@@ -102,13 +113,13 @@ function ReviewSlider() {
                     src={
                       review.image
                         ? review.image
-                        : `https://api.dicebear.com/5.x/initials/svg?seed=${review.user}`
+                        : `https://api.dicebear.com/5.x/initials/svg?seed=${review.userId.firstName}`
                     }
                     alt={review.user}
                     className="h-9 w-9 rounded-full object-cover"
                   />
                   <div className="flex flex-col">
-                    <h1 className="font-semibold text-richblack-5">{review.user}</h1>
+                    <h1 className="font-semibold text-richblack-5">{review.userId.firstName} {review.userId.lastName}</h1>
                   </div>
                 </div>
                 <p className="font-medium text-richblack-25">
