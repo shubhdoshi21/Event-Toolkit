@@ -36,7 +36,17 @@ const [halls,setHalls] = useState([]);
 const [venue, setvenueData] = useState({});
 const [caterer, setCaterers] = useState([]);
 const [decorator, setDecorators] = useState([]);
+const [reviews,setReview] = useState([]);
   const {selectedVenue} = useSelector((state) => state.venue);
+  useEffect( ()=>{
+    const getReview= async () => {
+    const response = await axios.post(`http://localhost:8080/api/v1/reviews/getReviewsByType`,{
+      reviewType:"Venues"
+    });
+    console.log(response);
+    setReview(response?.data?.data?.data);
+  };getReview();
+  },[])
   useEffect( ()=>{
     const getHalls = async () => {
     console.log(selectedVenue);
@@ -115,7 +125,7 @@ const [decorator, setDecorators] = useState([]);
       {/* <button onClick={() => makePayment(2000)} className="text-white">Buy Now for $20</button> */}
       
       <p className="text-offwhite text-6xl text-center mt-20 font-semibold">Reviews from users conducting events here!</p>
-      <ReviewSlider />
+      <ReviewSlider reviews={reviews}/>
       
       <p className="text-offwhite text-6xl text-center mt-20 font-semibold">CATERER</p>
       <GallerySlider2 slides={3} height={300} halls={caterer} btn={"Explore Now"} />

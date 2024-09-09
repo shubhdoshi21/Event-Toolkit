@@ -12,8 +12,8 @@ import i4 from "../assets/images/download (3).jpeg"
 import ReactStars from "react-rating-stars-component";
 import axios from 'axios'
 
-function ReviewSlider() {
-  const [reviews,setReview] = useState([]);
+function ReviewSlider({reviews}) {
+  
   // const reviews = [
   //   {
   //     user: "Priyal Rawal",
@@ -67,15 +67,7 @@ function ReviewSlider() {
     
   // ];
 
-  useEffect( ()=>{
-    const getReview= async () => {
-    const response = await axios.post(`http://localhost:8080/api/v1/reviews/getReviewsByType`,{
-      reviewType:"Venues"
-    });
-    console.log(response);
-    setReview(response?.data?.data?.data);
-  };getReview();
-  },[])
+
 
   const truncateWords = 20; 
 
