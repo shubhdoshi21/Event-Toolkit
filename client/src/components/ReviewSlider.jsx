@@ -1,15 +1,75 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/autoplay";
-import { Autoplay, FreeMode, Pagination } from "swiper/modules";
+
+import React, { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/autoplay';
+import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
+
 import { FaStar } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
+import axios from 'axios'
 
+
+function ReviewSlider({reviews}) {
+  
+  // const reviews = [
+  //   {
+  //     user: "Priyal Rawal",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i1
+  //   },
+  //   {
+  //     user: "Riddhi Thakkar",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i2
+  //   },
+  //   {
+  //     user: "Shubh DOshi",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i3
+  //   },
+  //   {
+  //     user: "Megh Prajapati",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i4
+  //   },
+
+  //   {
+  //     user: "Priyal Rawal",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i1
+  //   },
+  //   {
+  //     user: "Riddhi Thakkar",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i2
+  //   },
+  //   {
+  //     user: "Shubh DOshi",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i3
+  //   },
+  //   {
+  //     user: "Megh Prajapati",
+  //     rating: 4,
+  //     review: "Great event!",
+  //     image: i4
+  //   },
+    
+  // ];
+
+
+
+  const truncateWords = 20; 
 function ReviewSlider({ reviews }) {
-
-  const truncateWords = 20;
 
   return (
     <div className="text-white">
@@ -45,12 +105,13 @@ function ReviewSlider({ reviews }) {
                     src={
                       review.image
                         ? review.image
-                        : `https://api.dicebear.com/5.x/initials/svg?seed=${review.user}`
+                        : `https://api.dicebear.com/5.x/initials/svg?seed=${review.userId.firstName}`
                     }
                     alt={review.user}
                     className="h-9 w-9 rounded-full object-cover"
                   />
                   <div className="flex flex-col">
+
                     <h1 className="font-semibold text-richblack-5">
                       {review.userId.firstName} {review.userId.lastName}
                     </h1>
