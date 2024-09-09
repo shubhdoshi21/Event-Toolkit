@@ -33,7 +33,7 @@ const Home = () => {
     const getCities = async () => {
       const response = await axios.post(
         "http://localhost:8080/api/v1/cities/getAllCitiesExceptSelected",
-        { excludedCity: selectedCity.cityName ? selectedCity.cityName : "City1111" }
+        { excludedCity: selectedCity?.cityName ? selectedCity.cityName : "City1111" }
       );
       if (response.data.statusCode <= 200)
         setCities(response?.data?.data?.data);
@@ -169,7 +169,7 @@ const Home = () => {
       {/* exploring locations */}
       <div className="py-8 px-4">
         <h2 className="text-3xl font-bold mb-6 text-center">
-          Explore Locations at Your City
+          {`Explore locations at ${selectedCity.cityName}`}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {venues.length !== 0 ? (
