@@ -13,6 +13,7 @@ const AddServices = () => {
   const {vendor,_id} = useSelector((state)=>state.vendor)
   const vendorData = localStorage.getItem("vendor");
   const parsedVendorData = vendorData ? JSON.parse(vendorData) : {};
+  
 
   const [serviceName, setServiceName] = useState(parsedVendorData.serviceName || "");
   const [location, setLocation] = useState(parsedVendorData.location || "");
@@ -21,16 +22,20 @@ const AddServices = () => {
   const [booking, setBookingPolicy] = useState(parsedVendorData.booking || "");
   const [cancellation, setCancellationPolicy] = useState(parsedVendorData.cancellation || "");
   const [terms, setTermsAndConditions] = useState(parsedVendorData.terms || "");
+  const [venue, setVenue] = useState(parsedVendorData.venue || "");
+  const [singleItems, setSingleItems] = useState(parsedVendorData.singleItems || []);
+ 
   const [editDetails, setEditDetails] = useState(localStorage.getItem("vendor") ? true : false);
-
+const userId = user._id
   useEffect(() => {
     console.log("Vendor after addit:", vendor);
   }, [vendor]);
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
+      console.log(serviceName,location,about,vendorType,booking,cancellation,terms,venue,singleItems,user._id)
       const addedDetails = await axios.post("http://localhost:8080/api/v1/vendor/addServiceDetails",{
-        serviceName,location,about,vendorType,booking,cancellation,terms
+        serviceName,location,about,vendorType,booking,cancellation,terms,venue,singleItems,userId
       });
       console.log(addedDetails.data)
      console.log("service added")
@@ -44,6 +49,9 @@ const AddServices = () => {
           booking:addedDetails.data.data.data.booking,
           terms: addedDetails.data.data.data.terms,
           cancellation: addedDetails.data.data.data.cancellation,
+          venue: addedDetails.data.data.data.venue,
+          singleItems: addedDetails.data.data.data.singleItems,
+        
         })
       );
       console.log("vendor after add",vendor);
@@ -52,7 +60,7 @@ const AddServices = () => {
     } catch (error) {
       console.log(error)
       toast.error(
-       "Error updating account details.",
+       "Error adding the service",
         {
           autoClose: 1500,
           closeButton: false,
@@ -75,14 +83,17 @@ const AddServices = () => {
     setBookingPolicy("");
     setCancellationPolicy("");
     setTermsAndConditions("");
+    setVenue("");
+    setSingleItems([]);
+
     setEditDetails(false);
   };
   const handleUpdateDetails = async (e) => {
     e.preventDefault();
     try {
-      console.log(serviceName, location, about, vendorType, booking, cancellation, terms, _id)
+      console.log(serviceName, location, about, vendorType, booking, cancellation, terms, _id,venue,singleItems)
       const updatedDetails = await axios.put("http://localhost:8080/api/v1/vendor/updateServiceDetails", {
-        serviceName, location, about, vendorType, booking, cancellation, terms,vendorId: _id
+        serviceName, location, about, vendorType, booking, cancellation, terms,vendorId: _id,venue,singleItems
       });
       console.log(updatedDetails);
       toast.success("Service Updated Successfully");
@@ -96,12 +107,24 @@ const AddServices = () => {
         booking: updatedDetails.data.data.data.booking,
         terms: updatedDetails.data.data.data.terms,
         cancellation: updatedDetails.data.data.data.cancellation,
+        venue: addedDetails.data.data.data.venue,
+        singleItems: addedDetails.data.data.data.singleItems,
+       
       }));
       console.log("vendor after addo",vendor);
     } catch (error) {
       console.log(error);
       toast.error("Error updating service.");
     }
+  };
+  const handleSingleItemChange = (index, key, value) => {
+    const newItems = [...singleItems];
+    newItems[index][key] = value;
+    setSingleItems(newItems);
+  };
+
+  const addSingleItem = () => {
+    setSingleItems([...singleItems, { itemName: "", itemQuantity: 0, itemPrice: 0 }]);
   };
   return (
     
@@ -196,7 +219,52 @@ const AddServices = () => {
                 rows="1"
               />
             </div>
-
+            <div className="flex flex-col">
+              <label className="text-primaryPeach font-semibold mb-2">Venue:</label>
+              <input
+                type="text"
+                name="venue"
+                value={venue}
+                onChange={(e) => setVenue(e.target.value)}
+                className="p-3 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                placeholder="Enter venue"
+              />
+            </div>
+            {singleItems.map((item, index) => (
+              <div key={index} className="flex flex-col">
+                <label className="text-primaryPeach font-semibold mb-2">Item {index + 1}:</label>
+                <input
+                  type="text"
+                  value={item.itemName}
+                  onChange={(e) => handleSingleItemChange(index, "itemName", e.target.value)}
+                  className="p-3 mb-2 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                  placeholder="Item Name"
+                />
+                <input
+                  type="number"
+                  value={item.itemQuantity}
+                  onChange={(e) => handleSingleItemChange(index, "itemQuantity", e.target.value)}
+                  className="p-3 mb-2 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                  placeholder="Item Quantity"
+                />
+                <input
+                  type="number"
+                  value={item.itemPrice}
+                  onChange={(e) => handleSingleItemChange(index, "itemPrice", e.target.value)}
+                  className="p-3 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                  placeholder="Item Price"
+                />
+              </div>
+            ))}
+             <button
+              type="button"
+              onClick={addSingleItem}
+              className="mt-2 bg-blue-500 text-white px-3 py-2 rounded-md"
+            >
+              Add Item
+            </button>
+            {/* AddOns Field */}
+            
            
           </div>
 

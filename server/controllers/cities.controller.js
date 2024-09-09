@@ -18,12 +18,14 @@ const storage = getStorage(firebaseApp);
 
 const getAllCitiesExceptSelected = asyncHandler(async (req, res) => {
   try {
-    if (!req.body.excludedCity) {
-      throw new ApiError(400, "Excluded city is required");
+    let cities;
+    if (req.body.excludedCity) {
+      cities = await Cities.find({
+        cityName: { $ne: req.body.excludedCity },
+      });
+    } else {
+      cities = await Cities.find();
     }
-    const cities = await Cities.find({
-      cityName: { $ne: req.body.excludedCity },
-    });
 
     if (cities.length === 0) {
       throw new ApiError(404, "No cities found");
@@ -145,6 +147,11 @@ const postVenueAtCity = asyncHandler(async (req, res) => {
       metadata
     );
     const downloadURL = await getDownloadURL(uploadTask.ref);
+    const city = await Cities.findOne({ cityName: venueCity });
+
+    if (!city) {
+      throw new ApiError(404, "City not found");
+    }
 
     const venue = new Venues({
       venueCity,
@@ -154,12 +161,6 @@ const postVenueAtCity = asyncHandler(async (req, res) => {
       venueImageName: fileName,
     });
     await venue.save();
-
-    const city = await Cities.findOne({ cityName: venueCity });
-
-    if (!city) {
-      throw new ApiError(404, "City not found");
-    }
 
     city.venuesAtCity.push(venue._id);
     await city.save();

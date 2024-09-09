@@ -243,7 +243,7 @@ const Service = ({
       {/* booking, terms, and cancellation */}
       <TandC booking={booking} cancellation={cancellation} terms={terms} />
 
-      {(quantities.some(qty => qty > 0) || pkgQuantity.some(qty => qty > 0))  && (  <div class="bg-white shadow-md rounded-lg p-6 w-80 absolute top-4 right-4">
+      {(quantities.some(qty => qty > 0) || pkgQuantity.some(qty => qty > 0))  && (  <div class="bg-white shadow-md rounded-lg p-6 w-80 absolute top-4 right-4 z-50">
   <h2 class="text-lg font-bold mb-4 text-primaryBlack">Order Summary</h2>
 
   <div class="flex justify-between mb-2">

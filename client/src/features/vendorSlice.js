@@ -13,7 +13,9 @@ const initialState = JSON.parse(localStorage.getItem("vendor")) || {
     price:"",
     items:"",
     steps:"1",
-    package_id:""
+    package_id:"",
+    venue: "", // New field for venue ID
+    singleItems: [], 
   };
 const vendorSlice = createSlice({
   name: "vendor",
@@ -21,7 +23,7 @@ const vendorSlice = createSlice({
   reducers: {
     setVendorDetails: (state, action) => {
         console.log('Updating vendor details:', action.payload);
-      const { _id, serviceName, location, about, vendorType, booking, terms, cancellation } = action.payload;
+      const { _id, serviceName, location, about, vendorType, booking, terms, cancellation,venue,singleItems } = action.payload;
       state._id = _id;
       state.serviceName = serviceName;
       state.location = location;
@@ -30,6 +32,8 @@ const vendorSlice = createSlice({
       state.booking = booking;
       state.terms = terms;
       state.cancellation = cancellation;
+      state.singleItems = singleItems;
+      state.venue = venue;
       console.log("here");
       localStorage.setItem("vendor", JSON.stringify(state));
     },
@@ -42,6 +46,7 @@ const vendorSlice = createSlice({
       state.booking = "";
       state.terms = "";
       state.cancellation = "";
+      state.venue = "";
       localStorage.removeItem("vendor");
     },
     setSteps:(state,action)=>{
@@ -52,7 +57,7 @@ const vendorSlice = createSlice({
       const { _id, packageName, price,items } = action.payload;
       state.packageName = packageName;
       state.price = price;
-    state.items = items
+      state.items = items
       state.package_id = _id;// Debugging line
       localStorage.setItem("vendor", JSON.stringify(state));
     }

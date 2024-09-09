@@ -1,16 +1,15 @@
+
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
+
 import { FaStar } from "react-icons/fa";
-import i1 from "../assets/images/download.jpeg"
-import i2 from "../assets/images/download (1).jpeg"
-import i3 from "../assets/images/download (2).jpeg"
-import i4 from "../assets/images/download (3).jpeg"
 import ReactStars from "react-rating-stars-component";
 import axios from 'axios'
+
 
 function ReviewSlider({reviews}) {
   
@@ -70,6 +69,7 @@ function ReviewSlider({reviews}) {
 
 
   const truncateWords = 20; 
+function ReviewSlider({ reviews }) {
 
   return (
     <div className="text-white">
@@ -77,13 +77,13 @@ function ReviewSlider({reviews}) {
         <Swiper
           breakpoints={{
             320: {
-              slidesPerView: 1, 
+              slidesPerView: 1,
             },
             640: {
-              slidesPerView: 2, 
+              slidesPerView: 2,
             },
             1024: {
-              slidesPerView: 4, 
+              slidesPerView: 4,
             },
           }}
           spaceBetween={25}
@@ -111,12 +111,18 @@ function ReviewSlider({reviews}) {
                     className="h-9 w-9 rounded-full object-cover"
                   />
                   <div className="flex flex-col">
-                    <h1 className="font-semibold text-richblack-5">{review.userId.firstName} {review.userId.lastName}</h1>
+
+                    <h1 className="font-semibold text-richblack-5">
+                      {review.userId.firstName} {review.userId.lastName}
+                    </h1>
                   </div>
                 </div>
                 <p className="font-medium text-richblack-25">
                   {review.review.split(" ").length > truncateWords
-                    ? `${review.review.split(" ").slice(0, truncateWords).join(" ")} ...`
+                    ? `${review.review
+                        .split(" ")
+                        .slice(0, truncateWords)
+                        .join(" ")} ...`
                     : review.review}
                 </p>
                 <div className="flex items-center gap-2">
@@ -140,7 +146,7 @@ function ReviewSlider({reviews}) {
         </Swiper>
       </div>
     </div>
-  )
+  );
 }
 
-export default ReviewSlider
+export default ReviewSlider;
