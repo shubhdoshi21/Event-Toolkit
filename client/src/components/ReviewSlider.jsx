@@ -10,7 +10,7 @@ import { FaStar } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
 import axios from 'axios'
 
-  
+
   // const reviews = [
   //   {
   //     user: "Priyal Rawal",
