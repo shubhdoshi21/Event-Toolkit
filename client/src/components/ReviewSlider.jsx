@@ -148,5 +148,6 @@ function ReviewSlider({ reviews }) {
     </div>
   );
 }
+}
 
 export default ReviewSlider;
