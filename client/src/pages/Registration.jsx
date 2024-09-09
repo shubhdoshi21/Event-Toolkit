@@ -114,11 +114,11 @@ const [reviews,setReview] = useState([]);
   return (
     <div className="bg-black min-h-screen w-full pt-20">
       <GallerySlider slides={2} height={500} halls={halls} btn={"Add to cart"} />
-      <p className="text-offwhite text-6xl pb-2 px-10 font-bold">{venue.venueName}</p>
+      <p className="text-offwhite text-6xl pb-2 px-10 font-bold">{selectedVenue.venueName}</p>
       <div className="bg-mauve w-[40%] h-[5px] mx-10 mb-10 rounded-full"></div>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row">   
         <p className="text-grey px-10 my-10 w-[100%] text-xl">
-         {venue.venueDescription}
+         {selectedVenue.venueDescription}
         </p>
       </div>
 

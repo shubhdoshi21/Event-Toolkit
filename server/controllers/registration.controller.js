@@ -78,8 +78,11 @@ exports.register = async (req, res) => {
 
 exports.addImageToEvent = async (req, res) => {
   try {
+    console.log("image api")
     const { regId } = req.body;
-    const file = req.file; 
+    console.log(regId);
+    const file = req.file;
+    console.log(file); 
 
     if (!regId) {
       throw new ApiError(404, "No such event found");
@@ -219,6 +222,7 @@ exports.getRecentEventImages = async (req, res) => {
 
 exports.getEvents = async(req,res) => {
   try {
+    console.log("api called");
     const events = await Registration.find({});
     if(!events){
       throw new ApiError(404, "Event not found");

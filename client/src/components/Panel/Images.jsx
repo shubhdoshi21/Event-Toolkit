@@ -4,19 +4,22 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import axios from "axios";
 import { setSelectedCity } from "../../features/city/citySlice.js";
 import { useNavigate } from "react-router-dom";
+import EventCard from "../EventCard"
 
 const Images = () => {
     const [images, setImages] = useState([]);
+    const [events, setEvents] = useState([]);
     const navigate = useNavigate(); 
     useEffect(() => {
         const getEvents = async () => {
           try {
-            const response = await axios.post(
-              "http://localhost:8080/api/v1/registration/getEvents"
+            console.log("use-effect")
+            const response = await axios.get(
+              "http://localhost:8080/api/v1/registration/recentEvents"
             );
-            if (response?.data?.statusCode <= 200) {
-              setEvents(response.data.data?.data);
-            }
+              console.log(response)
+              setEvents(response.data.data.data);
+              console.log(events);
           } catch (error) {
             console.error("Failed to fetch events:", error);
           }
@@ -26,26 +29,14 @@ const Images = () => {
     
   return (
     <div className="h-screen overflow-scroll p-4">
-    <h2 className="text-3xl font-bold mb-6 text-center text-white">Cities</h2>
-
-    <div className="flex justify-center mb-6">
-      <button
-        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
-        onClick={handleAddCity}
-      >
-        Add New City
-      </button>
-    </div>
+    <h2 className="text-3xl font-bold mb-6 text-center text-white">Events</h2>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {cities.length !== 0 ? (
-        cities.map((city) => (
-          <LocationCard
-            key={city._id}
-            modal={city}
-            message={"Add Venue"}
-            navigateTo={"/panel/add-venue"} 
-            dispatchAction={setSelectedCity}
+      {events.length !== 0 ? (
+        events.map((event) => (
+          <EventCard
+            key={event._id}
+            event={event}
           />
         ))
       ) : (

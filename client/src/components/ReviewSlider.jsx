@@ -11,8 +11,7 @@ import ReactStars from "react-rating-stars-component";
 import axios from 'axios'
 
 
-function ReviewSlider({reviews}) {
-  
+
   // const reviews = [
   //   {
   //     user: "Priyal Rawal",
@@ -148,6 +147,6 @@ function ReviewSlider({ reviews }) {
     </div>
   );
 }
-}
+
 
 export default ReviewSlider;
