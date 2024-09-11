@@ -178,7 +178,7 @@ const Home = () => {
                 key = {venue._id}
                 modal={venue}
                 message={"See Location"}
-                navigateTo={"/registration"}
+                navigateTo={"/dateSelector"}
                 dispatchAction={setSelectedVenue}
               />
             ))
