@@ -207,7 +207,7 @@ const Profile = () => {
 
           <button
             type="submit"
-            className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md mt-4"
+            className="p-2 bg-[#9333ea] hover:bg-[#9333ea]/80 text-white rounded-md mt-4"
           >
             Update Account Details
           </button>
@@ -276,7 +276,7 @@ const Profile = () => {
             </div>
             <button
               type="submit"
-              className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md"
+              className="p-2 bg-[#9333ea] hover:bg-[#9333ea]/80 text-white rounded-md"
             >
               Change Password
             </button>

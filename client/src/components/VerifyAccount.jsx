@@ -127,7 +127,7 @@ const VerifyAccount = () => {
           <p className="text-center text-red">{errorMessage}</p>
           <button
             type="submit"
-            className="w-full bg-[#FF5364] hover:bg-[#FF5364]/80 text-white p-2 font-bold rounded-md"
+            className="w-full bg-[#9333ea] hover:bg-[#9333ea]/80 text-white p-2 font-bold rounded-md"
           >
             Verify
           </button>
@@ -137,7 +137,7 @@ const VerifyAccount = () => {
           <button
             onClick={handleResend}
             disabled={resendCooldown > 0}
-            className={`text-[#FF5364] hover:underline px-1 ${
+            className={`text-[#9333ea] hover:underline px-1 ${
               resendCooldown > 0 ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
