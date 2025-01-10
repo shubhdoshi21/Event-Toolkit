@@ -27,7 +27,7 @@ const cartSchema = new mongoose.Schema({
             type:Number,
         }
     },
-    package:[{
+    package:{
         packageName:[{
             type:String,
         }],
@@ -37,7 +37,7 @@ const cartSchema = new mongoose.Schema({
         packagePrice:{
             type:Number,
         }
-    }]
+    }
 });
 
 module.exports = mongoose.model("Cart",cartSchema);
