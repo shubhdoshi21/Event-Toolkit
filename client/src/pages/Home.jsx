@@ -16,6 +16,7 @@ import {
 import ReviewSlider from "../components/ReviewSlider.jsx";
 import { Link } from "react-router-dom";
 import { setUserDetails } from "../features/user/userSlice.js";
+import Cookies from "js-cookie";
 
 // Define custom styles for headings
 const customStyles = `
@@ -57,6 +58,7 @@ const Home = () => {
   const [images, setImages] = useState([]);
   const containerRef = useRef(null);
   const user = useSelector((state) => state.user);
+  const token = Cookies.get("accessToken");
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -64,7 +66,9 @@ const Home = () => {
           `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
           {
             withCredentials: true,
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in Authorization header
+            },
           }
         );
         const obj = response.data.data;

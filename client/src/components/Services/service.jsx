@@ -25,6 +25,7 @@ import { getPackageNames } from '../../features/cartSlice';
 import axios from 'axios';
 import { setUserDetails } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
+import Cookies from "js-cookie";
 const Service = ({
   gallery = [],
   serviceName,
@@ -50,6 +51,7 @@ const Service = ({
   const [pkgName, setPkgName] = useState([]);
   const [itmArr, setItmArr] = useState([]);
   const [pkgArr, setPkgArr] = useState([]);
+  const token = Cookies.get("accessToken");
 
   const dispatch = useDispatch();
 
@@ -58,7 +60,12 @@ const Service = ({
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
-          { withCredentials: true },
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in Authorization header
+            },
+          }
         );
         const obj = response.data.data;
         console.log('hey user here', obj);

@@ -111,7 +111,12 @@ const Profile = () => {
           oldPassword: currentPassword,
           newPassword,
         },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
+        }
       );
       setCurrentPassword("");
       setNewPassword("");
@@ -139,7 +144,12 @@ const Profile = () => {
           lastName,
           contactNumber,
         },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
+        }
       );
       const obj = response.data.data;
       dispatch(
