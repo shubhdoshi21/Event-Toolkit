@@ -166,7 +166,7 @@ const AddPackages = () => {
   // }
   return (
     <div className=" w-[100%] min-h-[100vh] flex flex-col items-center">
-      <h2 className="text-4xl pt-10 font-bold text-center text-primaryPeach mb-6">
+      <h2 className="text-4xl pt-10 font-bold text-center text-lightpurple mb-6">
         Add Packages
       </h2>
       <form
@@ -175,46 +175,46 @@ const AddPackages = () => {
       >
         {/* Package Name */}
         <div className="flex flex-col mb-4">
-          <label className="text-primaryPeach font-semibold mb-2">
+          <label className="text-lightpurple font-semibold mb-2">
             Package Name:
           </label>
           <input
             type="text"
             value={packageName}
             onChange={(e) => setPackageName(e.target.value)}
-            className="p-3 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+            className="p-3 rounded-md bg-gry outline-none focus:border-pink-500"
             placeholder="Enter package name"
           />
         </div>
 
         {/* Package Price */}
         <div className="flex flex-col mb-4">
-          <label className="text-primaryPeach font-semibold mb-2">
+          <label className="text-lightpurple font-semibold mb-2">
             Package Price:
           </label>
           <input
             type="number"
             value={price}
             onChange={(e) => setPackagePrice(e.target.value)}
-            className="p-3 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+            className="p-3 rounded-md bg-gry outline-none focus:border-pink-500"
             placeholder="Enter package price"
           />
         </div>
 
         {/* Items */}
         <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-4 text-primaryPeach">
+          <h3 className="text-xl font-semibold mb-4 text-lightpurple">
             Items
           </h3>
           {items.map((item, index) => (
-            <div key={index} className="flex items-center mb-4">
+            <div key={index} className="flex rsm:flex-col rsm:items-start rsm:gap-3 items-center mb-4">
               <input
                 type="text"
                 value={item.itemName}
                 onChange={(e) =>
                   handleItemChange(index, "itemName", e.target.value)
                 }
-                className="p-2 mr-4 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                className="p-2 mr-4 w-full sm:w-[50%] rounded-md bg-gry outline-none focus:border-pink-500"
                 placeholder="Item name"
               />
               <input
@@ -223,7 +223,7 @@ const AddPackages = () => {
                 onChange={(e) =>
                   handleItemChange(index, "itemQuantity", e.target.value)
                 }
-                className="p-2 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                className="p-2 rounded-md sm:w-[50%] w-full bg-gry outline-none focus:border-pink-500"
                 placeholder="Item Quantity"
               />
             </div>

@@ -22,7 +22,7 @@ const EventCard = ({event}) => {
         
             const formData = new FormData();
             formData.append("eventImage", imageRef.current.files[0] || "");
-            formData.append("regId",event._id);
+            formData.append("regId",event._id);//adding registration id over here
         
             try {
               const response = await axios.post(

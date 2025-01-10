@@ -42,14 +42,14 @@ const deleteService = async (vendorId) => {
 
   return (
     <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center p-6 ">
-      <h2 className="text-4xl pt-10 font-bold text-center text-primaryPeach mb-6">
+      <h2 className="text-4xl pt-10 font-bold text-center text-lightpurple mb-6">
           My Services
         </h2>
-        <div className=" mx-auto p-4 w-full grid grid-cols-2 gap-5">
+        <div className=" mx-auto w-full grid md:grid-cols-2 grid-cols-1 pl-[10%] gap-5 sm:pl-[10%] md:pl-[10%] lg:pl-[5%]">
         
             {vendors.length > 0 ? (
                 vendors.map((vendor, index) => (
-                    <div key={index} className="bg-white shadow-md rounded-md p-6 mb-6 min-h-[60%]">
+                    <div key={index} className="bg-lgrey/80 text-gray/60 shadow-md rounded-md p-6 mb-6 min-h-[60%]">
                         <h3 className="text-2xl font-semibold text-primaryPeach mb-4">{vendor.serviceName}</h3>
                         <div className='flex justify-between'>
                         <div className="flex items-center mb-2">

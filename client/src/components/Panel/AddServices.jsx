@@ -168,57 +168,58 @@ const userId = user._id
   };
   return (
     
-    <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center justify-center ">
+    <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center justify-center  ">
       <div className="w-[80%] rounded-lg shadow-lg ">
-        <h2 className="text-4xl pt-10 font-bold text-center text-primaryPeach mb-6">
+        <h2 className="text-4xl pt-10 font-bold text-center text-lightpurple mb-6">
           Add New Service
         </h2>
        
-        <form className="bg-darkGray/30 p-5 rounded-lg" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 gap-6 mb-6">
+        <form className="bg-gray p-5 rounded-lg" onSubmit={handleSubmit}>
+          <div className="grid sm:grid-cols-2 
+          grid-cols-1 gap-6 mb-6">
             <div className="flex flex-col">
-              <label className="text-primaryPeach  font-semibold mb-2">Service Name:</label>
+              <label className="text-lightpurple  font-semibold mb-2">Service Name:</label>
               <input
                 type="text"
                 name="serviceName"
                 value={serviceName}
                 onChange={(e) => setServiceName(e.target.value)}
-                className="p-3  rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                className="p-3  rounded-md bg-gry outline-none focus:border-pink-500"
                 placeholder="Enter service name"
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-primaryPeach  font-semibold mb-2">Location:</label>
+              <label className="text-lightpurple  font-semibold mb-2">Location:</label>
               <input
                 type="text"
                 name="location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="p-3  rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                className="p-3  rounded-md bg-gry outline-none focus:border-pink-500"
                 placeholder="Enter location"
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-primaryPeach  font-semibold mb-2">About:</label>
+              <label className="text-lightpurple  font-semibold mb-2">About:</label>
               <textarea
                 name="about"
                 value={about}
                 onChange={(e) => setAbout(e.target.value)}
-                className="p-3  rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                className="p-3  rounded-md bg-gry outline-none focus:border-pink-500"
                 placeholder="Enter details about the service"
                 rows="1"
               />
             </div>
 
             <div className="flex flex-col">
-  <label className="text-primaryPeach font-semibold mb-2">Vendor Type:</label>
+  <label className="text-lightpurple font-semibold mb-2">Vendor Type:</label>
   <select
     name="vendorType"
     value={vendorType}
     onChange={(e) => setVendorType(e.target.value)}
-    className="p-3 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+    className="p-3 rounded-md bg-gry outline-none focus:border-pink-500"
   >
     <option value="" disabled>Select type of vendor</option>
     <option value="caterer">Caterer</option>
@@ -228,36 +229,36 @@ const userId = user._id
 </div>
 
             <div className="flex flex-col">
-              <label className="text-primaryPeach  font-semibold mb-2">Booking Policy:</label>
+              <label className="text-lightpurple  font-semibold mb-2">Booking Policy:</label>
               <textarea
                name="booking"
                value={booking}
                onChange={(e) => setBookingPolicy(e.target.value)}
-                className="p-3  rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                className="p-3  rounded-md bg-gry outline-none focus:border-pink-500"
                 placeholder="Enter booking policy details"
                 rows="1"
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-primaryPeach  font-semibold mb-2">Cancellation Policy:</label>
+              <label className="text-lightpurple  font-semibold mb-2">Cancellation Policy:</label>
               <textarea
                name="cancellation"
                value={cancellation}
                onChange={(e) => setCancellationPolicy(e.target.value)}
-                className="p-3  rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                className="p-3  rounded-md bg-gry outline-none focus:border-pink-500"
                 placeholder="Enter cancellation policy details"
                 rows="1"
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="text-primaryPeach  font-semibold mb-2">Terms and Conditions:</label>
+              <label className="text-lightpurple  font-semibold mb-2">Terms and Conditions:</label>
               <textarea
                 name="terms"
                 value={terms}
                 onChange={(e) => setTermsAndConditions(e.target.value)}
-                className="p-3  rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                className="p-3  rounded-md bg-gry outline-none focus:border-pink-500"
                 placeholder="Enter terms and conditions"
                 rows="1"
               />
@@ -266,7 +267,7 @@ const userId = user._id
 
 
             <div className="flex flex-col">
-            <label className="text-primaryPeach font-semibold mb-2">Cities:</label>
+            <label className="text-lightpurple font-semibold mb-2">Cities:</label>
             <select name="cities" value={cities}  onChange={(e) => setCityName(e.target.value)}>
                 <option value="" disabled>Select a city</option>
                {
@@ -279,7 +280,7 @@ const userId = user._id
               </div>
 
               <div className="flex flex-col">
-              <label className="text-primaryPeach font-semibold mb-2">Venues:</label>
+              <label className="text-lightpurple font-semibold mb-2">Venues:</label>
             <select name="venue" value={venue} onChange={(e)=>setVenue(e.target.value)}>
                 <option value="" disabled>Select a venue</option>
                {
@@ -295,26 +296,26 @@ const userId = user._id
 
             {singleItems.map((item, index) => (
               <div key={index} className="flex flex-col">
-                <label className="text-primaryPeach font-semibold mb-2">Item {index + 1}:</label>
+                <label className="text-lightpurple font-semibold mb-2">Item {index + 1}:</label>
                 <input
                   type="text"
                   value={item.itemName}
                   onChange={(e) => handleSingleItemChange(index, "itemName", e.target.value)}
-                  className="p-3 mb-2 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                  className="p-3 mb-2 rounded-md bg-gry outline-none focus:border-pink-500"
                   placeholder="Item Name"
                 />
                 <input
                   type="number"
                   value={item.itemQuantity}
                   onChange={(e) => handleSingleItemChange(index, "itemQuantity", e.target.value)}
-                  className="p-3 mb-2 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                  className="p-3 mb-2 rounded-md bg-gry outline-none focus:border-pink-500"
                   placeholder="Item Quantity"
                 />
                 <input
                   type="number"
                   value={item.itemPrice}
                   onChange={(e) => handleSingleItemChange(index, "itemPrice", e.target.value)}
-                  className="p-3 rounded-md bg-gray-50/20 outline-none focus:border-pink-500"
+                  className="p-3 rounded-md bg-gry outline-none focus:border-pink-500"
                   placeholder="Item Price"
                 />
               </div>
@@ -322,7 +323,7 @@ const userId = user._id
              <button
               type="button"
               onClick={addSingleItem}
-              className="mt-2 bg-blue-500 text-white px-3 py-2 rounded-md"
+              className="mt-2 bg-lgrey/20 text-white px-3 py-2 rounded-md"
             >
               Add Item
             </button>
@@ -339,7 +340,7 @@ const userId = user._id
           </button>) : (
             <button
            onClick={handleUpdateDetails}
-            className="w-full py-3 bg-green-500 text-white font-semibold rounded-md  transition duration-200"
+            className="w-full py-3 bg-primaryPeach text-white font-semibold rounded-md  transition duration-200"
           >
             Update Details
           </button>)
@@ -349,7 +350,7 @@ const userId = user._id
       <ToastContainer
         style={{ zIndex: 9999 }} // Adjust the z-index as needed
       />
-      <button onClick={handleAddOneMore} className="mt-4 py-2 px-4 bg-blue-500 text-white rounded-md">
+      <button onClick={handleAddOneMore} className="mt-4 py-2 px-4 bg-primaryPeach text-white rounded-md">
         Add one more?
       </button>
       {

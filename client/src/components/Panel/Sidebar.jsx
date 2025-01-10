@@ -34,7 +34,7 @@ const Sidebar = () => {
   console.log(userType);
   return (
 
-    <div className="min-w-[14%]">
+    <div className="min-w-[14%] fixed h-full">
       <div className="flex  text-white flex-col  h-[100%] bg-primaryPeach">
         <div className="flex flex-col">
           {sidebarlinks.map((link) => {
