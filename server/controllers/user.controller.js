@@ -6,8 +6,15 @@ const jwt = require("jsonwebtoken");
 const {
   sendVerificationEmail,
 } = require("../helpers/sendVerificationEmail.js");
-const { sendForgotPasswordEmail } = require("../helpers/sendForgotPasswordEmail.js");
-
+const {
+  sendForgotPasswordEmail,
+} = require("../helpers/sendForgotPasswordEmail.js");
+const getCookieOptions = () => ({
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  maxAge: 24 * 60 * 60 * 1000
+});
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -68,7 +75,7 @@ const registerUser = asyncHandler(async (req, res) => {
   //         emailResponse.message || "Failed to send verification email"
   //       );
   //     }
- 
+
   //     return res.status(201).json(
   //       new ApiResponse(
   //         201,
@@ -127,10 +134,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // Cookie options
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
+  const options = getCookieOptions();
 
   return res
     .status(200)
@@ -176,10 +180,7 @@ const loginUser = asyncHandler(async (req, res) => {
     "-password -refreshToken"
   );
 
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
+  const options = getCookieOptions();
 
   return res
     .status(200)
@@ -211,10 +212,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     }
   );
 
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
+  const options = getCookieOptions();
 
   return res
     .status(200)
@@ -247,10 +245,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       throw new ApiError(401, "Refresh token is expired or used");
     }
 
-    const options = {
-      httpOnly: true,
-      secure: true,
-    };
+    const options = getCookieOptions();
 
     const { accessToken, newRefreshToken } =
       await generateAccessAndRefreshTokens(user._id);
@@ -417,33 +412,31 @@ const forgetPassword = asyncHandler(async (req, res) => {
 });
 
 const resetPasswordWithOtp = asyncHandler(async (req, res) => {
+  const { email, otp, newPassword } = req.body;
 
-    const { email, otp, newPassword } = req.body;
+  if (!email || !otp || !newPassword) {
+    throw new ApiError(400, "Email, OTP, and new password are required");
+  }
 
-    if (!email || !otp || !newPassword) {
-      throw new ApiError(400, "Email, OTP, and new password are required");
-    }
+  const user = await User.findOne({ email });
 
-    const user = await User.findOne({ email });
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
 
-    if (!user) {
-      throw new ApiError(404, "User not found");
-    }
+  const isOtpValid = user.verifyCode === otp;
+  const isOtpExpired = Date.now() > user.verifyCodeExpiry;
 
-    const isOtpValid = user.verifyCode === otp;
-    const isOtpExpired = Date.now() > user.verifyCodeExpiry;
+  if (!isOtpValid || isOtpExpired) {
+    throw new ApiError(400, "Invalid or expired OTP");
+  }
 
-    if (!isOtpValid || isOtpExpired) {
-      throw new ApiError(400, "Invalid or expired OTP");
-    }
+  // OTP is valid and not expired, reset the password
+  user.password = newPassword;
+  user.verifyCode = 0;
+  user.verifyCodeExpiry = 0;
 
-    // OTP is valid and not expired, reset the password
-    user.password = newPassword;
-    user.verifyCode = 0;
-    user.verifyCodeExpiry = 0;
-
-    await user.save();
-
+  await user.save();
 
   return res
     .status(200)

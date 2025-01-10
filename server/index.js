@@ -4,6 +4,8 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const express = require("express");
 const cron = require('node-cron');
+const helmet = require('helmet');
+
 const { ApiError } = require("./utils/ApiError.js");
 
 const vendorRouter = require("./routes/vendor.route.js");
@@ -25,15 +27,28 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    // origin: [process.env.CORS_ORIGIN, "http://localhost:5173"],
+    origin: ["https://event-toolkit-frontend.onrender.com", "http://localhost:5173"],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With'],
+    exposedHeaders: ['Set-Cookie'],
   })
 );
 
 
+app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+app.use((req, res, next) => {
+  console.log('Cookies:', req.cookies);
+  console.log('Headers:', req.headers);
+  next();
+});
 app.get("/", (req, res) => res.send("Hello World!"));
 app.use("/api/v1/vendor", vendorRouter);
 app.use("/api/v1/package", packageRouter);

@@ -12,12 +12,12 @@ const ThemeConverter = () => {
     if (darkMode) {
       document.documentElement.classList.remove("light");
       document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      localStorage.setItem("theme", "false");
     } else {
       document.documentElement.classList.remove("dark");
       document.documentElement.classList.add("light");
 
-      localStorage.setItem("theme", "light");
+      localStorage.setItem("theme", "true");
     }
   }, [darkMode]);
 
@@ -26,13 +26,13 @@ const ThemeConverter = () => {
       {darkMode ? (
         <IoSunnySharp
           size={24}
-          className="text-white m-2"
+          className="text-white"
           onClick={() => setDarkMode(!darkMode)}
         />
       ) : (
         <IoMoonSharp
           size={24}
-          className="text-black m-2"
+          className="text-black"
           onClick={() => setDarkMode(!darkMode)}
         />
       )}
