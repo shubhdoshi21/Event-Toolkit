@@ -54,6 +54,8 @@ const Profile = () => {
           autoClose: 1500,
           closeButton: false,
         });
+        console.log(err.message);
+        
       } finally {
         setLoading(false);
       }
