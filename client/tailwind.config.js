@@ -6,7 +6,9 @@ export default {
     extend: {
       colors: {
         primaryBlack: "#111827",
-        primaryPeach: "#FF5364",
+
+        primaryPeach: "#662d99",
+
         darkGray: "#5A5A5A",
         mediumGray: "#B3B3B3",
         lightGray: "#F2F2F2",
@@ -24,7 +26,9 @@ export default {
 
         purple:"#9333ea",
         darkbg:"#111827",
-        gray:"#1f2937", 
+
+        gray:"#1f2937",
+
         gry:"#374151",
         lightpurple:"#a855f7",
 
@@ -35,13 +39,9 @@ export default {
       },
     },
     // screens: {
-    //   lg: { max: "1800px" },
-    //   lgm: { max: "1140px" },
-    //   md: { max: "990px" },
-    //   sm: { max: "600px" },
-    //   xs: { max: "400px" },
-    //   minmd: "1700px",
-    //   minlg: "2100px",
+     
+    //   rsm: { max: "600px" },
+     
     // },
   },
   plugins: [daisyui],
