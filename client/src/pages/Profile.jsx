@@ -179,24 +179,24 @@ const Profile = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="w-[100%] min-h-[100vh] flex items-center justify-center ">
+    <div className="w-[100%] min-h-[100vh] flex items-center justify-center pl-[0%] sm:pl-[17%] md:pl-[10%] lg:pl-[5%]">
       <div className="w-full p-8">
         <form onSubmit={handleUpdateAccountDetails}>
           <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
             <div>
-              <label className="block">First Name:</label>
+              <label className="block text-lightpurple">First Name:</label>
               <input
                 type="text"
-                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none text-lgrey/70"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div>
-              <label className="block">Last Name:</label>
+              <label className="block text-lightpurple">Last Name:</label>
               <input
                 type="text"
-                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none text-lgrey/70"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -204,7 +204,7 @@ const Profile = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block">Communication Email address:</label>
+            <label className="block text-lightpurple">Communication Email address:</label>
             <input
               type="email"
               className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
@@ -214,10 +214,10 @@ const Profile = () => {
           </div>
 
           <div>
-            <label className="block">Phone Number:</label>
+            <label className="block text-lightpurple">Phone Number:</label>
             <input
               type="text"
-              className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+              className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none text-lgrey/70"
               value={contactNumber}
               onChange={(e) => setContactNumber(e.target.value)}
             />
@@ -234,17 +234,17 @@ const Profile = () => {
           <h2 className="text-lg font-semibold py-2">Change Password</h2>
           <form onSubmit={handleChangePassword}>
             <div className="mb-4">
-              <label className="block">Current Password:</label>
+              <label className="block text-lightpurple">Current Password:</label>
               <input
                 type="password"
-                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none text-lgrey/70"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block">New Password:</label>
+              <label className="block text-lightpurple">New Password:</label>
               <input
                 type="password"
                 className={`w-full mt-1 p-2 border rounded-md bg-transparent outline-none ${
@@ -272,7 +272,7 @@ const Profile = () => {
               )}
             </div>
             <div className="mb-2">
-              <label className="block">Confirm New Password:</label>
+              <label className="block text-lightpurple">Confirm New Password:</label>
               <input
                 type={showPassword ? "text" : "password"}
                 className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
