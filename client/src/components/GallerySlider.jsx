@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import { Autoplay, Navigation } from 'swiper/modules';
 import axios from 'axios';
-
+import Cookies from "js-cookie";
 const GallerySlider = ({
   slides = 3,
   height = 300,
@@ -15,7 +15,7 @@ const GallerySlider = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+const token = Cookies.get("accessToken");
   // Render a placeholder message if no valid `halls` data is provided
   if (!Array.isArray(halls) || halls.length === 0) {
     return (
@@ -59,7 +59,10 @@ const GallerySlider = ({
           ], // Replace with actual package data if available
         },
         {
-          withCredentials: true, // Add this only if the backend expects cookies
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
         }
       );
 

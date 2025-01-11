@@ -17,8 +17,6 @@ const Payment = () => {
           { userId },
         );
 
-        console.log('Response Data:', response.data);
-
         if (
           response.data &&
           response.data.data &&
@@ -32,7 +30,6 @@ const Payment = () => {
           }));
 
           setDummyProducts(cartData);
-          console.log('Transformed Cart Data:', response.data.data.data);
         } else {
           setError('No cart items found or invalid data format.');
         }
@@ -71,7 +68,6 @@ const Payment = () => {
       );
 
       const session = await response.json();
-      console.log('Session Data:', session);
 
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,

@@ -114,14 +114,14 @@ const Signin = () => {
           </div>
           <Link
             to="/auth/reset-password"
-            className="w-full flex justify-center items-center text-sm text-[#FF5364] hover:underline"
+            className="w-full flex justify-center items-center text-sm text-[#9333ea] hover:underline"
           >
             Forgot Password?
           </Link>
 
           <button
             type="submit"
-            className="w-full text-white p-2 rounded-md mt-4 bg-[#FF5364] hover:bg-[#FF5364]/80"
+            className="w-full text-white p-2 rounded-md mt-4 bg-[#9333ea] hover:bg-[#9333ea]/80"
             onClick={handleSubmit}
           >
             Sign In
@@ -131,7 +131,7 @@ const Signin = () => {
             Don't have an account?
             <Link
               to="/auth/signup"
-              className="text-[#FF5364] hover:underline px-1"
+              className="text-[#9333ea] hover:underline px-1"
             >
               Sign Up
             </Link>

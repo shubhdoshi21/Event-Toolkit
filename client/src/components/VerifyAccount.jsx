@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Cookies from "js-cookie";
 const VerifyAccount = () => {
   const [otp, setOtp] = useState(new Array(6).fill(''));
   const [errorMessage, setErrorMessage] = useState('');
   const [resendCooldown, setResendCooldown] = useState(30);
   const navigate = useNavigate();
+  const token = Cookies.get("accessToken");
 
   useEffect(() => {
     if (resendCooldown > 0) {
@@ -59,7 +60,10 @@ const VerifyAccount = () => {
         },
         {
           withCredentials: true,
-        },
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
+        }
       );
       toast.success('User Verified successfully!', {
         autoClose: 1500,
@@ -84,7 +88,12 @@ const VerifyAccount = () => {
       await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/resend-otp`,
         {},
-        { withCredentials: true },
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
+        }
       );
       toast.success('OTP resent successfully!', {
         autoClose: 1500,
@@ -127,7 +136,7 @@ const VerifyAccount = () => {
           <p className="text-center text-red">{errorMessage}</p>
           <button
             type="submit"
-            className="w-full bg-[#FF5364] hover:bg-[#FF5364]/80 text-white p-2 font-bold rounded-md"
+            className="w-full bg-[#9333ea] hover:bg-[#9333ea]/80 text-white p-2 font-bold rounded-md"
           >
             Verify
           </button>
@@ -137,7 +146,7 @@ const VerifyAccount = () => {
           <button
             onClick={handleResend}
             disabled={resendCooldown > 0}
-            className={`text-[#FF5364] hover:underline px-1 ${
+            className={`text-[#9333ea] hover:underline px-1 ${
               resendCooldown > 0 ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
