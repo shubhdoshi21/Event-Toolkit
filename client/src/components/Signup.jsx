@@ -143,7 +143,6 @@ const Signup = () => {
       }, 1500);
     } catch (err) {
       toast.error(err.response?.data?.message || 'An error occurred');
-      console.log(err);
     }
   };
 
