@@ -131,7 +131,7 @@ const Navbar = () => {
         {isLoggedIn && (
           <Link
             to="/cart"
-            className="hidden hover:bg-lightgreyplusplus hover:text-white font-bold px-2 py-2 rounded-[50%] transition-all duration-300 mr-2"
+            className="hidden sm:flex sm:hover:bg-lightgreyplusplus sm:hover:text-white font-bold px-2 py-2 rounded-[50%] transition-all duration-300 mr-2"
           >
             <IoCartOutline size={24} />
           </Link>
