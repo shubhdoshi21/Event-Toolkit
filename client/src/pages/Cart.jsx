@@ -75,10 +75,12 @@ const Cart = () => {
 
   const handleDelete = async itemId => {
     try {
+      console.log("delete");
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/removeFromCart`,
         { id: itemId },
       );
+      console.log("delete");
 
       if (response.data.success) {
         toast.success('Item removed from cart!');
@@ -169,6 +171,7 @@ const Cart = () => {
                 <p className="font-bold text-lg text-mauve">
                   Total: ${item.totalPrice}
                 </p>
+                <button onClick={handleDelete}>Delete from cart</button>
               </div>
             </div>
           </div>
