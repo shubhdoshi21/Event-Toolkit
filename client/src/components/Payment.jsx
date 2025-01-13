@@ -17,8 +17,6 @@ const Payment = () => {
           { userId },
         );
 
-        console.log('Response Data:', response.data);
-
         if (
           response.data &&
           response.data.data &&
@@ -32,7 +30,6 @@ const Payment = () => {
           }));
 
           setDummyProducts(cartData);
-          console.log('Transformed Cart Data:', response.data.data.data);
         } else {
           setError('No cart items found or invalid data format.');
         }
@@ -71,7 +68,6 @@ const Payment = () => {
       );
 
       const session = await response.json();
-      console.log('Session Data:', session);
 
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
@@ -89,7 +85,7 @@ const Payment = () => {
 
   return (
     <button
-      className="min-w-1/12 h-[50px] bg-red px-4 rounded-md mt-2"
+      className="min-w-1/12 h-[50px] shadow-2xl px-4 rounded-md mt-2"
       onClick={makePayment}
       type="button"
       disabled={dummyProducts.length === 0 || error !== null}

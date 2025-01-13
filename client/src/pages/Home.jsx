@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCity, FaMapMarkerAlt, FaCommentDots } from "react-icons/fa";
 import { setVenues, setSelectedVenue } from "../features/venue/venueSlice.js";
-import { setSelectedCity } from "../features/city/citySlice.js";
+import { setSelectedCity, setCity } from "../features/city/citySlice.js";
 import {
   Navbar,
   Modal,
@@ -208,6 +208,7 @@ const Home = () => {
         setReviews(reviewsResponse.data.data?.data || []);
         setImages(imageResponse?.data?.data?.data || []);
         dispatch(setVenues(venuesResponse.data.data?.data || []));
+        dispatch(setCity(citiesResponse.data.data?.data || []));
       } catch (error) {
         console.error("Error fetching data!");
       } finally {
@@ -313,7 +314,7 @@ const Home = () => {
           {/* exploring locations */}
           <div className="py-8 px-4">
             <h2 className="text-3xl font-bold mb-6 text-center heading-container uppercase">
-              {`Explore locations at ${selectedCity?.cityName}`}
+              {`Explore locations at ${selectedCity.cityName}`}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {venues.length !== 0 ? (

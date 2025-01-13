@@ -48,6 +48,39 @@ const EventCard = ({ event }) => {
     }
   };
 
+
+       {/* const handleSubmit = async (e) => {
+            e.preventDefault();
+        
+            const formData = new FormData();
+            formData.append("eventImage", imageRef.current.files[0] || "");
+            formData.append("regId",event._id);//adding registration id over here
+        
+            try {
+              const response = await axios.post(
+                "http://localhost:8080/api/v1/registration/addImageToEvent",
+                formData,
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              );
+        
+              if (response.data.statusCode === 200) {
+                toast.success("Image added sucesfully!");
+              }
+            } catch (error) {
+              if (error.response && error.response.data) {
+                const { message } = error.response.data;
+                toast.error(message || "Failed to add city.");
+              } else {
+                toast.error("An unexpected error occurred.");
+              }
+            }
+          };*/}
+        
+     
   return (
     <div>
       <h2>

@@ -11,9 +11,9 @@ const {
 } = require("../helpers/sendForgotPasswordEmail.js");
 const getCookieOptions = () => ({
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-  maxAge: 24 * 60 * 60 * 1000,
+  secure: true,
+  sameSite: 'none',
+  maxAge: 24 * 60 * 60 * 1000
 });
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -136,21 +136,23 @@ const registerUser = asyncHandler(async (req, res) => {
   // Cookie options
   const options = getCookieOptions();
 
-  return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .json(
-      new ApiResponse(
-        200,
-        {
-          user: createdUser,
-          accessToken,
-          refreshToken,
-        },
-        "User registered Successfully"
+  return (
+    res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
+      .json(
+        new ApiResponse(
+          200,
+          {
+            user: createdUser,
+            accessToken,
+            refreshToken,
+          },
+          "User registered Successfully"
+        )
       )
-    );
+  );
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -182,21 +184,23 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const options = getCookieOptions();
 
-  return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .json(
-      new ApiResponse(
-        200,
-        {
-          user: loggedInUser,
-          accessToken,
-          refreshToken,
-        },
-        "User logged In Successfully"
+  return (
+    res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
+      .json(
+        new ApiResponse(
+          200,
+          {
+            user: loggedInUser,
+            accessToken,
+            refreshToken,
+          },
+          "User logged In Successfully"
+        )
       )
-    );
+  );
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
@@ -250,17 +254,19 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     const { accessToken, newRefreshToken } =
       await generateAccessAndRefreshTokens(user._id);
 
-    return res
-      .status(200)
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", newRefreshToken, options)
-      .json(
-        new ApiResponse(
-          200,
-          { accessToken, refreshToken: newRefreshToken },
-          "Access token refreshed"
+    return (
+      res
+        .status(200)
+        .cookie("accessToken", accessToken, options)
+        .cookie("refreshToken", newRefreshToken, options)
+        .json(
+          new ApiResponse(
+            200,
+            { accessToken, refreshToken: newRefreshToken },
+            "Access token refreshed"
+          )
         )
-      );
+    );
   } catch (error) {
     throw new ApiError(401, error?.message || "Invalid refresh token");
   }

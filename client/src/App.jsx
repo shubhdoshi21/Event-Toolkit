@@ -1,5 +1,11 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -31,6 +37,7 @@ import { Navbar } from "./components";
 import PaymentSuccess from "./components/PaymentSuccess";
 import PaymentFailed from "./components/PaymentFailed";
 import { setUserDetails } from "../src/features/user/userSlice.js";
+
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -107,8 +114,7 @@ function App() {
               <Route path="/panel/addImage" element={<Images />} />
             </>
           ) : (
-            <>
-            </>
+            <></>
           )}
           <Route path="/auth/signup" element={<Signup />} />
           <Route path="/auth/signin" element={<Signin />} />
