@@ -35,7 +35,7 @@ const CustomDatePicker = () => {
       
       <Modal
         isOpen={true}
-        className="relative bg-gray-900/95 backdrop-blur-xl p-6 rounded-3xl shadow-2xl max-w-xl mx-auto border border-gray-800/50 shadow-[0_0_50px_10px_rgba(168,85,247,0.15)] animate-pulse-subtle"
+        className="relative bg-gray-900/95 backdrop-blur-xl p-6 rounded-3xl shadow-2xl max-w-xl mx-auto border border-gray-800/50 animate-pulse-subtle"
         overlayClassName="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center backdrop-blur-sm"
         ariaHideApp={false}
       >
