@@ -31,7 +31,6 @@ const Navbar = () => {
   useEffect(() => {
     const userToken = Cookies.get('accessToken');
     setIsLoggedIn(!!userToken);
-    console.log(isLoggedIn);
 
     const storedTheme = localStorage.getItem('theme') || 'true';
     setTheme(storedTheme);
