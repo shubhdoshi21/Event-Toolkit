@@ -140,7 +140,7 @@ const registerUser = asyncHandler(async (req, res) => {
     res
       .status(200)
       .cookie("accessToken", accessToken, options)
-      // .cookie("refreshToken", refreshToken, options)
+      .cookie("refreshToken", refreshToken, options)
       .json(
         new ApiResponse(
           200,
@@ -188,7 +188,7 @@ const loginUser = asyncHandler(async (req, res) => {
     res
       .status(200)
       .cookie("accessToken", accessToken, options)
-      // .cookie("refreshToken", refreshToken, options)
+      .cookie("refreshToken", refreshToken, options)
       .json(
         new ApiResponse(
           200,
@@ -258,7 +258,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       res
         .status(200)
         .cookie("accessToken", accessToken, options)
-        // .cookie("refreshToken", newRefreshToken, options)
+        .cookie("refreshToken", newRefreshToken, options)
         .json(
           new ApiResponse(
             200,
