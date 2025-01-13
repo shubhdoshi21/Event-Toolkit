@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdLocationOn } from 'react-icons/md'; // Location icon
 import { AiOutlineShoppingCart } from 'react-icons/ai'; // Shopping cart icon for packages
-import { BsInfoCircle } from 'react-icons/bs';
+import { BsInfoCircle } from 'react-icons/bs'; // Info icon
 import { useSelector } from 'react-redux';
-import { MdDeleteSweep } from 'react-icons/md';
+import { MdDeleteSweep } from 'react-icons/md'; // Delete icon
 import { toast } from 'react-toastify';
+
 const MyServices = () => {
   const [vendors, setVendors] = useState([]);
   const user = useSelector(state => state.user);
   const userId = user._id;
+
   useEffect(() => {
     const fetchVendors = async () => {
       try {
@@ -25,19 +27,16 @@ const MyServices = () => {
     };
 
     fetchVendors();
-  }, []);
+  }, [userId]);
 
   const deleteService = async vendorId => {
     try {
-      console.log('deleted vendor', vendorId);
+      console.log('Deleted vendor', vendorId);
       const response = await axios.delete(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/v1/vendor/deleteServiceDetails/${vendorId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/deleteServiceDetails/${vendorId}`,
       );
       if (response.status === 200) {
-        toast.success('Service deleted Successfully');
-        // Update the state to reflect changes in the UI
+        toast.success('Service deleted successfully');
         setVendors(vendors.filter(vendor => vendor._id !== vendorId));
       }
     } catch (error) {
@@ -47,33 +46,16 @@ const MyServices = () => {
   };
 
   return (
-    <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center p-6 ">
-
+    <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center p-6">
       <h2 className="text-4xl pt-10 font-bold text-center text-lightpurple mb-6">
-          My Services
-        </h2>
-        <div className=" mx-auto w-full grid md:grid-cols-2 grid-cols-1 pl-[10%] gap-5 sm:pl-[10%] md:pl-[10%] lg:pl-[5%]">
-        
-            {vendors.length > 0 ? (
-                vendors.map((vendor, index) => (
-                    <div key={index} className="bg-lgrey/80 text-gray/60 shadow-md rounded-md p-6 mb-6 min-h-[60%]">
-                        <h3 className="text-2xl font-semibold text-primaryPeach mb-4">{vendor.serviceName}</h3>
-                        <div className='flex justify-between'>
-                        <div className="flex items-center mb-2">
-                            <MdLocationOn className="text-gray-600 mr-2" />
-                            <p className="text-lg">{vendor.location}</p>
-                        </div>
-                        <MdDeleteSweep onClick={() => deleteService(vendor._id)} className="text-gray-600 mr-2" />
-
-     {/* <h2 className="text-4xl pt-10 font-bold text-center text-primaryPeach mb-6">
         My Services
       </h2>
-      <div className=" mx-auto p-4 w-full grid grid-cols-2 gap-5">
+      <div className="mx-auto w-full grid md:grid-cols-2 grid-cols-1 pl-[10%] gap-5 sm:pl-[10%] md:pl-[10%] lg:pl-[5%]">
         {vendors.length > 0 ? (
           vendors.map((vendor, index) => (
             <div
               key={index}
-              className="bg-white shadow-md rounded-md p-6 mb-6 min-h-[60%]"
+              className="bg-lgrey/80 text-gray/60 shadow-md rounded-md p-6 mb-6 min-h-[60%]"
             >
               <h3 className="text-2xl font-semibold text-primaryPeach mb-4">
                 {vendor.serviceName}
@@ -85,15 +67,13 @@ const MyServices = () => {
                 </div>
                 <MdDeleteSweep
                   onClick={() => deleteService(vendor._id)}
-                  className="text-gray-600 mr-2"
+                  className="text-gray-600 cursor-pointer"
                 />
               </div>
               <div className="flex items-center mb-2">
                 <BsInfoCircle className="text-gray-600 mr-2" />
                 <p className="text-lg">{vendor.about}</p>
-              </div>*/}
-
-
+              </div>
               <p className="mb-2">
                 <strong>Vendor Type:</strong> {vendor.vendorType}
               </p>
@@ -106,7 +86,7 @@ const MyServices = () => {
               <p className="mb-2">
                 <strong>Terms and Conditions:</strong> {vendor.terms}
               </p>
-              <div className="mt-4 ">
+              <div className="mt-4">
                 <h4 className="text-xl font-semibold mb-2">Single Items</h4>
                 <div className="flex">
                   {vendor.singleItems && vendor.singleItems.length > 0 ? (
@@ -163,7 +143,6 @@ const MyServices = () => {
                   )}
                 </div>
               </div>
-
               <div className="mt-4">
                 <h4 className="text-xl font-semibold mb-2">Gallery</h4>
                 {vendor.gallery && vendor.gallery.length > 0 ? (
@@ -181,7 +160,6 @@ const MyServices = () => {
                   <p>No images in the gallery</p>
                 )}
               </div>
-
               <p className="mt-4">
                 <strong>Venue ID:</strong> {vendor.venue}
               </p>
