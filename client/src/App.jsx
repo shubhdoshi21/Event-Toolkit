@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 // Pages and Components
 import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/NotFound";
@@ -29,13 +30,48 @@ import CustomDatePicker from "./components/CustomDatePicker";
 import { Navbar } from "./components";
 import PaymentSuccess from "./components/PaymentSuccess";
 import PaymentFailed from "./components/PaymentFailed";
-
+import { setUserDetails } from "../src/features/user/userSlice.js";
 function App() {
   const location = useLocation();
-
+  const dispatch = useDispatch();
+   const [loading, setLoading] = useState(false);
   const isAuthenticated = () => {
     return !!Cookies.get("accessToken"); // Check if user is authenticated
   };
+
+  const token = Cookies.get("accessToken");
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in Authorization header
+            },
+          }
+        );
+        const obj = response.data.data;
+        dispatch(
+          setUserDetails({
+            _id: obj._id,
+            email: obj.email,
+            firstName: obj.firstName,
+            lastName: obj.lastName,
+            userType: obj.userType,
+            contactNumber: obj.contactNumber,
+          })
+        );
+      } catch (err) {
+        console.error("error fetching user details!" + err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserDetails();
+  }, [dispatch]);
 
   const showNavbar = ![
     "/",
