@@ -4,6 +4,7 @@ import i1 from '../assets/images/download.jpeg';
 import { useSelector } from 'react-redux';
 import Payment from '../components/Payment.jsx';
 import { toast } from 'react-toastify';
+import { MdDelete } from "react-icons/md";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -75,10 +76,12 @@ const Cart = () => {
 
   const handleDelete = async itemId => {
     try {
+      console.log("delete");
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/removeFromCart`,
         { id: itemId },
       );
+      console.log("delete");
 
       if (response.data.success) {
         toast.success('Item removed from cart!');
@@ -95,41 +98,41 @@ const Cart = () => {
 
   return (
     <div className="p-6 bg-gray-900 min-h-screen">
-      <h1 className="text-3xl font-extrabold text-white mb-8 text-center">
+      <h1 className="text-3xl font-extrabold mb-8 text-center">
         Your Cart
       </h1>
 
       {error && <p className="text-red-500 text-center">{error}</p>}
       {loading ? (
-        <p className="text-white text-center">Loading...</p>
+        <p className="text-center">Loading...</p>
       ) : cartItems.length === 0 ? (
-        <p className="text-white text-center">Your cart is empty.</p>
+        <p className=" text-center">Your cart is empty.</p>
       ) : (
         cartItems.map(item => (
           <div
             key={item._id}
-            className="bg-gray-800 shadow-lg rounded-lg p-6 mt-6 flex hover:bg-gray-700 transition duration-300"
+            className="bg-gray-800 shadow-2xl rounded-lg p-6 mt-6 flex hover:bg-gray-700 transition duration-300 lg:pl-20 "
           >
             <div className="w-1/3">
-              <img
+              <img  
                 src={i1}
                 alt={item.name}
                 className="w-full h-auto rounded-lg object-cover transform hover:scale-105 transition duration-300"
               />
             </div>
-            <div className="w-2/3 pl-6">
-              <p className="text-xl font-bold text-blue-500">{item.name}</p>
-              <p className="text-gray-400">
+            <div className="w-2/3 pl-10 lg-pl-20">
+              <p className="text-xl font-bold ">{item.name}</p>
+              <p className="text-pupll">
                 Price:{' '}
-                <span className="text-lg font-semibold text-mauve">
+                <span className="text-lg font-semibold">
                   ${item.totalPrice}
                 </span>
               </p>
 
-              <div className="text-gray-400 space-y-1">
+              <div className=" space-y-1">
                 {/* Handling items field if available */}
                 {item.items ? (
-                  <div>
+                  <div className='text-darkGray'>
                     <div>Item Quantity: {item.items.itemQuantity}</div>
                     <div>Item Price: {item.items.itemPrice}</div>
                   </div>
@@ -146,7 +149,7 @@ const Cart = () => {
                   <p>No package selected.</p>
                 )}*/}
                 {item.package ? (
-                  <div className="pt-3 space-y-2">
+                  <div className="pt-3 space-y-2 text-darkGray" >
                     <span>Package name:</span>
                     <div>
                       {item.package.packageName?.map((pkgName, index) => (
@@ -166,16 +169,18 @@ const Cart = () => {
                   <div>No package available</div>
                 )}
 
-                <p className="font-bold text-lg text-mauve">
+                <p className="font-bold text-lg ">
                   Total: ${item.totalPrice}
+                  <button onClick={handleDelete} className='ml-5'><MdDelete /></button>
                 </p>
+               
               </div>
             </div>
           </div>
         ))
       )}
 
-      <div className="mt-6 text-white font-bold">
+      <div className="mt-6  font-bold">
         <p className="text-2xl">Total Price: ${totalPrice}</p>
         <Payment />
       </div>
