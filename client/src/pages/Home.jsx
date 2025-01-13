@@ -58,39 +58,39 @@ const Home = () => {
   const [images, setImages] = useState([]);
   const containerRef = useRef(null);
   const user = useSelector((state) => state.user);
-  const token = Cookies.get("accessToken");
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
-          {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${token}`, // Send token in Authorization header
-            },
-          }
-        );
-        const obj = response.data.data;
-        dispatch(
-          setUserDetails({
-            _id: obj._id,
-            email: obj.email,
-            firstName: obj.firstName,
-            lastName: obj.lastName,
-            userType: obj.userType,
-            contactNumber: obj.contactNumber,
-          })
-        );
-      } catch (err) {
-        console.error("error fetching user details!" + err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // const token = Cookies.get("accessToken");
+  // useEffect(() => {
+  //   const fetchUserDetails = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
+  //         {
+  //           withCredentials: true,
+  //           headers: {
+  //             Authorization: `Bearer ${token}`, // Send token in Authorization header
+  //           },
+  //         }
+  //       );
+  //       const obj = response.data.data;
+  //       dispatch(
+  //         setUserDetails({
+  //           _id: obj._id,
+  //           email: obj.email,
+  //           firstName: obj.firstName,
+  //           lastName: obj.lastName,
+  //           userType: obj.userType,
+  //           contactNumber: obj.contactNumber,
+  //         })
+  //       );
+  //     } catch (err) {
+  //       console.error("error fetching user details!" + err.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchUserDetails();
-  }, [dispatch]);
+  //   fetchUserDetails();
+  // }, [dispatch]);
 
   // useEffect(() => {
   //   const getCities = async () => {
