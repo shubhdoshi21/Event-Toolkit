@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import Cookies from "js-cookie";
 const History = () => {
   const [events, setEvents] = useState([]);
-
+const token = Cookies.get("accessToken");
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -11,7 +11,10 @@ const History = () => {
           `${import.meta.env.VITE_BACKEND_URL}/api/v1/registration/getUserEvents`,
           {
             withCredentials: true,
-          },
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in Authorization header
+            },
+          }
         );
         console.log(response.data.data);
         setEvents(response.data.data);

@@ -1,32 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserDetails } from '../features/user/userSlice.js';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDetails } from "../features/user/userSlice.js";
+import Cookies from "js-cookie";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
+  const token = Cookies.get("accessToken");
 
   const [loading, setLoading] = useState(true);
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordErrors, setPasswordErrors] = useState([]);
-  const [passwordValid, setPasswordValid] = useState('initial');
+  const [passwordValid, setPasswordValid] = useState("initial");
   const [showPassword, setShowPassword] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
-          { withCredentials: true },
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in Authorization header
+            },
+          }
         );
         const obj = response.data.data;
         dispatch(
@@ -37,16 +44,17 @@ const Profile = () => {
             lastName: obj.lastName,
             userType: obj.userType,
             contactNumber: obj.contactNumber,
-          }),
+          })
         );
-        setFirstName(obj.firstName || '');
-        setLastName(obj.lastName || '');
-        setContactNumber(obj.contactNumber || '');
+        setFirstName(obj.firstName || "");
+        setLastName(obj.lastName || "");
+        setContactNumber(obj.contactNumber || "");
       } catch (err) {
-        toast.error('error fetching user details!', {
+        toast.error("error fetching user details!", {
           autoClose: 1500,
           closeButton: false,
         });
+        
       } finally {
         setLoading(false);
       }
@@ -55,40 +63,40 @@ const Profile = () => {
     fetchUserDetails();
   }, [dispatch]);
 
-  const validateNewPassword = password => {
+  const validateNewPassword = (password) => {
     const errors = [];
     if (!/[A-Z]/.test(password))
-      errors.push('Must contain an uppercase letter.');
+      errors.push("Must contain an uppercase letter.");
     if (!/[a-z]/.test(password))
-      errors.push('Must contain a lowercase letter.');
-    if (!/[0-9]/.test(password)) errors.push('Must contain a number.');
+      errors.push("Must contain a lowercase letter.");
+    if (!/[0-9]/.test(password)) errors.push("Must contain a number.");
     if (!/[!@#$%^&*]/.test(password))
-      errors.push('Must contain a special character.');
-    if (password.length < 8) errors.push('Must be at least 8 characters long.');
+      errors.push("Must contain a special character.");
+    if (password.length < 8) errors.push("Must be at least 8 characters long.");
 
     setPasswordErrors(errors);
     setPasswordValid(errors.length === 0 ? true : false);
   };
 
-  const handleChangePassword = async e => {
+  const handleChangePassword = async (e) => {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      toast.info('New password and confirm password do not match.', {
+      toast.info("New password and confirm password do not match.", {
         autoClose: 1500,
         closeButton: false,
       });
       return;
     }
     if (newPassword === currentPassword) {
-      toast.info('New password and Old password must be different.', {
+      toast.info("New password and Old password must be different.", {
         autoClose: 1500,
         closeButton: false,
       });
       return;
     }
     if (!passwordValid) {
-      toast.info('New password does not meet the requirements.', {
+      toast.info("New password does not meet the requirements.", {
         autoClose: 1500,
         closeButton: false,
       });
@@ -102,24 +110,29 @@ const Profile = () => {
           oldPassword: currentPassword,
           newPassword,
         },
-        { withCredentials: true },
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
+        }
       );
-      setCurrentPassword('');
-      setNewPassword('');
-      setConfirmPassword('');
-      toast.success('Password changed successfully!', {
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      toast.success("Password changed successfully!", {
         autoClose: 1500,
         closeButton: false,
       });
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Error changing password.', {
+      toast.error(err.response?.data?.message || "Error changing password.", {
         autoClose: 1500,
         closeButton: false,
       });
     }
   };
 
-  const handleUpdateAccountDetails = async e => {
+  const handleUpdateAccountDetails = async (e) => {
     e.preventDefault();
 
     try {
@@ -130,7 +143,12 @@ const Profile = () => {
           lastName,
           contactNumber,
         },
-        { withCredentials: true },
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
+        }
       );
       const obj = response.data.data;
       dispatch(
@@ -141,19 +159,19 @@ const Profile = () => {
           lastName: obj.lastName,
           userType: obj.userType,
           contactNumber: obj.contactNumber,
-        }),
+        })
       );
-      toast.success('Account details updated successfully!', {
+      toast.success("Account details updated successfully!", {
         autoClose: 1500,
         closeButton: false,
       });
     } catch (err) {
       toast.error(
-        err.response?.data?.message || 'Error updating account details.',
+        err.response?.data?.message || "Error updating account details.",
         {
           autoClose: 1500,
           closeButton: false,
-        },
+        }
       );
     }
   };
@@ -161,53 +179,53 @@ const Profile = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="w-[100%] min-h-[100vh] flex items-center justify-center ">
+    <div className="w-[100%] min-h-[100vh] flex items-center justify-center pl-[0%] sm:pl-[17%] md:pl-[10%] lg:pl-[5%]">
       <div className="w-full p-8">
         <form onSubmit={handleUpdateAccountDetails}>
           <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
             <div>
-              <label className="block">First Name:</label>
+              <label className="block text-lightpurple">First Name:</label>
               <input
                 type="text"
-                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none text-lgrey/70"
                 value={firstName}
-                onChange={e => setFirstName(e.target.value)}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div>
-              <label className="block">Last Name:</label>
+              <label className="block text-lightpurple">Last Name:</label>
               <input
                 type="text"
-                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none text-lgrey/70"
                 value={lastName}
-                onChange={e => setLastName(e.target.value)}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
           </div>
 
           <div className="mb-4">
-            <label className="block">Communication Email address:</label>
+            <label className="block text-lightpurple">Communication Email address:</label>
             <input
               type="email"
               className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
-              value={user?.email || ''}
+              value={user?.email || ""}
               readOnly
             />
           </div>
 
           <div>
-            <label className="block">Phone Number:</label>
+            <label className="block text-lightpurple">Phone Number:</label>
             <input
               type="text"
-              className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+              className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none text-lgrey/70"
               value={contactNumber}
-              onChange={e => setContactNumber(e.target.value)}
+              onChange={(e) => setContactNumber(e.target.value)}
             />
           </div>
 
           <button
             type="submit"
-            className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md mt-4"
+            className="p-2 bg-[#9333ea] hover:bg-[#9333ea]/80 text-white rounded-md mt-4"
           >
             Update Account Details
           </button>
@@ -216,34 +234,34 @@ const Profile = () => {
           <h2 className="text-lg font-semibold py-2">Change Password</h2>
           <form onSubmit={handleChangePassword}>
             <div className="mb-4">
-              <label className="block">Current Password:</label>
+              <label className="block text-lightpurple">Current Password:</label>
               <input
                 type="password"
-                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
+                className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none text-lgrey/70"
                 value={currentPassword}
-                onChange={e => setCurrentPassword(e.target.value)}
+                onChange={(e) => setCurrentPassword(e.target.value)}
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block">New Password:</label>
+              <label className="block text-lightpurple">New Password:</label>
               <input
                 type="password"
                 className={`w-full mt-1 p-2 border rounded-md bg-transparent outline-none ${
-                  passwordValid === 'initial'
-                    ? ''
+                  passwordValid === "initial"
+                    ? ""
                     : passwordValid
-                    ? 'border-green-500'
-                    : 'border-red'
+                    ? "border-green-500"
+                    : "border-red"
                 }`}
                 value={newPassword}
-                onChange={e => {
+                onChange={(e) => {
                   setNewPassword(e.target.value);
                   validateNewPassword(e.target.value);
                 }}
                 required
               />
-              {passwordValid !== 'initial' && !passwordValid && (
+              {passwordValid !== "initial" && !passwordValid && (
                 <div className="text-left text-red text-sm m-2">
                   <ul>
                     {passwordErrors.map((error, index) => (
@@ -254,12 +272,12 @@ const Profile = () => {
               )}
             </div>
             <div className="mb-2">
-              <label className="block">Confirm New Password:</label>
+              <label className="block text-lightpurple">Confirm New Password:</label>
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 className="w-full mt-1 p-2 border rounded-md bg-transparent outline-none"
                 value={confirmPassword}
-                onChange={e => setConfirmPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>
@@ -268,7 +286,7 @@ const Profile = () => {
                 type="checkbox"
                 id="showPassword"
                 checked={showPassword}
-                onChange={() => setShowPassword(prev => !prev)}
+                onChange={() => setShowPassword((prev) => !prev)}
               />
               <label htmlFor="showPassword" className="ml-2">
                 Show Password
@@ -276,7 +294,7 @@ const Profile = () => {
             </div>
             <button
               type="submit"
-              className="p-2 bg-[#FF5364] hover:bg-[#FF5364]/80 text-white rounded-md"
+              className="p-2 bg-[#9333ea] hover:bg-[#9333ea]/80 text-white rounded-md"
             >
               Change Password
             </button>

@@ -13,7 +13,7 @@ const SidebarLink = ({ link, iconName }) => {
       <NavLink
         to={link.path}
         className={`relative flex items-center p-4 text-sm font-medium ${
-          matchRoute(link.path) ? "bg-gray-400/30 w-full" : "bg-opacity-0"
+          matchRoute(link.path) ? "bg-slate-500/40 w-full" : "bg-opacity-0"
         }`}
       >
         <span
@@ -22,10 +22,10 @@ const SidebarLink = ({ link, iconName }) => {
           }`}
         />
 
-        <div className="flex items-center gap-x-2">
-          <Icon className="text-lg" />
-          <span className="text-md">{link.name}</span>
-        </div>
+          <div className="flex items-center gap-x-2">
+            <Icon className="text-lg" />
+            <span className="text-md rsm:text-blue-800 hidden sm:block">{link.name}</span>
+          </div>
       </NavLink>
     </div>
   );

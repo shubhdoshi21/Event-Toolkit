@@ -50,9 +50,6 @@ const { asyncHandler } = require('../utils/asyncHandler.js');
 exports.addToCart = async (req, res) => {
   try {
     const { userId, isVenue, name, totalPrice, items, package } = req.body;
-    console.log('inside api');
-    console.log('inside api');
-    console.log(req.body);
 
     // Validate required fields
     if (
@@ -122,7 +119,6 @@ exports.fetchCart = async (req, res) => {
 
     // Fetch the cart items for the given userId
     const cartItems = await Cart.find({ userId });
-    console.log(cartItems);
     if (!cartItems || cartItems.length === 0) {
       throw new ApiError(404, 'No items found in the cart');
     }

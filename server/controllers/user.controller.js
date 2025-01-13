@@ -9,7 +9,12 @@ const {
 const {
   sendForgotPasswordEmail,
 } = require("../helpers/sendForgotPasswordEmail.js");
-
+const getCookieOptions = () => ({
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  maxAge: 24 * 60 * 60 * 1000
+});
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -129,30 +134,25 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // Cookie options
-  const options = {
-    httpOnly: true,
-    secure: true, // true in production
-    sameSite: "none", // important for cross-site
-    domain: ".vercel.app",
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-  };
-  console.log(options);
+  const options = getCookieOptions();
 
-  return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .json(
-      new ApiResponse(
-        200,
-        {
-          user: createdUser,
-          accessToken,
-          refreshToken,
-        },
-        "User registered Successfully"
+  return (
+    res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      // .cookie("refreshToken", refreshToken, options)
+      .json(
+        new ApiResponse(
+          200,
+          {
+            user: createdUser,
+            accessToken,
+            refreshToken,
+          },
+          "User registered Successfully"
+        )
       )
-    );
+  );
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -182,30 +182,25 @@ const loginUser = asyncHandler(async (req, res) => {
     "-password -refreshToken"
   );
 
-  const options = {
-    httpOnly: true,
-    secure: true, // true in production
-    sameSite: "none", // important for cross-site
-    domain: ".vercel.app",
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-  };
-  console.log(options);
+  const options = getCookieOptions();
 
-  return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .json(
-      new ApiResponse(
-        200,
-        {
-          user: loggedInUser,
-          accessToken,
-          refreshToken,
-        },
-        "User logged In Successfully"
+  return (
+    res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      // .cookie("refreshToken", refreshToken, options)
+      .json(
+        new ApiResponse(
+          200,
+          {
+            user: loggedInUser,
+            accessToken,
+            refreshToken,
+          },
+          "User logged In Successfully"
+        )
       )
-    );
+  );
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
@@ -221,14 +216,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     }
   );
 
-  const options = {
-    httpOnly: true,
-    secure: true, // true in production
-    sameSite: "none", // important for cross-site
-    domain: ".vercel.app",
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-  };
-  console.log(options);
+  const options = getCookieOptions();
 
   return res
     .status(200)
@@ -261,29 +249,24 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       throw new ApiError(401, "Refresh token is expired or used");
     }
 
-    const options = {
-      httpOnly: true,
-      secure: true, // true in production
-      sameSite: "none", // important for cross-site
-      domain: ".vercel.app",
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    };
-    console.log(options);
+    const options = getCookieOptions();
 
     const { accessToken, newRefreshToken } =
       await generateAccessAndRefreshTokens(user._id);
 
-    return res
-      .status(200)
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", newRefreshToken, options)
-      .json(
-        new ApiResponse(
-          200,
-          { accessToken, refreshToken: newRefreshToken },
-          "Access token refreshed"
+    return (
+      res
+        .status(200)
+        .cookie("accessToken", accessToken, options)
+        // .cookie("refreshToken", newRefreshToken, options)
+        .json(
+          new ApiResponse(
+            200,
+            { accessToken, refreshToken: newRefreshToken },
+            "Access token refreshed"
+          )
         )
-      );
+    );
   } catch (error) {
     throw new ApiError(401, error?.message || "Invalid refresh token");
   }

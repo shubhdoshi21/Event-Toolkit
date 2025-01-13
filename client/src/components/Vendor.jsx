@@ -15,10 +15,8 @@ const Vendor = () => {
           `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/getVendorDetails`,
           { vendorId: vendorId },
         );
-        console.log(catererDetails);
         if (catererDetails.data.statusCode <= 200)
           setVendor(catererDetails?.data?.data?.data);
-        console.log(vendor?.gallery);
       } catch (error) {
         console.error('Error fetching caterer details:', error);
       }

@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 
@@ -27,6 +32,8 @@ import History from "./components/Panel/History";
 import AddCities from "./components/Panel/AddCities";
 import CustomDatePicker from "./components/CustomDatePicker";
 import { Navbar } from "./components";
+import PaymentSuccess from "./components/PaymentSuccess";
+import PaymentFailed from "./components/PaymentFailed";
 
 function App() {
   const location = useLocation();
@@ -69,8 +76,7 @@ function App() {
               <Route path="/panel/addImage" element={<Images />} />
             </>
           ) : (
-            <>
-            </>
+            <></>
           )}
           <Route path="/auth/signup" element={<Signup />} />
           <Route path="/auth/signin" element={<Signin />} />
@@ -81,6 +87,8 @@ function App() {
           <Route path="/dateSelector" element={<CustomDatePicker />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/failed" element={<PaymentFailed />} />
           <Route path="/cart" element={<Cart />} />
 
           {/* Fallback Route */}

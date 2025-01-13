@@ -5,17 +5,17 @@ const TandC = ({ booking, cancellation, terms }) => {
     <div  className="bg-lightGray/10 p-10 flex flex-col gap-10 rounded-xl" >
     <div className=" w-full rounded-md  sm:flex-row gap-10 flex flex-col">
       <div className="flex flex-col gap-3">
-        <h2 className="font-bold text-2xl text-primaryPeach">Booking Policy</h2>
+        <h2 className="font-bold text-2xl text-lightpurple">Booking Policy</h2>
         <p>{booking}</p>
       </div>
     
       <div className="flex flex-col gap-3">
-        <h2 className="font-bold text-2xl text-primaryPeach">Terms and Conditions</h2>
+        <h2 className="font-bold text-2xl text-lightpurple">Terms and Conditions</h2>
         <p>{terms}</p>
       </div>
     </div>
       <div className="flex flex-col gap-3">
-      <h2 className="font-bold text-2xl text-primaryPeach">Cancellation Policy</h2>
+      <h2 className="font-bold text-2xl text-lightpurple">Cancellation Policy</h2>
       <p>{cancellation}</p>
     </div>
     </div>

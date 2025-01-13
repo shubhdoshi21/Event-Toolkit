@@ -6,15 +6,22 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../features/user/userSlice';
+import Cookies from "js-cookie";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const { userType } = useSelector(state => state.user);
+  const token = Cookies.get("accessToken");
   const handleLogout = async () => {
     try {
       await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/logout`,
         {},
-        { withCredentials: true },
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in Authorization header
+          },
+        }
       );
       dispatch(logoutUser());
       toast.success('Logged out successfully!', {
@@ -33,7 +40,8 @@ const Sidebar = () => {
   };
   console.log(userType);
   return (
-    <div className="min-w-[14%]">
+    <div className="min-w-[14%] fixed h-full">
+
       <div className="flex  text-white flex-col  h-[100%] bg-primaryPeach">
         <div className="flex flex-col">
           {sidebarlinks.map(link => {

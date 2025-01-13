@@ -67,7 +67,7 @@ const LandingPage = () => {
           </select>
           <Link to="/home">
             <button
-              className={`bg-[#FF5364] hover:bg-[#FF5364]/80 px-8 py-4 rounded-lg text-xl xs:text-base mt-6 text-white ${
+              className={`bg-[#9333ea] hover:bg-[#9333ea]/80 px-8 py-4 rounded-lg text-xl xs:text-base mt-6 text-white ${
                 !selectedCity ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={!selectedCity}

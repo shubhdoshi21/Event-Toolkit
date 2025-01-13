@@ -143,7 +143,6 @@ const Signup = () => {
       }, 1500);
     } catch (err) {
       toast.error(err.response?.data?.message || 'An error occurred');
-      console.log(err);
     }
   };
 
@@ -322,7 +321,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#FF5364] hover:bg-[#FF5364]/80 text-white p-2 rounded-md mt-4"
+            className="w-full bg-[#9333ea] hover:bg-[#9333ea]/80 text-white p-2 rounded-md mt-4"
             disabled={passwordValid !== true}
           >
             Sign Up
@@ -332,7 +331,7 @@ const Signup = () => {
             Already have an account?
             <Link
               to="/auth/signin"
-              className="text-[#FF5364] hover:underline px-1"
+              className="text-[#9333ea] hover:underline px-1"
             >
               Sign In
             </Link>

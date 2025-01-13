@@ -74,7 +74,6 @@ const getAllVenuesAtCity = asyncHandler(async (req, res) => {
   try {
 
     const { cityName } = req.body;
-console.log(cityName);
     if (!cityName) {
       throw new ApiError(400, "City name is required");
     }

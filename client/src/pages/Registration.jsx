@@ -11,7 +11,7 @@ import { setUserDetails } from '../features/user/userSlice';
 import axios from 'axios';
 import GallerySlider2 from '../components/GallerySlider2';
 import { toast } from 'react-toastify';
-
+import Cookies from "js-cookie";
 const Registration = () => {
   const [halls, setHalls] = useState([]);
   const [venue, setVenueData] = useState({});
@@ -21,13 +21,19 @@ const Registration = () => {
   const { selectedVenue } = useSelector(state => state.venue);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const token = Cookies.get("accessToken");
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
-          { withCredentials: true },
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`, // Send token in Authorization header
+            },
+          }
         );
 
         const obj = response.data.data;
