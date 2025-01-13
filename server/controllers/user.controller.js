@@ -7,8 +7,15 @@ const {
   sendVerificationEmail,
 } = require("../helpers/sendVerificationEmail.js");
 const {
+  sendVerificationEmailNode,
+} = require("../helpers/sendVerificationNode.js");
+
+const {
   sendForgotPasswordEmail,
 } = require("../helpers/sendForgotPasswordEmail.js");
+const {
+  sendForgotPasswordEmailNode,
+} = require("../helpers/sendForgotPasswordNode.js");
 const getCookieOptions = () => ({
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
@@ -104,7 +111,7 @@ const registerUser = asyncHandler(async (req, res) => {
     userType: userType ?? "ordinary",
   });
 
-  const emailResponse = await sendVerificationEmail(
+  const emailResponse = await sendVerificationEmailNode(
     email,
     `${firstName} ${lastName}`,
     verifyUserCode
@@ -360,7 +367,7 @@ const resendOTP = asyncHandler(async (req, res) => {
     throw new ApiError(404, "User not found");
   }
 
-  const emailResponse = await sendVerificationEmail(
+  const emailResponse = await sendVerificationEmailNode(
     user.email,
     `${user.firstName} ${user.lastName}`,
     user.verifyCode
@@ -385,7 +392,6 @@ const forgetPassword = asyncHandler(async (req, res) => {
   }
 
   const user = await User.findOne({ email });
-
   if (!user) {
     throw new ApiError(404, "User not found");
   }
@@ -396,7 +402,7 @@ const forgetPassword = asyncHandler(async (req, res) => {
 
   await user.save();
 
-  const emailResponse = await sendForgotPasswordEmail(
+  const emailResponse = await sendForgotPasswordEmailNode(
     user.email,
     `${user.firstName} ${user.lastName}`,
     otp
