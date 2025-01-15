@@ -5,13 +5,15 @@
 @layer base {
   :root {
     --background: 255, 255, 255; /* Light background */
-    --foreground: #9333ea /* Light text color */
+    --foreground: #9333ea; /* Light text color */
   }
 
-  .dark {
+  /* Styles for dark mode */
+  body[data-theme='dark'] {
     --background: #111827; /* Dark background */
-    --foreground: #7e22ce /* Dark text color */
+    --foreground: #7e22ce; /* Dark text color */
   }
+
   * {
     margin: 0;
     padding: 0;

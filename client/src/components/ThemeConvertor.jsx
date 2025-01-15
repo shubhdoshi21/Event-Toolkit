@@ -1,40 +1,36 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { IoSunnySharp, IoMoonSharp } from "react-icons/io5";
+
 const ThemeConverter = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") setDarkMode(true);
-  }, []);
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.remove("light");
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "false");
+    const theme = localStorage.getItem("selectedTheme");
+    if (theme === "dark") {
+      setDarkMode();
     } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-
-      localStorage.setItem("theme", "true");
+      setLightMode();
     }
-  }, [darkMode]);
+  }, []);
+
+  const setDarkMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "dark");
+    localStorage.setItem("selectedTheme", "dark");
+    setIsDarkMode(true);
+  };
+
+  const setLightMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "light");
+    localStorage.setItem("selectedTheme", "light");
+    setIsDarkMode(false);
+  };
 
   return (
-    <div className=" z-50">
-      {darkMode ? (
-        <IoSunnySharp
-          size={24}
-          className="text-white"
-          onClick={() => setDarkMode(!darkMode)}
-        />
+    <div className="z-50">
+      {isDarkMode ? (
+        <IoSunnySharp size={24} className="text-white" onClick={setLightMode} />
       ) : (
-        <IoMoonSharp
-          size={24}
-          className="text-black"
-          onClick={() => setDarkMode(!darkMode)}
-        />
+        <IoMoonSharp size={24} className="text-black" onClick={setDarkMode} />
       )}
     </div>
   );
