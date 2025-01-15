@@ -20,6 +20,7 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState({
     venues: [],
     cities: [],
+    vendors: [],
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const Navbar = () => {
   // Access Redux state
   const { venues } = useSelector(state => state.venue);
   const { cities } = useSelector(state => state.city);
+  const { vendors } = useSelector(state => state.vendor);
 
   useEffect(() => {
     const userToken = Cookies.get('accessToken');
@@ -52,6 +54,12 @@ const Navbar = () => {
     navigate('/dateSelector');
   };
 
+  const handleVendorClick = venue => {
+    dispatch(setSelectedVenue(venue));
+    setSearchQuery('');
+    navigate('/dateSelector');
+  };
+
   const handleSearch = e => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
@@ -62,10 +70,14 @@ const Navbar = () => {
     const filteredCities = cities.filter(city =>
       city.cityName.toLowerCase().includes(query),
     );
+    const filteredVendors = vendors.filter(vendor =>
+      vendor.serviceName.toLowerCase().includes(query),
+    );
 
     setSearchResults({
       venues: filteredVenues,
       cities: filteredCities,
+      vendors: filteredVendors,
     });
   };
 
@@ -117,6 +129,14 @@ const Navbar = () => {
               variable={'Cities'}
               toDisplay={'cityName'}
             />
+            <Search
+              searchQuery={searchQuery}
+              searchResults={searchResults.cities}
+              dispatchFunction={handleCityClick}
+              variable={'Vendors'}
+              toDisplay={'serviceName'}
+            />
+
           </div>
         </div>
 
