@@ -14,7 +14,7 @@ const Search = ({
           <h3 className="font-bold text-gray-700 mb-2">{variable}</h3>
           {searchResults.length > 0 ? (
             <ul>
-              {searchResults.map((venue, index) => (
+              {searchResults.map((venue, index) => ( 
                 <li
                   key={index}
                   className="py-1 px-2 hover:bg-gray-200 rounded cursor-pointer"

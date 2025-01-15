@@ -43,7 +43,7 @@ const vendorSchema = new Schema({
              }
         }
     ],
-
+ 
     packages:[{
         type:Schema.Types.ObjectId,
         ref:"Package"

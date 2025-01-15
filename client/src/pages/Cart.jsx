@@ -4,6 +4,7 @@ import i1 from '../assets/images/download.jpeg';
 import { useSelector } from 'react-redux';
 import Payment from '../components/Payment.jsx';
 import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { MdDelete } from "react-icons/md";
 
 const Cart = () => {
@@ -71,7 +72,7 @@ const Cart = () => {
 
   const calculateTotalPrice = items => {
     const total = items.reduce((sum, item) => sum + (item.totalPrice || 0), 0);
-    setTotalPrice(total);
+    setTotalPrice(total); 
   };
 
   const handleDelete = async itemId => {
@@ -173,7 +174,7 @@ const Cart = () => {
                   Total: ${item.totalPrice}
                   <button onClick={() => handleDelete(item._id)} className='ml-5'><MdDelete /></button>
                 </p>
-               
+               <ToastContainer />
               </div>
             </div>
           </div>
