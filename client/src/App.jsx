@@ -48,6 +48,24 @@ function App() {
 
   const token = Cookies.get("accessToken");
   useEffect(() => {
+    const theme = localStorage.getItem("selectedTheme");
+    if (theme === "dark") {
+      setDarkMode();
+    } else {
+      setLightMode();
+    }
+  }, []);
+
+  const setDarkMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "dark");
+    localStorage.setItem("selectedTheme", "dark");
+  };
+
+  const setLightMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "light");
+    localStorage.setItem("selectedTheme", "light");
+  };
+  useEffect(() => {
     const fetchUserDetails = async () => {
       try {
         const response = await axios.get(
