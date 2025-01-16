@@ -71,7 +71,7 @@ const Registration = () => {
     getReview();
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { 
     const getHalls = async () => {
       console.log(selectedVenue);
 
@@ -137,7 +137,7 @@ const Registration = () => {
       {/* Pass the dynamically fetched userId */}
       <GallerySlider
         slides={2}
-        height={500}
+        height={400}
         halls={halls}
         btn={'Add to cart'}
         userId={user._id} // Use the userId from Redux

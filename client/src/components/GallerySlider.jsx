@@ -106,8 +106,8 @@ const token = Cookies.get("accessToken");
             <img
               src={hall?.subVenueImage || 'placeholder-image-url.jpg'}
               alt={`Slide ${index}`}
-              className="w-full h-auto object-cover transition-transform duration-300 ease-in-out"
-              style={{ height: `${height}px`, borderRadius: '8px' }}
+              className="w-full object-cover transition-transform duration-300 ease-in-out"
+              style={{ height: `calc(100%)`, borderRadius: '8px' }}
             />
             <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out">
               <h2 className="text-white text-2xl font-bold mb-2">

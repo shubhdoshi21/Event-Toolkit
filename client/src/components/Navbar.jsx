@@ -83,13 +83,13 @@ const Navbar = () => {
 
   const navbarClass =
     theme === 'false'
-      ? 'bg-gray text-white shadow-lg shadow-pupll/20'
-      : 'bg-lgrey text-black shadow-lg shadow-pupll/20';
+      ? 'bg-gray text-white shadow-lg shadow-pupll/40'
+      : 'bg-lgrey text-black shadow-lg shadow-pupll/40';
 
   return (
     <nav
 
-      className={`h-16 w-full flex items-center justify-between p-4  bg-opacity-80 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
+      className={`h-16 w-full flex items-center justify-between p-4  bg-opacity-10 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
     >
       <div className="text-xl font-bold ">
 
