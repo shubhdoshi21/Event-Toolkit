@@ -139,6 +139,7 @@ const AddVenue = () => {
               className="hidden" // Hide the default file input
               onChange={handleImageChange} // Handle file input change
             />
+            
             {/* Custom file input button */}
             <button
               type="button"
@@ -151,6 +152,7 @@ const AddVenue = () => {
             {imageName && (
               <span className="ml-4 text-gray-300">{imageName}</span>
             )}
+
           </div>
 
           <button

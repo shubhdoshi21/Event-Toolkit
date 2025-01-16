@@ -25,14 +25,14 @@ export const sidebarlinks = [
     id: "4",
     name: "Add cities",
     path: "/panel/my-cities",
-    type: AccountType.Admin,
+    type: AccountType.Vendor,
     icon: "VscAdd",
   },
   {
     id: "5",
     name: "Add venues",
     path: "/panel/add-venue",
-    type: AccountType.Admin,
+    type: AccountType.Vendor,
     icon: "VscAdd",
   },
   {
@@ -45,14 +45,14 @@ export const sidebarlinks = [
     id: "7",
     name: "Add sub venues",
     path: "/panel/venues",
-    type: AccountType.Admin,
+    type: AccountType.Vendor,
     icon: "VscAdd",
   },
   {
     id: "8",
     name: "Add city",
     path: "/panel/add-city",
-    type: AccountType.Admin,
+    type: AccountType.Vendor,
     icon: "VscAdd",
   },
 ];

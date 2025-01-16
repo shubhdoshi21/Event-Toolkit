@@ -480,8 +480,8 @@ const Service = ({
           </button>
         </div>
       )}
-    </div>
-  );
-};
+//     </div>
+//   );
+// };
 
 export default Service;

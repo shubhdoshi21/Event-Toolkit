@@ -32,9 +32,9 @@ const Navbar = ({ onSidebarToggle }) => {
 
   return (
     <nav
-      className={`h-16 w-full flex items-center justify-between p-4  bg-opacity-80 backdrop-blur-sm fixed z-50 top-0 ${navbarClass}`}
+      className={`h-16 w-full flex items-center justify-between p-4  bg-opacity-80 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
     >
-      <div className="text-xl font-bold">
+      <div className="text-xl font-bold ">
         <Link to="/home">
           <img src={Logo} alt="Logo" width="114px" height="114px" />
         </Link>
@@ -48,7 +48,7 @@ const Navbar = ({ onSidebarToggle }) => {
           <input
             type="text"
             placeholder="Search..."
-            className="pl-3 pr-10 py-1 rounded-full text-black bg-lightgrey"
+            className="pl-3 pr-10 py-1 rounded-full text-black bg-grey/30"
           />
         </div>
 

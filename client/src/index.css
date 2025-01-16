@@ -1,7 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cairo+Play:wght@200..1000&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+.lobster-thick {
+  font-family: "Lobster", serif;
+  font-weight: 600;
+  
+}
+
+.abril-fatface-regular {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.playfair-display{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  
+}
+
+.libre-baskerville-regular {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lobster-light {
+  font-family: "Lobster", serif;
+  font-weight: 400;
+  
+}
 @layer base {
   :root {
     --background: 255, 255, 255; /* Light background */
@@ -29,4 +61,37 @@
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.gradient-border {
+  display: inline-block;
+  position: relative;
+  /* Adjust padding as needed */
+/* Background color for the text */
+  z-index: 1; /* Ensure content is above the border */
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+ 
+  left: 0;
+  right: 0;
+  height: 5px;
+  bottom: 0;
+  z-index: -1;
+  margin: -5px; /* Adjust margin to control border thickness */
+  background: linear-gradient(90deg, #6effe4, #e273f5, #54be37e0);
+  background-size: 200% 100%;
+   /* Optional: Rounded border corners */
+  animation: move-gradient 3s linear infinite; /* Animation to move gradient */
+}
+
+@keyframes move-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }

@@ -2,21 +2,75 @@ import React from "react";
 
 const ModalButton = ({ modal, onClick }) => {
   return (
-    <button
-      key={modal._id}
-      onClick={onClick}
-      className="relative min-w-[150px] min-h-[150px] rounded-full hover:opacity-80 border-2"
-      style={{
-        backgroundImage: `url(${modal.cityImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <span className="absolute top-2/5 left-1/2 transform -translate-x-1/2 px-2 py-1 text-white font-bold text-lg rounded w-full">
-        {modal.cityName}
-      </span>
-    </button>
+    <>
+      <style>
+        {`
+          .modal-button {
+            position: relative;
+            min-width: 150px;
+            min-height: 150px;
+            border-radius: 50%;
+           
+            transition: all 300ms ease;
+          }
+         
+            .modal-button::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            z-index:-1;
+         border: 2px solid transparent;
+            background: conic-gradient(
+              from 90deg, 
+              #9333ea, 
+             #a855f7, 
+              #f3f4f6, 
+              purple
+            );
+          }
+          .modal-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+         bottom:0;
+            backdrop-filter: blur(20px); /* Adds blur effect */
+            border-radius: 50%;
+            z-index: -2; /* Places the blur effect behind the button */
+          }
+          .modal-button-text {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            padding: 0.5rem 0.75rem;
+            font-weight: bold;
+            font-size: 1.125rem;
+            color: white;
+            border-radius: 0.375rem;
+            width: 100%;
+            text-align: center;
+          }
+        `}
+      </style>
+      <button
+        onClick={onClick}
+        className="modal-button"
+        style={{
+          backgroundImage: `url(${modal.cityImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <span className="modal-button-text">{modal.cityName}</span>
+      </button>
+    </>
   );
 };
 

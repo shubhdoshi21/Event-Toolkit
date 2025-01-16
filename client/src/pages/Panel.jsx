@@ -5,9 +5,9 @@ import Sidebar from '../components/Panel/Sidebar';
 const Panel = () => {
   return (
 
-   <div className='relative  w-[100vw]  flex '>
-        <Sidebar/>
-        <div className='h-[100%] bg-primaryBlack w-[100%] pl-[10%] rsm:pl-[15%]'>
+   <div className='relative w-[100vw] mt-16 flex '>
+        <Sidebar />
+        <div className='h-[100%] bg-primaryBlack w-[100%] pl-[10%] rsm:pl-[15%] '>
             <div className=' w-[100%] h-[100%] pb-20 '>
 
     {/* <div className='w-[100vw] bg-primaryBlack flex h-[100vh] overflow-scroll'>
