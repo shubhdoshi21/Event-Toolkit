@@ -45,7 +45,7 @@ const Signin = () => {
         expires: 10,
         secure: true,
         sameSite: 'Strict',
-      });
+      }); 
 
       toast.success('User logged in successfully!', {
         autoClose: 1500,

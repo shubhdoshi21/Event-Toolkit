@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdLocationOn } from 'react-icons/md'; // Location icon
 import { AiOutlineShoppingCart } from 'react-icons/ai'; // Shopping cart icon for packages
+
 import { BsInfoCircle } from 'react-icons/bs'; // Information icon
+
 import { useSelector } from 'react-redux';
 import { MdDeleteSweep } from 'react-icons/md'; // Delete icon
 import { toast } from 'react-toastify';
@@ -31,6 +33,7 @@ const MyServices = () => {
 
   const deleteService = async (vendorId) => {
     try {
+
       console.log('Deleted vendor:', vendorId);
       const response = await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/deleteServiceDetails/${vendorId}`
@@ -39,6 +42,15 @@ const MyServices = () => {
         toast.success('Service deleted successfully');
         // Update the state to reflect changes in the UI
         setVendors(vendors.filter((vendor) => vendor._id !== vendorId));
+
+    {/*  console.log('Deleted vendor', vendorId);
+      const response = await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/deleteServiceDetails/${vendorId}`,
+      );
+      if (response.status === 200) {
+        toast.success('Service deleted successfully');
+        setVendors(vendors.filter(vendor => vendor._id !== vendorId));/*}
+
       }
     } catch (error) {
       console.error('Error deleting service:', error);
@@ -71,6 +83,12 @@ const MyServices = () => {
                   className="text-gray-600 cursor-pointer"
                 />
               </div>
+
+              <div className="flex items-center mb-2">
+                <BsInfoCircle className="text-gray-600 mr-2" />
+                <p className="text-lg">{vendor.about}</p>
+              </div>
+
               <p className="mb-2">
                 <strong>Vendor Type:</strong> {vendor.vendorType}
               </p>
@@ -84,7 +102,6 @@ const MyServices = () => {
                 <strong>Terms and Conditions:</strong> {vendor.terms}
               </p>
 
-              {/* Single Items Section */}
               <div className="mt-4">
                 <h4 className="text-xl font-semibold mb-2">Single Items</h4>
                 <div className="flex">
@@ -145,7 +162,6 @@ const MyServices = () => {
                 </div>
               </div>
 
-              {/* Gallery Section */}
               <div className="mt-4">
                 <h4 className="text-xl font-semibold mb-2">Gallery</h4>
                 {vendor.gallery && vendor.gallery.length > 0 ? (
@@ -163,7 +179,6 @@ const MyServices = () => {
                   <p>No images in the gallery</p>
                 )}
               </div>
-
               <p className="mt-4">
                 <strong>Venue ID:</strong> {vendor.venue}
               </p>

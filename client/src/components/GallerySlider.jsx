@@ -6,6 +6,9 @@ import 'swiper/css/autoplay';
 import { Autoplay, Navigation } from 'swiper/modules';
 import axios from 'axios';
 import Cookies from "js-cookie";
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+
 const GallerySlider = ({
   slides = 3,
   height = 300,
@@ -46,7 +49,7 @@ const token = Cookies.get("accessToken");
           totalPrice: hall.subVenuePrice,
           items: [
             {
-              itemQuantity: 1,
+              itemQuantity: 1, 
               itemPrice: hall.subVenuePrice,
             },
           ],
@@ -67,7 +70,7 @@ const token = Cookies.get("accessToken");
       );
 
       // Handle success (show a message, update the UI, etc.)
-      alert('Venue added to cart successfully!');
+      toast.success("Venue added to cart sucessfully");
     } catch (error) {
       setError('Failed to add venue to cart. Please try again.');
     } finally {
@@ -123,7 +126,9 @@ const token = Cookies.get("accessToken");
               >
                 {loading ? 'Adding...' : btn}
               </button>
+              <ToastContainer />
             </div>
+            
           </div>
         </SwiperSlide>
       ))}

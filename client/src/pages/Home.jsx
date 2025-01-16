@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCity, FaMapMarkerAlt, FaCommentDots } from "react-icons/fa";
 import { setVenues, setSelectedVenue } from "../features/venue/venueSlice.js";
-import { setSelectedCity } from "../features/city/citySlice.js";
+import { setSelectedCity, setCity } from "../features/city/citySlice.js";
 import {
   Navbar,
   Modal,
@@ -58,39 +58,39 @@ const Home = () => {
   const [images, setImages] = useState([]);
   const containerRef = useRef(null);
   const user = useSelector((state) => state.user);
-  const token = Cookies.get("accessToken");
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
-          {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${token}`, // Send token in Authorization header
-            },
-          }
-        );
-        const obj = response.data.data;
-        dispatch(
-          setUserDetails({
-            _id: obj._id,
-            email: obj.email,
-            firstName: obj.firstName,
-            lastName: obj.lastName,
-            userType: obj.userType,
-            contactNumber: obj.contactNumber,
-          })
-        );
-      } catch (err) {
-        console.error("error fetching user details!" + err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // const token = Cookies.get("accessToken");
+  // useEffect(() => {
+  //   const fetchUserDetails = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
+  //         {
+  //           withCredentials: true,
+  //           headers: {
+  //             Authorization: `Bearer ${token}`, // Send token in Authorization header
+  //           },
+  //         }
+  //       );
+  //       const obj = response.data.data;
+  //       dispatch(
+  //         setUserDetails({
+  //           _id: obj._id,
+  //           email: obj.email,
+  //           firstName: obj.firstName,
+  //           lastName: obj.lastName,
+  //           userType: obj.userType,
+  //           contactNumber: obj.contactNumber,
+  //         })
+  //       );
+  //     } catch (err) {
+  //       console.error("error fetching user details!" + err.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchUserDetails();
-  }, [dispatch]);
+  //   fetchUserDetails();
+  // }, [dispatch]);
 
   // useEffect(() => {
   //   const getCities = async () => {
@@ -208,6 +208,7 @@ const Home = () => {
         setReviews(reviewsResponse.data.data?.data || []);
         setImages(imageResponse?.data?.data?.data || []);
         dispatch(setVenues(venuesResponse.data.data?.data || []));
+        dispatch(setCity(citiesResponse.data.data?.data || []));
       } catch (error) {
         console.error("Error fetching data!");
       } finally {
@@ -313,8 +314,10 @@ const Home = () => {
           </div>
           {/* exploring locations */}
           <div className="py-8 px-4">
+
             <h2 className="relative mb-6 text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
               {`Explore locations at ${selectedCity?.cityName}`}
+
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {venues.length !== 0 ? (

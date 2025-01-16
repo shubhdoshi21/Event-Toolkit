@@ -85,7 +85,7 @@ const Payment = () => {
 
   return (
     <button
-      className="min-w-1/12 h-[50px] bg-red px-4 rounded-md mt-2"
+      className="min-w-1/12 h-[50px] shadow-2xl px-4 rounded-md mt-2"
       onClick={makePayment}
       type="button"
       disabled={dummyProducts.length === 0 || error !== null}

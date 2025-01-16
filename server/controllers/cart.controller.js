@@ -78,7 +78,8 @@ exports.addToCart = async (req, res) => {
 
 exports.removeFromCart = async (req, res) => {
   try {
-    const { id } = req.body;
+    console.log("inside");
+    const { id } = req.body; 
     if (!id) {
       return res
         .status(400)
