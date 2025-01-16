@@ -11,7 +11,9 @@ import { setUserDetails } from '../features/user/userSlice';
 import axios from 'axios';
 import GallerySlider2 from '../components/GallerySlider2';
 import { toast } from 'react-toastify';
-import Cookies from "js-cookie";
+import Cookies from "js-cookie"; 
+import { setVendorDetails } from '../features/vendorSlice';
+
 const Registration = () => {
   const [halls, setHalls] = useState([]);
   const [venue, setVenueData] = useState({});
@@ -84,6 +86,7 @@ const Registration = () => {
       console.log(response);
 
       setHalls(response?.data?.data?.data);
+
       console.log(halls);
     };
     getHalls();
@@ -114,6 +117,7 @@ const Registration = () => {
       );
       console.log(response);
       setDecorators(response?.data?.data?.data);
+      dispatch(setVendorDetails(response?.data?.data?.data || []));
     };
     getDecorators();
   }, [selectedVenue]);
@@ -128,6 +132,7 @@ const Registration = () => {
       );
       console.log(response);
       setCaterers(response?.data?.data?.data);
+      dispatch(setVendorDetails(response?.data?.data?.data || []));
     };
     getCaterers();
   }, [selectedVenue]);

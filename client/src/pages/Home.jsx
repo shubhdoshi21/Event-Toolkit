@@ -205,7 +205,7 @@ const Home = () => {
           ]);
 
         setCities(citiesResponse.data.data?.data || []);
-        setReviews(reviewsResponse.data.data?.data || []);
+        setReviews(reviewsResponse.data.data?.data || []); 
         setImages(imageResponse?.data?.data?.data || []);
         dispatch(setVenues(venuesResponse.data.data?.data || []));
         dispatch(setCity(citiesResponse.data.data?.data || []));

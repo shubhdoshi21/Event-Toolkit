@@ -36,6 +36,7 @@ const vendorSlice = createSlice({
       state.cancellation = cancellation;
       state.singleItems = singleItems;
       state.venue = venue;
+      state.vendors = action.payload;
       console.log("here");
       localStorage.setItem("vendor", JSON.stringify(state));
     },
