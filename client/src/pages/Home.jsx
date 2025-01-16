@@ -5,7 +5,6 @@ import { FaCity, FaMapMarkerAlt, FaCommentDots } from "react-icons/fa";
 import { setVenues, setSelectedVenue } from "../features/venue/venueSlice.js";
 import { setSelectedCity, setCity } from "../features/city/citySlice.js";
 import {
-  Navbar,
   Modal,
   ModalButton,
   LocationCard,
@@ -14,9 +13,7 @@ import {
   Sidebar,
 } from "../components/index.js";
 import ReviewSlider from "../components/ReviewSlider.jsx";
-import { Link } from "react-router-dom";
-import { setUserDetails } from "../features/user/userSlice.js";
-import Cookies from "js-cookie";
+import Loader from "../components/Common/Loader.jsx";
 
 // Define custom styles for headings
 const customStyles = `
@@ -244,6 +241,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      {loading && <Loader />}
       <style>{customStyles}</style> {/* Inline styles for headings */}
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
       {loading ? (
@@ -306,18 +304,16 @@ const Home = () => {
           </div>
           {/* images carousal */}
           <div className="py-8">
-          <h2 className="relative text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
-  Recent Events
-</h2>
+            <h2 className="relative text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
+              Recent Events
+            </h2>
 
             <Carousal images={images} />
           </div>
           {/* exploring locations */}
           <div className="py-8 px-4">
-
             <h2 className="relative mb-6 text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
               {`Explore locations at ${selectedCity?.cityName}`}
-
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {venues.length !== 0 ? (

@@ -7,12 +7,14 @@ import { setSelectedCity } from "../features/city/citySlice";
 
 const LandingPage = () => {
   const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(false);
   const selectedCity = useSelector((state) => state.city.selectedCity);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchCities = async () => {
       try {
+        setLoading(true);
         const response = await axios.post(
           `${
             import.meta.env.VITE_BACKEND_URL
@@ -21,6 +23,8 @@ const LandingPage = () => {
         setCities(response?.data?.data?.data);
       } catch (error) {
         console.error("Error fetching cities:", error);
+      }finally{
+        setLoading(false);
       }
     };
 
