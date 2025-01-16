@@ -6,6 +6,7 @@ import Payment from '../components/Payment.jsx';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import { MdDelete } from "react-icons/md";
+import Loader from '../components/Common/Loader.jsx';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -41,6 +42,7 @@ const Cart = () => {
     if (userId) {
       const fetchCart = async () => {
         try {
+          setLoading(true);
           const response = await axios.post(
             `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/fetchCart`,
             { userId },
@@ -60,6 +62,8 @@ const Cart = () => {
           }
         } catch (error) {
           setError('Error fetching cart items.');
+        } finally{
+          setLoading(false);
         }
       };
 
@@ -78,6 +82,7 @@ const Cart = () => {
   const handleDelete = async itemId => {
     try {
       // console.log("delete");
+      setLoading(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/removeFromCart`,
         { id: itemId },
@@ -94,11 +99,14 @@ const Cart = () => {
       }
     } catch (error) {
       toast.error('Error removing item from cart.');
+    }finally{
+      setLoading(false);
     }
   };
 
   return (
     <div className="p-6 bg-gray-900 min-h-screen">
+      {loading && <Loader />}
       <h1 className="text-3xl font-extrabold mb-8 text-center">
         Your Cart
       </h1>
