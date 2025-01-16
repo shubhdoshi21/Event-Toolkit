@@ -6,7 +6,7 @@ const initialState = JSON.parse(localStorage.getItem("vendor")) || {
     location: "",
     about: "",
     vendorType: "",
-    booking: "",
+    booking: "", 
     terms: "",
     cancellation: "",
     packageName:"",
@@ -14,8 +14,10 @@ const initialState = JSON.parse(localStorage.getItem("vendor")) || {
     items:"", 
     steps:"1",
     package_id:"",
-    venue: "", // New field for venue ID
+    venue: "", 
     singleItems: [], 
+    vendors: [],
+    selectedVendor: null,
   };
 const vendorSlice = createSlice({
   name: "vendor",

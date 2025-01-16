@@ -43,13 +43,15 @@ const MyServices = () => {
         // Update the state to reflect changes in the UI
         setVendors(vendors.filter((vendor) => vendor._id !== vendorId));
 
-    {/*  console.log('Deleted vendor', vendorId);
+    {/*  console.log('Deleted vendor', vendorId); 
       const response = await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/deleteServiceDetails/${vendorId}`,
       );
       if (response.status === 200) {
         toast.success('Service deleted successfully');
-        setVendors(vendors.filter(vendor => vendor._id !== vendorId));/*}
+        setVendors(vendors.filter(vendor => vendor._id !== vendorId));
+        
+   */}
 
       }
     } catch (error) {

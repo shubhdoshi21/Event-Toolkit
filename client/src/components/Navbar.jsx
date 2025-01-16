@@ -135,7 +135,7 @@ const Navbar = () => {
             />
             <Search
               searchQuery={searchQuery}
-              searchResults={searchResults.cities}
+              searchResults={searchResults.vendors}
               dispatchFunction={handleCityClick}
               variable={'Vendors'}
               toDisplay={'serviceName'}

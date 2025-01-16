@@ -7,7 +7,7 @@ const citySlice = createSlice({
         cities : [],
       },
     reducers: {
-        setSelectedCity : (state,action) => {
+        setSelectedCity : (state,action) => { 
             state.selectedCity = action.payload;
         },
         setCity: (state, action) => {
