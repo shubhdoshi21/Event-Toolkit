@@ -11,7 +11,7 @@ export default {
         primaryBlack: "#111827",
 
         primaryPeach: "#662d99",
-
+ 
         darkGray: "#5A5A5A",
         mediumGray: "#B3B3B3",
         lightGray: "#F2F2F2",
