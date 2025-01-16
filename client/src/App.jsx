@@ -1,4 +1,3 @@
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -37,14 +36,13 @@ import { Navbar } from "./components";
 import PaymentSuccess from "./components/PaymentSuccess";
 import PaymentFailed from "./components/PaymentFailed";
 import { setUserDetails } from "../src/features/user/userSlice.js";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Loader from "./components/Common/Loader.jsx";
 
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-   const [loading, setLoading] = useState(false);
-  const isAuthenticated = () => {
-    return !!Cookies.get("accessToken"); // Check if user is authenticated
-  };
+  const [loading, setLoading] = useState(false);
 
   const token = Cookies.get("accessToken");
   useEffect(() => {
@@ -68,6 +66,7 @@ function App() {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`,
           {
@@ -102,6 +101,12 @@ function App() {
     "/",
     "/dateSelector",
     "/profile",
+    "/panel/add-services",
+    "/panel/my-services",
+    "/panel/add-venue",
+    "/panel/history",
+    "/panel/venues",
+    "/panel/add-city",
     "/auth/signin",
     "/auth/signup",
     "/auth/verify",
@@ -111,30 +116,27 @@ function App() {
 
   return (
     <>
+      {loading && <Loader />}
       {showNavbar && <Navbar />} {/* Conditionally render Navbar */}
-      <div>
+      {/* <div>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
 
-          {/* Auth Routes */}
           {isAuthenticated() ? (
             <>
-              
-              <Route element={<Panel/>}>
-<Route path="/profile" element={<Profile/>} /> 
-<Route path="/panel/add-services" element={<AddServices/>} /> 
-<Route path="/panel/my-services" element={<MyServices/>} /> 
-<Route path="/panel/history" element={<History />} />
-              <Route path="/panel/add-venue" element={<AddVenue />} />
-              <Route path="/panel/venues" element={<Venues />} />
-              <Route path="/panel/add-sub-venues" element={<AddSubVenue />} />
-              <Route path="/panel/add-city" element={<AddCities />} />
-              <Route path="/panel/cities" element={<Cities />} />
-              <Route path="/panel/addImage" element={<Images />} />
-</Route>
-             
-              
+              <Route element={<Panel />}>
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/panel/add-services" element={<AddServices />} />
+                <Route path="/panel/my-services" element={<MyServices />} />
+                <Route path="/panel/history" element={<History />} />
+                <Route path="/panel/add-venue" element={<AddVenue />} />
+                <Route path="/panel/venues" element={<Venues />} />
+                <Route path="/panel/add-sub-venues" element={<AddSubVenue />} />
+                <Route path="/panel/add-city" element={<AddCities />} />
+                <Route path="/panel/cities" element={<Cities />} />
+                <Route path="/panel/addImage" element={<Images />} />
+              </Route>
             </>
           ) : (
             <></>
@@ -152,7 +154,110 @@ function App() {
           <Route path="/payment/failed" element={<PaymentFailed />} />
           <Route path="/cart" element={<Cart />} />
 
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div> */}
+      <div>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
 
+          {/* Public Routes */}
+          <Route path="/auth/signup" element={<Signup />} />
+          <Route path="/auth/signin" element={<Signin />} />
+          <Route path="/auth/verify" element={<VerifyAccount />} />
+          <Route path="/auth/reset-password" element={<PasswordReset />} />
+          <Route path="/vendor/:vendorId" element={<Vendor />} />
+          <Route path="/dateSelector" element={<CustomDatePicker />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/failed" element={<PaymentFailed />} />
+          <Route path="/cart" element={<Cart />} />
+
+          {/* Protected Routes */}
+          <Route element={<Panel />}>
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/add-services"
+              element={
+                <ProtectedRoute roles={["vendor"]}>
+                  <AddServices />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/my-services"
+              element={
+                <ProtectedRoute roles={["vendor"]}>
+                  <MyServices />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/history"
+              element={
+                <ProtectedRoute>
+                  <History />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/add-venue"
+              element={
+                <ProtectedRoute roles={["admin"]}>
+                  <AddVenue />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/venues"
+              element={
+                <ProtectedRoute roles={["admin"]}>
+                  <Venues />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/add-sub-venues"
+              element={
+                <ProtectedRoute roles={["admin"]}>
+                  <AddSubVenue />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/add-city"
+              element={
+                <ProtectedRoute roles={["admin"]}>
+                  <AddCities />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/cities"
+              element={
+                <ProtectedRoute roles={["admin"]}>
+                  <Cities />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/panel/addImage"
+              element={
+                <ProtectedRoute roles={["vendor"]}>
+                  <Images />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>

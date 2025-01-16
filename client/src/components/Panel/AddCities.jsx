@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import { hourglass } from 'ldrs';
+import Loader from '../Common/Loader';
 
 hourglass.register();
 
@@ -66,6 +67,7 @@ const AddCities = () => {
 
   return (
     <div className="h-screen py-[7%] overflow-scroll">
+      {loading && <Loader />}
       <div className="bg-gray-900 p-8 rounded-lg max-w-lg mx-auto">
         <h2 className="text-center text-primaryPeach text-2xl font-bold text-red-400 mb-6">
           Add New City

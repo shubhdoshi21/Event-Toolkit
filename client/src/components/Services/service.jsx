@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/autoplay';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Pagination, Autoplay, Navigation } from 'swiper/modules';
-import TandC from '../Common/TandC';
-import Recommended from './Recommended';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination, Autoplay, Navigation } from "swiper/modules";
+import TandC from "../Common/TandC";
+import Recommended from "./Recommended";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
   removeItemFromCart,
@@ -17,13 +17,13 @@ import {
   selectTotalItemAmount,
   selectTotalPackageAmount,
   selectGrandTotal,
-} from '../../features/cartSlice';
-import '../../index.css';
-import { useNavigate } from 'react-router-dom';
-import { getPackageNames } from '../../features/cartSlice';
-import axios from 'axios';
-import { setUserDetails } from '../../features/user/userSlice';
-import { toast } from 'react-toastify';
+} from "../../features/cartSlice";
+import "../../index.css";
+import { useNavigate } from "react-router-dom";
+import { getPackageNames } from "../../features/cartSlice";
+import axios from "axios";
+import { setUserDetails } from "../../features/user/userSlice";
+import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
 const Service = ({
@@ -78,12 +78,12 @@ const Service = ({
             contactNumber: obj.contactNumber,
           })
         );
-        toast.success('Fetching user details!', {
+        toast.success("Fetching user details!", {
           autoClose: 1500,
           closeButton: false,
         });
       } catch {
-        toast.error('Error fetching user details!', {
+        toast.error("Error fetching user details!", {
           autoClose: 1500,
           closeButton: false,
         });
@@ -106,10 +106,10 @@ const Service = ({
         }
       );
       if (addedResponse.status === 200) {
-        navigate('/cart');
+        navigate("/cart");
       }
     } catch (error) {
-      console.error('Error adding to cart:', error.message);
+      console.error("Error adding to cart:", error.message);
     }
   };
 
@@ -211,7 +211,7 @@ const Service = ({
             <img
               src={img}
               alt={`${serviceName} photo ${index + 1}`}
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: "100%", height: "auto" }}
             />
           </SwiperSlide>
         ))}
@@ -222,12 +222,16 @@ const Service = ({
         <div className="flex flex-col gap-10 sm:w-[60%]">
           <div className="bg-lightGray/10 rounded-md p-5 flex justify-between items-center">
             <div className="flex flex-col gap-3">
-              <h2 className="font-bold text-3xl text-lightpurple">{serviceName}</h2>
+              <h2 className="font-bold text-3xl text-lightpurple">
+                {serviceName}
+              </h2>
               <p>{location}</p>
             </div>
           </div>
           <div className="bg-lightGray/10 rounded-md p-5 flex flex-col gap-3">
-            <h2 className="font-bold text-3xl text-lightpurple">About {serviceName}</h2>
+            <h2 className="font-bold text-3xl text-lightpurple">
+              About {serviceName}
+            </h2>
             <div>{about}</div>
           </div>
         </div>
@@ -241,87 +245,41 @@ const Service = ({
       {/* Packages */}
       <TandC booking={booking} cancellation={cancellation} terms={terms} />
 
-
-
-      {(quantities.some(qty => qty > 0) || pkgQuantity.some(qty => qty > 0))  && (  <div class="bg-white shadow-md rounded-lg p-6 w-80 absolute top-4 right-4 z-50">
-  <h2 class="text-lg font-bold mb-4 text-lightpurple">Order Summary</h2>
-
-  <div class="flex justify-between mb-2">
-    <div class="text-gray">Item Quantity</div>
-    <div class="font-semibold text-gray" >{quantities.reduce((acc, qty) => acc + qty, 0)}</div>
-  </div>
-  <div class="flex justify-between mb-4">
-    <div class="text-gray">Item Price</div>
-    <div class="font-semibold text-gray">{formatNumber(totalItemAmount)}</div>
-  </div>
-
-  <div class="flex justify-between mb-2">
-    <div class="text-gray">Package Quantity</div>
-    <div class="font-semibold text-gray"> {pkgQuantity.reduce((acc, qty) => acc + qty, 0)} </div>
-  </div>
-  <div class="flex justify-between mb-4">
-    <div class="text-gray">Package Price</div>
-    <div class="font-semibold text-gray">{formatNumber(totalPackageAmount)}</div>
-  </div>
- 
-  <div class="flex justify-between mb-4">
-  <div>
-      <h3 className="text-black">Selected Packages:</h3>
-      <ul>
-        {pkgName.map((pkg, index) => (
-          <li key={index}  className="text-black">{pkg.packageName}</li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
-  <div class="border-t border-gray-300 my-4"></div>
-  <div class="flex justify-between text-lg font-bold text-lightpurple">
-    <span>Grand Total</span>
-    <span>{formatNumber(grandTotal)}</span>
-  </div>
-
-  <button class="mt-6 w-full bg-lightpurple text-white py-2 rounded-lg font-medium hover:bg-primaryPeach/90" onClick={handleAddToCart} navigate>
-    Add to Cart
-  </button>
-</div>)}
-    
-
-    {/*  {(quantities.some(qty => qty > 0) ||
-        pkgQuantity.some(qty => qty > 0)) && (
-        <div class="bg-white shadow-md rounded-lg p-6 w-80 absolute top-4 right-4 z-50">
-          <h2 class="text-lg font-bold mb-4 text-primaryBlack">
+      {(quantities.some((qty) => qty > 0) ||
+        pkgQuantity.some((qty) => qty > 0)) && (
+        <div className="bg-white shadow-md rounded-lg p-6 w-80 absolute top-4 right-4 z-50">
+          <h2 className="text-lg font-bold mb-4 text-lightpurple">
             Order Summary
           </h2>
 
-          <div class="flex justify-between mb-2">
-            <div class="text-gray-600">Item Quantity</div>
-            <div class="font-semibold text-gray-900">
+          <div className="flex justify-between mb-2">
+            <div className="text-gray">Item Quantity</div>
+            <div className="font-semibold text-gray">
               {quantities.reduce((acc, qty) => acc + qty, 0)}
             </div>
           </div>
-          <div class="flex justify-between mb-4">
-            <div class="text-gray-600">Item Price</div>
-            <div class="font-semibold text-gray-900">
+          <div className="flex justify-between mb-4">
+            <div className="text-gray">Item Price</div>
+            <div className="font-semibold text-gray">
               {formatNumber(totalItemAmount)}
             </div>
           </div>
 
-          <div class="flex justify-between mb-2">
-            <div class="text-gray-600">Package Quantity</div>
-            <div class="font-semibold text-gray-900">
-              {' '}
-              {pkgQuantity.reduce((acc, qty) => acc + qty, 0)}{' '}
+          <div className="flex justify-between mb-2">
+            <div className="text-gray">Package Quantity</div>
+            <div className="font-semibold text-gray">
+              {" "}
+              {pkgQuantity.reduce((acc, qty) => acc + qty, 0)}{" "}
             </div>
           </div>
-          <div class="flex justify-between mb-4">
-            <div class="text-gray-600">Package Price</div>
-            <div class="font-semibold text-gray-900">
+          <div className="flex justify-between mb-4">
+            <div className="text-gray">Package Price</div>
+            <div className="font-semibold text-gray">
               {formatNumber(totalPackageAmount)}
             </div>
           </div>
 
-          <div class="flex justify-between mb-4">
+          <div className="flex justify-between mb-4">
             <div>
               <h3 className="text-black">Selected Packages:</h3>
               <ul>
@@ -334,15 +292,14 @@ const Service = ({
             </div>
           </div>
 
-          <div class="border-t border-gray-300 my-4"></div>
-          <div class="flex justify-between text-lg font-bold text-gray-900">
+          <div className="border-t border-gray-300 my-4"></div>
+          <div className="flex justify-between text-lg font-bold text-lightpurple">
             <span>Grand Total</span>
             <span>{formatNumber(grandTotal)}</span>
-          </div>*/}
-
+          </div>
 
           <button
-            class="mt-6 w-full bg-primaryPeach text-white py-2 rounded-lg font-medium hover:bg-primaryPeach/90"
+            className="mt-6 w-full bg-lightpurple text-white py-2 rounded-lg font-medium hover:bg-primaryPeach/90"
             onClick={handleAddToCart}
             navigate
           >
@@ -350,13 +307,78 @@ const Service = ({
           </button>
         </div>
       )}
+
+      {/*  {(quantities.some(qty => qty > 0) ||
+        pkgQuantity.some(qty => qty > 0)) && (
+        <div className="bg-white shadow-md rounded-lg p-6 w-80 absolute top-4 right-4 z-50">
+          <h2 className="text-lg font-bold mb-4 text-primaryBlack">
+            Order Summary
+          </h2>
+
+          <div className="flex justify-between mb-2">
+            <div className="text-gray-600">Item Quantity</div>
+            <div className="font-semibold text-gray-900">
+              {quantities.reduce((acc, qty) => acc + qty, 0)}
+            </div>
+          </div>
+          <div className="flex justify-between mb-4">
+            <div className="text-gray-600">Item Price</div>
+            <div className="font-semibold text-gray-900">
+              {formatNumber(totalItemAmount)}
+            </div>
+          </div>
+
+          <div className="flex justify-between mb-2">
+            <div className="text-gray-600">Package Quantity</div>
+            <div className="font-semibold text-gray-900">
+              {' '}
+              {pkgQuantity.reduce((acc, qty) => acc + qty, 0)}{' '}
+            </div>
+          </div>
+          <div className="flex justify-between mb-4">
+            <div className="text-gray-600">Package Price</div>
+            <div className="font-semibold text-gray-900">
+              {formatNumber(totalPackageAmount)}
+            </div>
+          </div>
+
+          <div className="flex justify-between mb-4">
+            <div>
+              <h3 className="text-black">Selected Packages:</h3>
+              <ul>
+                {pkgName.map((pkg, index) => (
+                  <li key={index} className="text-black">
+                    {pkg.packageName}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-300 my-4"></div>
+          <div className="flex justify-between text-lg font-bold text-gray-900">
+            <span>Grand Total</span>
+            <span>{formatNumber(grandTotal)}</span>
+          </div>*/}
+
+      <button
+        className="mt-6 w-full bg-primaryPeach text-white py-2 rounded-lg font-medium hover:bg-primaryPeach/90"
+        onClick={handleAddToCart}
+        navigate
+      >
+        Add to Cart
+      </button>
+    </div>
+  );
+};
 //     </div>
 //   );
 // };
 
-  {/*  </div>
+{
+  /*  </div>
   );
-};*/}
-
+};*/
+}
 
 export default Service;
