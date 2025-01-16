@@ -120,16 +120,21 @@ function App() {
           {/* Auth Routes */}
           {isAuthenticated() ? (
             <>
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/panel/add-services" element={<AddServices />} />
-              <Route path="/panel/my-services" element={<MyServices />} />
-              <Route path="/panel/history" element={<History />} />
+              
+              <Route element={<Panel/>}>
+<Route path="/profile" element={<Profile/>} /> 
+<Route path="/panel/add-services" element={<AddServices/>} /> 
+<Route path="/panel/my-services" element={<MyServices/>} /> 
+<Route path="/panel/history" element={<History />} />
               <Route path="/panel/add-venue" element={<AddVenue />} />
               <Route path="/panel/venues" element={<Venues />} />
               <Route path="/panel/add-sub-venues" element={<AddSubVenue />} />
               <Route path="/panel/add-city" element={<AddCities />} />
               <Route path="/panel/cities" element={<Cities />} />
               <Route path="/panel/addImage" element={<Images />} />
+</Route>
+             
+              
             </>
           ) : (
             <></>

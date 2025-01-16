@@ -240,8 +240,123 @@ const Service = ({
       {/* Items */}
       {/* Packages */}
       <TandC booking={booking} cancellation={cancellation} terms={terms} />
+
+
+
+      {(quantities.some(qty => qty > 0) || pkgQuantity.some(qty => qty > 0))  && (  <div class="bg-white shadow-md rounded-lg p-6 w-80 absolute top-4 right-4 z-50">
+  <h2 class="text-lg font-bold mb-4 text-lightpurple">Order Summary</h2>
+
+  <div class="flex justify-between mb-2">
+    <div class="text-gray">Item Quantity</div>
+    <div class="font-semibold text-gray" >{quantities.reduce((acc, qty) => acc + qty, 0)}</div>
+  </div>
+  <div class="flex justify-between mb-4">
+    <div class="text-gray">Item Price</div>
+    <div class="font-semibold text-gray">{formatNumber(totalItemAmount)}</div>
+  </div>
+
+  <div class="flex justify-between mb-2">
+    <div class="text-gray">Package Quantity</div>
+    <div class="font-semibold text-gray"> {pkgQuantity.reduce((acc, qty) => acc + qty, 0)} </div>
+  </div>
+  <div class="flex justify-between mb-4">
+    <div class="text-gray">Package Price</div>
+    <div class="font-semibold text-gray">{formatNumber(totalPackageAmount)}</div>
+  </div>
+ 
+  <div class="flex justify-between mb-4">
+  <div>
+      <h3 className="text-black">Selected Packages:</h3>
+      <ul>
+        {pkgName.map((pkg, index) => (
+          <li key={index}  className="text-black">{pkg.packageName}</li>
+        ))}
+      </ul>
     </div>
+  </div>
+
+  <div class="border-t border-gray-300 my-4"></div>
+  <div class="flex justify-between text-lg font-bold text-lightpurple">
+    <span>Grand Total</span>
+    <span>{formatNumber(grandTotal)}</span>
+  </div>
+
+  <button class="mt-6 w-full bg-lightpurple text-white py-2 rounded-lg font-medium hover:bg-primaryPeach/90" onClick={handleAddToCart} navigate>
+    Add to Cart
+  </button>
+</div>)}
+    
+
+    {/*  {(quantities.some(qty => qty > 0) ||
+        pkgQuantity.some(qty => qty > 0)) && (
+        <div class="bg-white shadow-md rounded-lg p-6 w-80 absolute top-4 right-4 z-50">
+          <h2 class="text-lg font-bold mb-4 text-primaryBlack">
+            Order Summary
+          </h2>
+
+          <div class="flex justify-between mb-2">
+            <div class="text-gray-600">Item Quantity</div>
+            <div class="font-semibold text-gray-900">
+              {quantities.reduce((acc, qty) => acc + qty, 0)}
+            </div>
+          </div>
+          <div class="flex justify-between mb-4">
+            <div class="text-gray-600">Item Price</div>
+            <div class="font-semibold text-gray-900">
+              {formatNumber(totalItemAmount)}
+            </div>
+          </div>
+
+          <div class="flex justify-between mb-2">
+            <div class="text-gray-600">Package Quantity</div>
+            <div class="font-semibold text-gray-900">
+              {' '}
+              {pkgQuantity.reduce((acc, qty) => acc + qty, 0)}{' '}
+            </div>
+          </div>
+          <div class="flex justify-between mb-4">
+            <div class="text-gray-600">Package Price</div>
+            <div class="font-semibold text-gray-900">
+              {formatNumber(totalPackageAmount)}
+            </div>
+          </div>
+
+          <div class="flex justify-between mb-4">
+            <div>
+              <h3 className="text-black">Selected Packages:</h3>
+              <ul>
+                {pkgName.map((pkg, index) => (
+                  <li key={index} className="text-black">
+                    {pkg.packageName}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-300 my-4"></div>
+          <div class="flex justify-between text-lg font-bold text-gray-900">
+            <span>Grand Total</span>
+            <span>{formatNumber(grandTotal)}</span>
+          </div>*/}
+
+
+          <button
+            class="mt-6 w-full bg-primaryPeach text-white py-2 rounded-lg font-medium hover:bg-primaryPeach/90"
+            onClick={handleAddToCart}
+            navigate
+          >
+            Add to Cart
+          </button>
+        </div>
+      )}
+//     </div>
+//   );
+// };
+
+  {/*  </div>
   );
-};
+};/*}
+
 
 export default Service;

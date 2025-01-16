@@ -306,15 +306,18 @@ const Home = () => {
           </div>
           {/* images carousal */}
           <div className="py-8">
-            <h2 className="text-3xl font-bold mb-6 text-center heading-container ml-3 uppercase">
-              Recent Events
-            </h2>
+          <h2 className="relative text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
+  Recent Events
+</h2>
+
             <Carousal images={images} />
           </div>
           {/* exploring locations */}
           <div className="py-8 px-4">
-            <h2 className="text-3xl font-bold mb-6 text-center heading-container uppercase">
-              {`Explore locations at ${selectedCity.cityName}`}
+
+            <h2 className="relative mb-6 text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
+              {`Explore locations at ${selectedCity?.cityName}`}
+
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {venues.length !== 0 ? (
@@ -339,7 +342,7 @@ const Home = () => {
           </div>
           {/* reviews */}
           <div className="pt-5 px-4 bg-gray-900">
-            <h2 className="text-3xl font-bold mb-6 text-center heading-container uppercase">
+            <h2 className="relative mb-6 text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
               Latest Reviews
             </h2>
             {reviews.length !== 0 ? (

@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { useState } from "react";
+
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { clearVendorDetails, setVendorDetails } from "../../features/vendorSlice";
 import AddPackages from "./AddPackages";
+import  { useRef, useState } from 'react';
 const AddServices = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user); 
   const {vendor,_id} = useSelector((state)=>state.vendor)
   const vendorData = localStorage.getItem("vendor");
   const parsedVendorData = vendorData ? JSON.parse(vendorData) : {};
-  
+    const [imageName, setImageName] = useState('');
+      const imageRef = useRef(null);
 
   const [serviceName, setServiceName] = useState(parsedVendorData.serviceName || "");
   const [location, setLocation] = useState(parsedVendorData.location || "");
@@ -128,6 +130,18 @@ const userId = user._id
 
     setEditDetails(false);
   };
+
+  const handleImageClick = () => {
+    imageRef.current.click();
+  };
+
+  const handleImageChange = () => {
+    const file = imageRef.current.files[0];
+    if (file) {
+      setImageName(file.name);
+    }
+  };
+
   const handleUpdateDetails = async (e) => {
     e.preventDefault();
     try {
@@ -264,7 +278,17 @@ const userId = user._id
               />
             </div>
         
-
+            <button
+              type="button"
+              onClick={handleImageClick}
+              className="w-auto p-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg"
+            >
+              Choose Image
+            </button>
+            {/* Display the selected image name */}
+            {imageName && (
+              <span className="ml-4 text-gray-300">{imageName}</span>
+            )}
 
             <div className="flex flex-col">
             <label className="text-lightpurple font-semibold mb-2">Cities:</label>

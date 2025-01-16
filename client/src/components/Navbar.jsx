@@ -88,10 +88,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`h-16 w-full flex items-center justify-between pr-4 bg-opacity-80 backdrop-blur-sm fixed z-50 top-0 ${navbarClass}`}
+
+      className={`h-16 w-full flex items-center justify-between p-4  bg-opacity-80 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
     >
-      {/* Logo */}
-      <div className="text-xl font-bold">
+      <div className="text-xl font-bold ">
+
+  
         <Link to="/home">
           <img src={Logo} alt="Logo" width="114px" height="114px" />
         </Link>
@@ -103,11 +105,13 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search..."
+
             value={searchQuery}
             onChange={handleSearch}
             className={`pl-3 pr-10 py-1 w-full bg-lightgrey z-30 relative border-2 border-pupll ${
               searchQuery ? '  rounded-t-lg' : ' rounded-full'
             }`}
+
           />
           <button className="absolute right-2 top-1/2 transform -translate-y-1/2 z-40">
             <FaSearch />

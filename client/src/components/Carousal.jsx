@@ -16,13 +16,13 @@ const Carousal = ({ images }) => {
   return (
     <div className="relative w-full overflow-hidden">
       <div
-        className="z-10 flex transition-transform duration-500 ease-in-out"
+        className="z-10  p-4 flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
           <div
             key={index}
-            className="w-full flex-shrink-0 relative group"
+            className="w-full ring-1 ring-violet-300 rounded-lg flex-shrink-0 relative group"
             style={{
               backgroundImage: `url(${image.eventImages[0]})`,
               backgroundPosition: "center",

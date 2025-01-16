@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdLocationOn } from 'react-icons/md'; // Location icon
 import { AiOutlineShoppingCart } from 'react-icons/ai'; // Shopping cart icon for packages
-import { BsInfoCircle } from 'react-icons/bs'; // Info icon
+
+import { BsInfoCircle } from 'react-icons/bs'; // Information icon
+
 import { useSelector } from 'react-redux';
 import { MdDeleteSweep } from 'react-icons/md'; // Delete icon
 import { toast } from 'react-toastify';
 
 const MyServices = () => {
   const [vendors, setVendors] = useState([]);
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const userId = user._id;
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const MyServices = () => {
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/getVendorByUserId`,
-          { userId },
+          { userId }
         );
         setVendors(response.data.data.data);
         console.log(vendors);
@@ -29,15 +31,26 @@ const MyServices = () => {
     fetchVendors();
   }, [userId]);
 
-  const deleteService = async vendorId => {
+  const deleteService = async (vendorId) => {
     try {
-      console.log('Deleted vendor', vendorId);
+
+      console.log('Deleted vendor:', vendorId);
+      const response = await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/deleteServiceDetails/${vendorId}`
+      );
+      if (response.status === 200) {
+        toast.success('Service deleted successfully');
+        // Update the state to reflect changes in the UI
+        setVendors(vendors.filter((vendor) => vendor._id !== vendorId));
+
+    {/*  console.log('Deleted vendor', vendorId);
       const response = await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/deleteServiceDetails/${vendorId}`,
       );
       if (response.status === 200) {
         toast.success('Service deleted successfully');
-        setVendors(vendors.filter(vendor => vendor._id !== vendorId));
+        setVendors(vendors.filter(vendor => vendor._id !== vendorId));/*}
+
       }
     } catch (error) {
       console.error('Error deleting service:', error);
@@ -70,10 +83,12 @@ const MyServices = () => {
                   className="text-gray-600 cursor-pointer"
                 />
               </div>
+
               <div className="flex items-center mb-2">
                 <BsInfoCircle className="text-gray-600 mr-2" />
                 <p className="text-lg">{vendor.about}</p>
               </div>
+
               <p className="mb-2">
                 <strong>Vendor Type:</strong> {vendor.vendorType}
               </p>
@@ -86,6 +101,7 @@ const MyServices = () => {
               <p className="mb-2">
                 <strong>Terms and Conditions:</strong> {vendor.terms}
               </p>
+
               <div className="mt-4">
                 <h4 className="text-xl font-semibold mb-2">Single Items</h4>
                 <div className="flex">
@@ -111,6 +127,8 @@ const MyServices = () => {
                   )}
                 </div>
               </div>
+
+              {/* Packages Section */}
               <div className="mt-4">
                 <h4 className="text-xl font-semibold mb-2">Packages</h4>
                 <div className="flex flex-wrap">
@@ -143,6 +161,7 @@ const MyServices = () => {
                   )}
                 </div>
               </div>
+
               <div className="mt-4">
                 <h4 className="text-xl font-semibold mb-2">Gallery</h4>
                 {vendor.gallery && vendor.gallery.length > 0 ? (
