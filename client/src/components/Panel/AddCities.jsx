@@ -14,11 +14,11 @@ const AddCities = () => {
   const imageRef = useRef(null);
   const navigate = useNavigate();
   const [imageName, setImageName] = useState('');
-  const [loader, setLoader] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setLoader(true);
+    setLoading(true);
 
     const formData = new FormData();
     formData.append('cityName', cityNameRef.current.value || '');
@@ -50,7 +50,7 @@ const AddCities = () => {
         toast.error('An unexpected error occurred.');
       }
     } finally {
-      setLoader(false);
+      setLoading(false);
     }
   };
 
@@ -74,7 +74,7 @@ const AddCities = () => {
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="cityName" className="block text-gray-300 mb-2">
+            <label htmlFor="cityName" className="block text-gray-300 mb-2 text-primaryPeach">
               City Name:
             </label>
             <input
@@ -89,7 +89,7 @@ const AddCities = () => {
           <div className="mb-4">
             <label
               htmlFor="cityDescription"
-              className="block text-gray-300 mb-2"
+              className="block text-gray-300 mb-2 text-primaryPeach"
             >
               City Description:
             </label>
@@ -102,7 +102,7 @@ const AddCities = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="image" className="block text-gray-300 mb-2">
+            <label htmlFor="image" className="block text-gray-300 mb-2 text-primaryPeach">
               City Image:
             </label>
             {/* Hidden file input */}
@@ -118,7 +118,7 @@ const AddCities = () => {
             <button
               type="button"
               onClick={handleImageClick}
-              className="w-auto p-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg"
+              className="w-auto p-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg "
             >
               Choose Image
             </button>
@@ -132,7 +132,7 @@ const AddCities = () => {
             type="submit"
             className="w-full p-3 bg-primaryPeach hover:bg-red-600 text-white font-semibold rounded-lg h-[60px] text-lg"
           >
-            {loader ? (
+            {loading ? (
               <l-hourglass
                 size="30"
                 bg-opacity="0.1"

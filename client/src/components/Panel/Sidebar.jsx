@@ -5,12 +5,15 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../features/user/userSlice';
-import Cookies from "js-cookie";
+import { FaArrowLeft } from 'react-icons/fa';
+import Cookies from 'js-cookie';
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userType } = useSelector(state => state.user);
-  const token = Cookies.get("accessToken");
+  const token = Cookies.get('accessToken');
   const handleLogout = async () => {
     try {
       await axios.post(
@@ -21,7 +24,7 @@ const Sidebar = () => {
           headers: {
             Authorization: `Bearer ${token}`, // Send token in Authorization header
           },
-        }
+        },
       );
       dispatch(logoutUser());
       toast.success('Logged out successfully!', {
@@ -41,8 +44,17 @@ const Sidebar = () => {
   console.log(userType);
   return (
     <div className="min-w-[14%] fixed h-full ">
-
       <div className="flex  text-white flex-col  h-[100%] bg-primaryPeach">
+        {/* Back Button with Icon */}
+        <div
+          onClick={() => navigate('/home')}
+          className="p-2 cursor-pointer flex items-center hover:bg-primaryPeach/80"
+        >
+          <FaArrowLeft className="mr-2" />
+          <span>Back</span>
+        </div>
+
+        {/* mapping of links  */}
         <div className="flex flex-col">
           {sidebarlinks.map(link => {
             if (link.type && userType !== link.type) {

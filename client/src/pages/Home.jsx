@@ -298,24 +298,24 @@ const Home = () => {
                   alt={city.cityName}
                   className=" min-w-90 min-h"
                 />
-                <p className="text-black mt-2">{city.cityDescription}</p>
+                <p className="text-mediumGray mt-2">{city.cityDescription}</p>
               </Modal>
             ))}
           </div>
           {/* images carousal */}
           <div className="py-8">
-            <h2 className="relative text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
+            <h2 className="relative text-[40px] font-bold text-center  ml-3 uppercase gradient-border">
               Recent Events
             </h2>
 
             <Carousal images={images} />
           </div>
           {/* exploring locations */}
-          <div className="py-8 px-4">
-            <h2 className="relative mb-6 text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
+          <div className="py-8">
+            <h2 className="relative mb-6 text-[25px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
               {`Explore locations at ${selectedCity?.cityName}`}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {venues.length !== 0 ? (
                 venues.map((venue) => (
                   <LocationCard
@@ -338,7 +338,7 @@ const Home = () => {
           </div>
           {/* reviews */}
           <div className="pt-5 px-4 bg-gray-900">
-            <h2 className="relative mb-6 text-[40px] font-bold text-center heading-container ml-3 uppercase gradient-border">
+            <h2 className="relative mb-6 text-[40px] font-bold text-center ml-3 uppercase gradient-border">
               Latest Reviews
             </h2>
             {reviews.length !== 0 ? (

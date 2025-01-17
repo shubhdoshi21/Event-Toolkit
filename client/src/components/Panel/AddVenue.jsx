@@ -84,7 +84,7 @@ const AddVenue = () => {
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="venueName" className="block text-gray-300 mb-2">
+            <label htmlFor="venueName" className="block text-primaryPeach text-gray-300 mb-2">
               Venue Name:
             </label>
             <input
@@ -97,7 +97,7 @@ const AddVenue = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="venueCity" className="block text-gray-300 mb-2">
+            <label htmlFor="venueCity" className="block text-primaryPeach mb-2">
               Venue City:
             </label>
             <input
@@ -114,7 +114,7 @@ const AddVenue = () => {
           <div className="mb-4">
             <label
               htmlFor="venueDescription"
-              className="block text-gray-300 mb-2"
+              className="block text-primaryPeach mb-2"
             >
               Venue Description:
             </label>
@@ -127,7 +127,7 @@ const AddVenue = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="image" className="block text-gray-300 mb-2">
+            <label htmlFor="image" className="block text-primaryPeach mb-2">
               Venue Image:
             </label>
             {/* Hidden file input */}

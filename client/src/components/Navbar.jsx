@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
@@ -24,6 +25,7 @@ const Navbar = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const searchRef = useRef(null); // Reference for the search container
 
   // Access Redux state
   const { venues } = useSelector(state => state.venue);
@@ -81,6 +83,19 @@ const Navbar = () => {
     });
   };
 
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchQuery(''); // Clear search query to close the box
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const navbarClass =
     theme === 'false'
       ? 'bg-gray text-white shadow-lg shadow-pupll/40'
@@ -101,19 +116,18 @@ const Navbar = () => {
 
       <div className="flex items-center">
         {/* Search */}
-        <div className="relative lg:block mr-2">
+        <div className="relative lg:block mr-2" ref={searchRef}>
           <input
             type="text"
             placeholder="Search..."
-
             value={searchQuery}
             onChange={handleSearch}
-            className={`pl-3 pr-10 py-1 w-full bg-lightgrey z-30 relative border-2 border-pupll ${
+            className={`pl-3 pr-10 text-black py-1 w-full bg-lightgrey z-30 relative border-2 border-pupll ${
               searchQuery ? '  rounded-t-lg' : ' rounded-full'
             }`}
 
           />
-          <button className="absolute right-2 top-1/2 transform -translate-y-1/2 z-40">
+          <button className="absolute text-black right-2 top-1/2 transform -translate-y-1/2 z-40">
             <FaSearch />
           </button>
 
