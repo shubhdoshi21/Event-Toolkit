@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ModalButton = ({ modal, onClick }) => {
   return (
@@ -23,7 +23,7 @@ const ModalButton = ({ modal, onClick }) => {
             bottom: -4px;
             border-radius: 50%;
             z-index:-1;
-         border: 2px solid transparent;
+            border: 2px solid transparent;
             background: conic-gradient(
               from 90deg, 
               #9333ea, 
@@ -44,10 +44,9 @@ const ModalButton = ({ modal, onClick }) => {
             z-index: -2; /* Places the blur effect behind the button */
           }
           .modal-button-text {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
+            display: flex; /* Enable Flexbox */
+            align-items: center; /* Vertical alignment */
+            justify-content: center; /* Horizontal alignment */
             padding: 0.5rem 0.75rem;
             font-weight: bold;
             font-size: 1.125rem;
@@ -55,6 +54,7 @@ const ModalButton = ({ modal, onClick }) => {
             border-radius: 0.375rem;
             width: 100%;
             text-align: center;
+            overflow: hidden;
           }
         `}
       </style>
@@ -63,9 +63,9 @@ const ModalButton = ({ modal, onClick }) => {
         className="modal-button"
         style={{
           backgroundImage: `url(${modal.cityImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
         }}
       >
         <span className="modal-button-text">{modal.cityName}</span>

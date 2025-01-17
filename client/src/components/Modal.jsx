@@ -30,7 +30,7 @@ const Modal = ({
         <div>{children}</div>
         <div className="flex justify-end mt-4">
           <button
-            className="px-4 py-2 w-full bg-red text-white rounded hover:bg-reddark"
+            className="px-4 py-2 w-full bg-pupll text-white rounded transition-colors hover:bg-pupll/80"
             onClick={() => {
               handleExploreClick(city);
               onClose();

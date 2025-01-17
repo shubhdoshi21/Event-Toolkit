@@ -17,6 +17,10 @@ const CustomDatePicker = () => {
     navigate("/registration");
   };
 
+  const handleCancelClick = () => {
+    navigate("/home");
+  }
+
   const formatDate = (date) => {
     if (!date) return "Select date";
     return date.toLocaleDateString("en-US", {
@@ -51,7 +55,7 @@ const CustomDatePicker = () => {
               </h2>
             </div>
             <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors">
-              <X className="w-5 h-5 text-gray-400" />
+              <X className="w-5 h-5 text-gray-400" onClick={handleCancelClick}/>
             </button>
           </div>
 
