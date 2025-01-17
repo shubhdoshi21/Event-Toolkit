@@ -7,6 +7,7 @@ import { IoCartOutline } from 'react-icons/io5';
 import { BiLogIn } from 'react-icons/bi';
 import ThemeConverter from './ThemeConvertor';
 import Cookies from 'js-cookie';
+import { useLocation } from 'react-router-dom';
 import Logo from '../assets/logo.png';
 import Search from './Common/Search';
 import { Link, useNavigate } from 'react-router-dom';
@@ -96,6 +97,40 @@ const Navbar = () => {
     };
   }, []);
 
+  const location = useLocation();
+  const currentRoute = location.pathname;
+
+  const getSearchProps = () => {
+    if (currentRoute === '/home') {
+      return [
+        {
+          results: searchResults.venues,
+          variable: 'Venues',
+          toDisplay: 'venueName',
+          dispatch: handleVenueClick,
+        },
+        {
+          results: searchResults.cities,
+          variable: 'Cities',
+          toDisplay: 'cityName',
+          dispatch: handleCityClick,
+        },
+      ];
+    } else if (currentRoute === '/registration') {
+      return [
+        {
+          results: searchResults.vendors,
+          variable: 'Vendors',
+          toDisplay: 'serviceName',
+          dispatch: handleVendorClick,
+        },
+      ];
+    }
+    return [];
+  };
+
+  const searchProps = getSearchProps();
+
   const navbarClass =
     theme === 'false'
       ? 'bg-gray text-white shadow-lg shadow-pupll/40'
@@ -103,12 +138,9 @@ const Navbar = () => {
 
   return (
     <nav
-
       className={`h-16 w-full flex items-center justify-between p-4  bg-opacity-10 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
     >
       <div className="text-xl font-bold ">
-
-  
         <Link to="/home">
           <img src={Logo} alt="Logo" width="114px" height="114px" />
         </Link>
@@ -125,36 +157,23 @@ const Navbar = () => {
             className={`pl-3 pr-10 text-black py-1 w-full bg-lightgrey z-30 relative border-2 border-pupll ${
               searchQuery ? '  rounded-t-lg' : ' rounded-full'
             }`}
-
           />
           <button className="absolute text-black right-2 top-1/2 transform -translate-y-1/2 z-40">
             <FaSearch />
           </button>
 
           {/* Search Results */}
-          <div className='absolute flex flex-col w-full'>
-            <Search
-              searchQuery={searchQuery}
-              searchResults={searchResults.venues}
-              dispatchFunction={handleVenueClick}
-              variable={'Venues'}
-              toDisplay={'venueName'}
-            />
-            <Search
-              searchQuery={searchQuery}
-              searchResults={searchResults.cities}
-              dispatchFunction={handleCityClick}
-              variable={'Cities'}
-              toDisplay={'cityName'}
-            />
-            <Search
-              searchQuery={searchQuery}
-              searchResults={searchResults.vendors}
-              dispatchFunction={handleCityClick}
-              variable={'Vendors'}
-              toDisplay={'serviceName'}
-            />
-
+          <div className="absolute flex flex-col w-full">
+            {searchProps.map((props, index) => (
+              <Search
+                key={index}
+                searchQuery={searchQuery}
+                searchResults={props.results}
+                dispatchFunction={props.dispatch}
+                variable={props.variable}
+                toDisplay={props.toDisplay}
+              />
+            ))}
           </div>
         </div>
 
