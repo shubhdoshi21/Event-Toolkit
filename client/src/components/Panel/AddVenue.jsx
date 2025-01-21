@@ -49,9 +49,11 @@ const AddVenue = () => {
 
       if (response.data.statusCode === 200) {
         toast.success('Venue added successfully!');
-        setTimeout(() => {
-          navigate('/panel/cities');
-        }, 2000);
+        venueNameRef.current.value = '';
+        venueCityRef.current.value = '';
+        venueDescriptionRef.current.value = '';
+        imageRef.current.value = null; // Clear file input
+        setImageName('');
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -84,7 +86,10 @@ const AddVenue = () => {
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="venueName" className="block text-primaryPeach text-gray-300 mb-2">
+            <label
+              htmlFor="venueName"
+              className="block text-primaryPeach text-gray-300 mb-2"
+            >
               Venue Name:
             </label>
             <input
@@ -139,7 +144,7 @@ const AddVenue = () => {
               className="hidden" // Hide the default file input
               onChange={handleImageChange} // Handle file input change
             />
-            
+
             {/* Custom file input button */}
             <button
               type="button"
@@ -152,7 +157,6 @@ const AddVenue = () => {
             {imageName && (
               <span className="ml-4 text-gray-300">{imageName}</span>
             )}
-
           </div>
 
           <button
