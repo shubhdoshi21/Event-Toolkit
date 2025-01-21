@@ -208,6 +208,7 @@ const Home = () => {
             switch (index) {
               case 0:
                 setCities(result.value.data.data?.data || []);
+                dispatch(setCity(citiesResponse.data.data?.data || []));
                 break;
               case 1:
                 setReviews(result.value.data.data?.data || []);
