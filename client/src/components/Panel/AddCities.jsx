@@ -38,8 +38,10 @@ const AddCities = () => {
 
       if (response.data.statusCode === 200) {
         toast.success('City added successfully!');
-        setTimeout(() => {
-        }, 2000);
+        cityNameRef.current.value = '';
+        cityDescriptionRef.current.value = '';
+        imageRef.current.value = null;
+        setImageName('');
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -73,7 +75,10 @@ const AddCities = () => {
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="cityName" className="block text-gray-300 mb-2 text-primaryPeach">
+            <label
+              htmlFor="cityName"
+              className="block text-gray-300 mb-2 text-primaryPeach"
+            >
               City Name:
             </label>
             <input
@@ -101,7 +106,10 @@ const AddCities = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="image" className="block text-gray-300 mb-2 text-primaryPeach">
+            <label
+              htmlFor="image"
+              className="block text-gray-300 mb-2 text-primaryPeach"
+            >
               City Image:
             </label>
             {/* Hidden file input */}

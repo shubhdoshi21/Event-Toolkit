@@ -38,6 +38,7 @@ export default {
         purpl:"#7e22ce",
         pupll:"#a667dd",
         lgrey:"#f3f4f6",
+        cardclr: "#DEE4E7"
         
       },
     },

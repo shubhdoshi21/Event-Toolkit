@@ -374,7 +374,7 @@ const Home = () => {
             ) : (
               <div className="flex flex-col items-center p-6 w-full ">
                 <FaCommentDots className="text-6xl text-gray-400 mb-4" />
-                <h1 className="text-2xl font-semibold uppercase text-black">
+                <h1 className="text-2xl font-semibold uppercase ">
                   No reviews to display
                 </h1>
               </div>

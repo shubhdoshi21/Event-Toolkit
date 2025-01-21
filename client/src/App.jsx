@@ -112,6 +112,7 @@ function App() {
     "/auth/verify",
     "/auth/reset-password",
     "/cart",
+    "/panel/add-sub-venues"
   ].includes(location.pathname); // Paths where Navbar should be hidden
 
   return (

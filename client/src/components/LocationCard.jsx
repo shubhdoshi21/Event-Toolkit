@@ -5,14 +5,16 @@ import { useNavigate } from "react-router-dom";
 const LocationCard = ({ modal, message, navigateTo, dispatchAction }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleBtnClick = () => {
     dispatch(dispatchAction(modal));
     navigate(navigateTo);
   };
+
   return (
     <div
       key={modal._id}
-      className="bg-lightgreyplus rounded-lg shadow-lg overflow-hidden"
+      className="bg-cardclr rounded-lg shadow-lg overflow-hidden"
     >
       <img
         src={modal.venueImage || modal.cityImage}
@@ -20,13 +22,20 @@ const LocationCard = ({ modal, message, navigateTo, dispatchAction }) => {
         className="w-full h-40 object-cover"
       />
       <div className="p-4">
-        <h3 className=" text-lg font-bold mt-1 uppercase">
+        <h3 className="text-lg font-bold mt-1 uppercase text-black truncate">
           {modal.venueName || modal.cityName}
         </h3>
-        <h3 className=" text-sm text-gry font-bold uppercase">
-        {modal.venueCity? modal.venueCity: null}
+        <h3 className="text-sm text-gry font-bold uppercase">
+          {modal.venueCity ? modal.venueCity : null}
         </h3>
-        <p className="text-gray-300 text-gry text-md">
+        <p
+          className="text-gray-300 text-gry text-md overflow-y-auto max-h-[150px] relative hide-scrollbar"
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 4, // Adjust number of lines (5 is roughly 100 words)
+            WebkitBoxOrient: "vertical",
+          }}
+        >
           {modal.venueDescription || modal.cityDescription}
         </p>
       </div>
