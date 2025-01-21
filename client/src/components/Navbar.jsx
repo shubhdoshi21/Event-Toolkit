@@ -138,11 +138,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`h-16 w-full flex items-center justify-between p-4  bg-opacity-10 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
+      className={`h-16 w-full flex items-center justify-between p-4 bg-opacity-10 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
     >
       <div className="text-xl font-bold ">
         <Link to="/home">
-          <img src={Logo} alt="Logo" width="114px" height="114px" />
+          <img src={Logo} alt="Logo" width="114px" height="100%" />
         </Link>
       </div>
 
@@ -163,7 +163,7 @@ const Navbar = () => {
           </button>
 
           {/* Search Results */}
-          <div className="absolute flex flex-col w-full">
+          <div className="absolute flex flex-col w-full max-h-40 overflow-y-auto">
             {searchProps.map((props, index) => (
               <Search
                 key={index}

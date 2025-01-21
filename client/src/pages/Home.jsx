@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { FaCity, FaMapMarkerAlt, FaCommentDots } from "react-icons/fa";
-import { setVenues, setSelectedVenue } from "../features/venue/venueSlice.js";
-import { setSelectedCity, setCity } from "../features/city/citySlice.js";
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaCity, FaMapMarkerAlt, FaCommentDots } from 'react-icons/fa';
+import { setVenues, setSelectedVenue } from '../features/venue/venueSlice.js';
+import { setSelectedCity, setCity } from '../features/city/citySlice.js';
 import {
   Modal,
   ModalButton,
@@ -11,9 +11,10 @@ import {
   Footer,
   Carousal,
   Sidebar,
-} from "../components/index.js";
-import ReviewSlider from "../components/ReviewSlider.jsx";
-import Loader from "../components/Common/Loader.jsx";
+} from '../components/index.js';
+import ReviewSlider from '../components/ReviewSlider.jsx';
+import { CiImageOff } from 'react-icons/ci';
+import Loader from '../components/Common/Loader.jsx';
 
 // Define custom styles for headings
 const customStyles = `
@@ -44,8 +45,8 @@ const Home = () => {
   // console.log("hi",import.meta.env.VITE_BACKEND_URL);
   const dispatch = useDispatch();
 
-  const { venues } = useSelector((state) => state.venue);
-  const { selectedCity } = useSelector((state) => state.city);
+  const { venues } = useSelector(state => state.venue);
+  const { selectedCity } = useSelector(state => state.city);
 
   const [cities, setCities] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -54,7 +55,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const containerRef = useRef(null);
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   // const token = Cookies.get("accessToken");
   // useEffect(() => {
   //   const fetchUserDetails = async () => {
@@ -92,7 +93,7 @@ const Home = () => {
   // useEffect(() => {
   //   const getCities = async () => {
   //     const response = await axios.post(
-  //       "${import.meta.env.VITE_BACKEND_URL}/api/v1/cities/getAllCitiesExceptSelected",
+  //       `${import.meta.env.VITE_BACKEND_URL}/api/v1/cities/getAllCitiesExceptSelected`,
   //       { excludedCity: selectedCity?.cityName ? selectedCity.cityName : "City1111" }
   //     );
   //     if (response.data.statusCode <= 200)
@@ -101,35 +102,35 @@ const Home = () => {
 
   //   getCities();
 
-  //   const getReviews = async () => {
-  //     const response = await axios.post(
-  //       "${import.meta.env.VITE_BACKEND_URL}/api/v1/reviews/getReviewsByType"
-  //     );
-  //     if (response?.data?.statusCode <= 200) {
-  //       setReviews(response.data.data?.data);
-  //     }
-  //   };
+  // //   const getReviews = async () => {
+  // //     const response = await axios.post(
+  // //       "${import.meta.env.VITE_BACKEND_URL}/api/v1/reviews/getReviewsByType"
+  // //     );
+  // //     if (response?.data?.statusCode <= 200) {
+  // //       setReviews(response.data.data?.data);
+  // //     }
+  // //   };
 
-  //   getReviews();
+  // //   getReviews();
 
-  //   const getVenues = async () => {
-  //     const response = await axios.post(
-  //       "${import.meta.env.VITE_BACKEND_URL}/api/v1/cities/getAllVenuesAtCity",
-  //       { cityName: selectedCity.cityName ? selectedCity.cityName : "City1111" }
-  //     );
-  //     if (response?.data?.statusCode <= 200) {
-  //       dispatch(setVenues(response.data.data.data))
-  //     }
-  //   };
-  //   getVenues();
+  // //   const getVenues = async () => {
+  // //     const response = await axios.post(
+  // //       "${import.meta.env.VITE_BACKEND_URL}/api/v1/cities/getAllVenuesAtCity",
+  // //       { cityName: selectedCity.cityName ? selectedCity.cityName : "City1111" }
+  // //     );
+  // //     if (response?.data?.statusCode <= 200) {
+  // //       dispatch(setVenues(response.data.data.data))
+  // //     }
+  // //   };
+  // //   getVenues();
 
-  //   const getImages = async() => {
-  //     const response = await axios.get("${import.meta.env.VITE_BACKEND_URL}/api/v1/registration/recentEventImages");
+  // //   const getImages = async() => {
+  // //     const response = await axios.get("${import.meta.env.VITE_BACKEND_URL}/api/v1/registration/recentEventImages");
 
-  //     if (response.data.statusCode <= 200)
-  //       setImages(response?.data?.data?.data);
-  //   }
-  //   getImages();
+  // //     if (response.data.statusCode <= 200)
+  // //       setImages(response?.data?.data?.data);
+  // //   }
+  // //   getImages();
   // }, [selectedCity]);
 
   // useEffect(() => {
@@ -171,43 +172,61 @@ const Home = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [citiesResponse, reviewsResponse, venuesResponse, imageResponse] =
-          await Promise.all([
-            axios.post(
-              `${
-                import.meta.env.VITE_BACKEND_URL
-              }/api/v1/cities/getAllCitiesExceptSelected`,
-              {
-                excludedCity: selectedCity?.cityName || "City1111",
-              }
-            ),
-            axios.post(
-              `${
-                import.meta.env.VITE_BACKEND_URL
-              }/api/v1/reviews/getReviewsByType`
-            ),
-            axios.post(
-              `${
-                import.meta.env.VITE_BACKEND_URL
-              }/api/v1/cities/getAllVenuesAtCity`,
-              {
-                cityName: selectedCity?.cityName || "City1111",
-              }
-            ),
-            axios.get(
-              `${
-                import.meta.env.VITE_BACKEND_URL
-              }/api/v1/registration/recentEventImages`
-            ),
-          ]);
+        // Use Promise.allSettled to run each API independently
+        const results = await Promise.allSettled([
+          axios.post(
+            `${
+              import.meta.env.VITE_BACKEND_URL
+            }/api/v1/cities/getAllCitiesExceptSelected`,
+            {
+              excludedCity: selectedCity?.cityName || 'Hyderabad',
+            },
+          ),
+          axios.post(
+            `${
+              import.meta.env.VITE_BACKEND_URL
+            }/api/v1/reviews/getReviewsByType`,
+          ),
+          axios.post(
+            `${
+              import.meta.env.VITE_BACKEND_URL
+            }/api/v1/cities/getAllVenuesAtCity`,
+            {
+              cityName: selectedCity?.cityName || 'City1111',
+            },
+          ),
+          axios.get(
+            `${
+              import.meta.env.VITE_BACKEND_URL
+            }/api/v1/registration/recentEventImages`,
+          ),
+        ]);
 
-        setCities(citiesResponse.data.data?.data || []);
-        setReviews(reviewsResponse.data.data?.data || []); 
-        setImages(imageResponse?.data?.data?.data || []);
-        dispatch(setVenues(venuesResponse.data.data?.data || []));
-        dispatch(setCity(citiesResponse.data.data?.data || []));
+        // Handle results from each API call
+        results.forEach((result, index) => {
+          if (result.status === 'fulfilled') {
+            switch (index) {
+              case 0:
+                setCities(result.value.data.data?.data || []);
+                break;
+              case 1:
+                setReviews(result.value.data.data?.data || []);
+                break;
+              case 2:
+                dispatch(setVenues(result.value.data.data?.data || []));
+                break;
+              case 3:
+                setImages(result.value.data.data?.data || []);
+                break;
+              default:
+                break;
+            }
+          } else {
+            console.error(`API request ${index} failed:`, result.reason);
+          }
+        });
       } catch (error) {
-        console.error("Error fetching data!");
+        console.error('Error fetching data!');
       } finally {
         setLoading(false);
       }
@@ -216,18 +235,18 @@ const Home = () => {
     fetchData();
   }, [selectedCity, dispatch]);
 
-  const openModal = (modalId) => {
+  const openModal = modalId => {
     setOpenModals({ ...openModals, [modalId]: true });
   };
 
-  const closeModal = (modalId) => {
+  const closeModal = modalId => {
     setOpenModals({ ...openModals, [modalId]: false });
   };
 
-  const scroll = (direction) => {
+  const scroll = direction => {
     if (containerRef.current) {
-      const scrollAmount = direction === "left" ? -200 : 200;
-      containerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      const scrollAmount = direction === 'left' ? -200 : 200;
+      containerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
@@ -235,7 +254,7 @@ const Home = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleExploreClick = (city) => {
+  const handleExploreClick = city => {
     dispatch(setSelectedCity(city));
   };
 
@@ -251,7 +270,7 @@ const Home = () => {
           {/* Modals for diff cities */}
           <div className="flex items-center justify-center py-6 pt-20 relative">
             <button
-              onClick={() => scroll("left")}
+              onClick={() => scroll('left')}
               className="absolute left-4 z-10 bg-gray-600 text-white p-2 rounded-full text-2xl font-bold hover:bg-gray-500 transition-colors"
             >
               &lt;
@@ -259,10 +278,10 @@ const Home = () => {
             <div
               ref={containerRef}
               className="flex gap-4 p-4 overflow-x-auto hide-scrollbar"
-              style={{ maxHeight: "200px", whiteSpace: "nowrap" }}
+              style={{ maxHeight: '200px', whiteSpace: 'nowrap' }}
             >
               {cities.length !== 0 ? (
-                cities.map((city) => (
+                cities.map(city => (
                   <ModalButton
                     key={city._id}
                     modal={city}
@@ -279,13 +298,13 @@ const Home = () => {
               )}
             </div>
             <button
-              onClick={() => scroll("right")}
+              onClick={() => scroll('right')}
               className="absolute right-4 bg-gray-600 text-white p-2 rounded-full text-2xl font-bold hover:bg-gray-500 transition-colors"
             >
               &gt;
             </button>
 
-            {cities.map((city) => (
+            {cities.map(city => (
               <Modal
                 key={city._id}
                 isOpen={openModals[city._id]}
@@ -304,49 +323,57 @@ const Home = () => {
           </div>
           {/* images carousal */}
           <div className="py-8">
-            <h2 className="relative text-[40px] font-bold text-center  ml-3 uppercase gradient-border">
+            <h2 className="relative mb-6 text-[25px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
               Recent Events
             </h2>
-
-            <Carousal images={images} />
+            {images.length !== 0 ? (
+              <Carousal images={images} />
+            ) : (
+              <div className="flex flex-col items-center text-center p-6 w-screen">
+                <CiImageOff className="text-6xl text-gray-400 mb-4" />
+                <h1 className="text-2xl font-semibold uppercase">
+                  No Recent events available at the city...
+                </h1>
+              </div>
+            )}
           </div>
           {/* exploring locations */}
           <div className="py-8">
-            <h2 className="relative mb-6 text-[25px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
+            <h2 className="relative mb-6 text-[25px] sm:text-[40px] font-bold sm:text-center ml-3 text-left uppercase gradient-border">
               {`Explore locations at ${selectedCity?.cityName}`}
             </h2>
-            <div className="px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {venues.length !== 0 ? (
-                venues.map((venue) => (
+            {venues.length !== 0 ? (
+              <div className="px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {venues.map(venue => (
                   <LocationCard
                     key={venue._id}
                     modal={venue}
-                    message={"See Location"}
-                    navigateTo={"/dateSelector"}
+                    message={'See Location'}
+                    navigateTo={'/dateSelector'}
                     dispatchAction={setSelectedVenue}
                   />
-                ))
-              ) : (
-                <div className="flex flex-col items-center text-center p-6 w-screen">
-                  <FaMapMarkerAlt className="text-6xl text-gray-400 mb-4" />
-                  <h1 className="text-2xl font-semibold uppercase">
-                    No venues available at the city...
-                  </h1>
-                </div>
-              )}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center text-center p-6 w-full">
+                <FaMapMarkerAlt className="text-6xl text-gray-400 mb-4" />
+                <h1 className="text-2xl font-semibold uppercase ">
+                  No venues available at the city...
+                </h1>
+              </div>
+            )}
           </div>
           {/* reviews */}
-          <div className="pt-5 px-4 bg-gray-900">
-            <h2 className="relative mb-6 text-[40px] font-bold text-center ml-3 uppercase gradient-border">
-              Latest Reviews
+          <div className="py-8">
+            <h2 className="relative mb-6 text-[25px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
+              Reviews
             </h2>
             {reviews.length !== 0 ? (
               <ReviewSlider reviews={reviews} />
             ) : (
-              <div className="flex flex-col items-center p-6 w-screen ">
+              <div className="flex flex-col items-center p-6 w-full ">
                 <FaCommentDots className="text-6xl text-gray-400 mb-4" />
-                <h1 className="text-2xl font-semibold uppercase text-white">
+                <h1 className="text-2xl font-semibold uppercase text-black">
                   No reviews to display
                 </h1>
               </div>

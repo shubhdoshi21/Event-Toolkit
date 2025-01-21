@@ -39,7 +39,6 @@ const AddCities = () => {
       if (response.data.statusCode === 200) {
         toast.success('City added successfully!');
         setTimeout(() => {
-          navigate('/panel/cities');
         }, 2000);
       }
     } catch (error) {
