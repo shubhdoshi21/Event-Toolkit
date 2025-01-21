@@ -20,7 +20,7 @@ const Footer = () => {
               detail counts, and your event deserves the best.{' '}
             </p>
           </div>
-          <div className="mb-6 md:mb-0 md:w-[60%]">
+          <div className="mb-6 md:mb-0 md:px-4 md:w-[60%]">
             <h4 className="text-xl font-bold ">Contact Us</h4>
             <p className=" mt-2">Email: event-toolkit@gmail.com</p>
             <p className="">Phone: +91 123-456-7890</p>
