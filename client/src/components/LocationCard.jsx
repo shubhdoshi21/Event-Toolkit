@@ -34,6 +34,7 @@ const LocationCard = ({ modal, message, navigateTo, dispatchAction }) => {
             display: "-webkit-box",
             WebkitLineClamp: 4, // Adjust number of lines (5 is roughly 100 words)
             WebkitBoxOrient: "vertical",
+            minHeight: "97px",
           }}
         >
           {modal.venueDescription || modal.cityDescription}
