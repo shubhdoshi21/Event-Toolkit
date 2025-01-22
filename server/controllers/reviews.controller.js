@@ -5,28 +5,32 @@ const { asyncHandler } = require("../utils/asyncHandler.js");
 
 const getReviewsByType = asyncHandler(async (req, res) => {
   try {
-    const reviews = await Reviews.find({
-      reviewType: req.body.reviewType ? req.body.reviewType : "Venues",
-    })
-      .populate("userId", {
-        firstName: 1,
-        lastName: 1,
-      })
-      .populate({
-        path: "relatedId",
-        select:
-          req.body.reviewType === "Venues"
-            ? { venueName: 1, venueCity: 1 }
-            : { serviceName: 1, location: 1 },
-      });
+    let reviews = await Reviews.find({});
 
     if (reviews.length === 0) {
       throw new ApiError(404, "No reviews found");
     }
 
+    const venuesReviews = await Reviews.populate(reviews.filter(r => r.reviewType === "Venues"), {
+      path: "relatedId",
+      select: { venueName: 1, venueCity: 1 },
+    });
+
+    const vendorReviews = await Reviews.populate(reviews.filter(r => r.reviewType === "Vendor"), {
+      path: "relatedId",
+      select: { serviceName: 1, location: 1 },
+    });
+
+    const combinedReviews = [...venuesReviews, ...vendorReviews];
+
+    const finalReviews = await Reviews.populate(combinedReviews, {
+      path: "userId",
+      select: { firstName: 1, lastName: 1 },
+    });
+
     return res
       .status(200)
-      .json(new ApiResponse(200, { data: reviews }, "Reviews found"));
+      .json(new ApiResponse(200, { data: finalReviews }, "Reviews found"));
   } catch (error) {
     return res
       .status(error.statusCode || 500)
