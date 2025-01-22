@@ -70,7 +70,7 @@ import axios from 'axios'
   const truncateWords = 20; 
 
   return (
-    <div className="">
+    <div className="ml-2">
       <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
         <Swiper
           breakpoints={{
@@ -114,6 +114,23 @@ import axios from 'axios'
                     </h1>
                   </div>
                 </div>
+
+                {/* Metadata section  */}
+                {review.reviewType === 'Venues' ? (
+                  <div className="text-sm font-lobster underline">
+                    <p>
+                      {review.relatedId.venueName + ", " + review.relatedId.venueCity}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="text-sm">
+                    <p>
+                      <strong>Vendor Name:</strong>{' '}
+                      {review.relatedId.serviceName + ", " + review.relatedId.location}
+                    </p>
+                  </div>
+                )}
+                
                 <p className="font-medium text-richblack-25">
                   {review.review.split(" ").length > truncateWords
                     ? `${review.review
