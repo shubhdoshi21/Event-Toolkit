@@ -117,13 +117,13 @@ import axios from 'axios'
 
                 {/* Metadata section  */}
                 {review.reviewType === 'Venues' ? (
-                  <div className="text-sm font-lobster underline">
+                  <div className="text-sm font-lobster underline truncate">
                     <p>
                       {review.relatedId.venueName + ", " + review.relatedId.venueCity}
                     </p>
                   </div>
                 ) : (
-                  <div className="text-sm">
+                  <div className="text-sm font-lobster underline truncate">
                     <p>
                       <strong>Vendor Name:</strong>{' '}
                       {review.relatedId.serviceName + ", " + review.relatedId.location}
