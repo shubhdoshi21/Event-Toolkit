@@ -125,7 +125,6 @@ import axios from 'axios'
                 ) : (
                   <div className="text-sm font-lobster underline truncate">
                     <p>
-                      <strong>Vendor Name:</strong>{' '}
                       {review.relatedId.serviceName + ", " + review.relatedId.location}
                     </p>
                   </div>
