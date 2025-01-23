@@ -192,7 +192,7 @@ const Home = () => {
               import.meta.env.VITE_BACKEND_URL
             }/api/v1/cities/getAllVenuesAtCity`,
             {
-              cityName: selectedCity?.cityName || 'City1111',
+              cityName: selectedCity?.cityName || 'Hyderabad',
             },
           ),
           axios.get(
@@ -316,7 +316,7 @@ const Home = () => {
                 <img
                   src={city.cityImage}
                   alt={city.cityName}
-                  className=" min-w-90 min-h"
+                  className="w-full h-64 object-cover rounded-md"
                 />
                 <p className="text-mediumGray mt-2">{city.cityDescription}</p>
               </Modal>
