@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import Cookies from 'js-cookie';
 
 const ProtectedRoute = ({ children, roles }) => {
-  const user = useSelector((state) => state.user); // Fetch user data from Redux store
-  const isAuthenticated = !!user._id;
+  const userToken = Cookies.get('accessToken');
+  const isAuthenticated = userToken ? true : false;
 
   if (!isAuthenticated) {
     // Redirect to Sign In if not authenticated
