@@ -1,0 +1,442 @@
+[
+  {
+    "venueName": "“The Villa” …at Mandeville",
+    "venueDescription": "\"“THE VILLA“ at Mandeville, is a Grandiose State of the Art Event Venue encompassing Stunning Colonial Baroque architectures, located right at the heart of the “City of Joy”. It is the Best Banquet in Kolkata, India and houses the Stately British era Bungalow, which has been beautifully restored to it’s Pristine Glory. ** Marriages, Receptions, Birthdays, Anniversaries, Parties, Events etc can be held in THE AREA comprising of: 3 Resplendent Grand Ballrooms (A.C) 1 Majestic Room for Bridal Make up(A.C) 6 Elegant Toilets Stunning Designer Washbasins 2 Hygienic & Fully Tiled Service Kitchens (VEG SEPARATE) Aesthetic Service Corridors Service Toilet Magnificent Lofty Gate Sprawling Lawns and a Vast Open Courtyard\"",
+    "venueCity": "Kolkata",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476081380_2022-11-28%20(1).jpg?alt=media&token=aea3d496-acbe-4945-9781-b022596c0f71",
+    "venueImageName": "1737476081380_2022-11-28 (1).jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Orchid Banquets & Gardens",
+    "venueDescription": "\"A place which offers complete marriage solutions. From Venue to Decor to Catering and events . 5 Different wedding property for Marriage, Parties, Birthday party,Conference,Corporate shows , Concerts etc .\"\r\n",
+    "venueCity": "Kolkata",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476194275_IMG20221125175826%20(1).jpg?alt=media&token=a479844d-3a4d-4210-b0f4-c2d50e84d15e",
+    "venueImageName": "1737476194275_IMG20221125175826 (1).jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "PC Chandra Garden",
+    "venueDescription": "\"PC Chandra Garden has the best banquet halls in Kolkata for organizing weddings and other similar events. Its facilities are the best and the long list of satisfied clients stands testimonies. The variety of events celebrated includes weddings, engagements etc. Call us now +91 90076 93140.\"\r\n",
+    "venueCity": "Kolkata",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476270499_29791093_1538670006231287_5161048799871133844_n.jpg?alt=media&token=e6e1701a-0384-40a9-b622-15da303e87b0",
+    "venueImageName": "1737476270499_29791093_1538670006231287_5161048799871133844_n.jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "SDV Events - An Event Planner",
+    "venueDescription": "\"SDV event is a unit of Sundarban Deer View hotels Pvt. Ltd. It deals in wedding service, office party, Engagement party, Cocktail party, Birthday party, Retirement party, get together party, Conference hall service, Meeting hall service to make your event memorable. Its registration number is 232803. We have a very experienced and professional team which have more than 10 years of experience. Our head tour planner Mr.Subroto Mondal has vast experience to make any kind of events in India as well as abroad like USA, CANADA and many more. Now we are providing services to every corner in Kolkata and Sundarban area. Our Chefs are well trained in Indian food, Continental food, Italian food, and Chinese food. Our Aim: Our only aim is to make your\"",
+    "venueCity": "Kolkata",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476372057_10%20(1).jpeg?alt=media&token=e595d075-d09d-4eab-84d0-cebd1118d111",
+    "venueImageName": "1737476372057_10 (1).jpeg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Singhi Palace",
+    "venueDescription": "\"Banquet hall for wedding and other social occasions and ceremonies.\"",
+    "venueCity": "Kolkata",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476459356_2023-11-17%20(1).jpg?alt=media&token=96c31015-1d03-4fba-b886-20b41cb2caba",
+    "venueImageName": "1737476459356_2023-11-17 (1).jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "AVM Gardens",
+    "venueDescription": "\"Iconic air-conditioned event venue in the heart of Chennai for all your events and parties with over 84000 square feet of landscaped greenery and all amenities\"",
+    "venueCity": "Chennai",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476659994_RC2A0521-Edit%20(1).jpg?alt=media&token=490810c1-3c26-433d-b925-75d01a164b99",
+    "venueImageName": "1737476659994_RC2A0521-Edit (1).jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Green Apple Banquet hall",
+    "venueDescription": "\"From birthdays to weddings, to all the family functions before and after, having a suitable venue to host your events is crucial. Book GREEN APPLE BANQUET HALL for one of the most memorable events in your life. YOUR EVENT - YOUR WAY! THE GREEN APPLE WAY!!\"",
+    "venueCity": "Chennai",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476744287_Party_Hall_View_Face_Stage%20(1).jpg?alt=media&token=138d2bd4-b19e-4aa2-9ff2-99ae8fcba4a4",
+    "venueImageName": "1737476744287_Party_Hall_View_Face_Stage (1).jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "21 Century Event Space omr",
+    "venueDescription": "\"Welcome to 21 Century Event Space, the premier destination for unforgettable celebrations in Sholinganallur, OMR, Chennai. As the best banquets and party hall on OMR, our venue offers unparalleled service and amenities for weddings, receptions, birthdays, and more. Our picturesque party lawn provides the perfect backdrop for outdoor events, while our banquet halls cater to gatherings of all sizes. Whether you're exchanging vows or celebrating a milestone moment, our expert team will ensure that every detail is perfect.\"",
+    "venueCity": "Chennai",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476824868_2024-04-26%20(1).jpg?alt=media&token=f73ee9d4-0477-4783-9298-c94f9f3f5596",
+    "venueImageName": "1737476824868_2024-04-26 (1).jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Olive and Orchard Banquet Halls",
+    "venueDescription": "\"Greetings from olive and orchard halls We have two options Olive hall 150 to 350 capacity Orchard hall 50 to 150 capacity Veg menu starts from 510 rs (with hall) And non veg menu starts from 550 rs (With hall) Hall rent (without food) Orchard hall 35k Olive hall 45k\"",
+    "venueCity": "Chennai",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737476883372_2023-04-09%20(1).jpg?alt=media&token=1c5939bf-9a05-45ee-b619-74fd541b7645",
+    "venueImageName": "1737476883372_2023-04-09 (1).jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Maadi Spaces - Event Space for Hire",
+    "venueDescription": "\"Maadi is an event space available for rent for Custom Trainings, Corporate events, Private functions and Birthday parties. 50 seater space with air conditioned hall, Roof top lawn, lift and power backup. Also provide decoration, catering, photo and videography services.\"",
+    "venueCity": "Chennai",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737477027625_unnamed.jpg?alt=media&token=cdd548e9-bb94-440e-9177-f273be820642",
+    "venueImageName": "1737477027625_unnamed.jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  }
+]

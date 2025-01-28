@@ -1,0 +1,266 @@
+[
+  {
+    "venueName": "Psr Shloka Convention",
+    "venueDescription": "Impress your guests with a captivating affair by choosing the opulent banquet facilities at PSR Shloka Convention, Bongloor, Hyderabad. The banquets in Psr Shloka Convention Hyderabad Bongloor are ideal for weddings, receptions, pre-wedding ceremonies, engagement functions, birthday parties, wedding anniversaries, social get-togethers, family events, private parties, promotion and farewell parties, and more.",
+    "venueCity": "Hyderabad",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737461327343_wedding-venue-psr-shloka-convention-facade-3_15_458372-170020672615178.jpeg?alt=media&token=dec3ada6-eb62-46f8-b17f-316593ae18ba",
+    "venueImageName": "1737461327343_wedding-venue-psr-shloka-convention-facade-3_15_458372-170020672615178.jpeg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall A",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden ",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall D",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Naren Gardens Convention Center",
+    "venueDescription": "The dreamy Naren Gardens Convention Center, Miyapur, Hyderabad, is a fabulous wedding venue, widely popular in the city for a range of lavish celebrations. It is home to a couple of lush green lawns and multiple banquet halls, all of varying capacities. Other than grandiose weddings, it is optimum for receptions, sangeet, mehndi, haldi, rasam, and engagement ceremonies, rehearsal dinners, corporate events like product launches, seminars, exhibitions, and much more.",
+    "venueCity": "Hyderabad",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737462094770_images.jpeg?alt=media&token=6c76dc84-2e16-48c0-8dca-78231736fc6d",
+    "venueImageName": "1737462094770_images.jpeg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall A",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden ",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall D",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Farm Air",
+    "venueDescription": "Farm Air, Shamirpet, Hyderabad, is a luxurious venue to host pre-wedding events, cocktail parties, social events, formal gatherings, birthday parties, and so on. It's located 21 minutes away from Bolarum Bazar Station, making it an ideal venue to bring people together and celebrate special occasions. It's a perfect venue to host late-night events with your loved ones.",
+    "venueCity": "Hyderabad",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737462246724_farm-air-shamirpet-hyderabad-min.jpg?alt=media&token=440829a7-35b6-4563-affa-fbaab9255333",
+    "venueImageName": "1737462246724_farm-air-shamirpet-hyderabad-min.jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall A",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden ",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall D",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Sr Classic Convention",
+    "venueDescription": "SR Classic Convention Wedding Lawn Hyderabad allows you to bring a decorator of your choice and try to glamorize the venue as per your requirement. It would enchant your guests with its colorful illumination and classical decor. At SR Classic Convention, Hyderabad, you have to get an external catering team at the venue to serve lip-smacking vegetarian and non-vegetarian food to your guests. You may opt to serve alcoholic beverages along with the menu, which would make you the crowd favorite for the day.",
+    "venueCity": "Hyderabad",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737462409332_ss20230327-20300-1r8kg93.jpg?alt=media&token=07e00bb5-c7ca-4054-902d-cb70f21111f8",
+    "venueImageName": "1737462409332_ss20230327-20300-1r8kg93.jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall A",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden ",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall D",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Ridhira Retreat",
+    "venueDescription": "Delve into the majestic beauty of Ridhira Retreat, Gandipet, Hyderabad. An absolutely gorgeous property that is home to beautiful beach-side lawns. Located in Gandipet, near Satellite Radio Station, this is your go-to place to host a niche gathering, party as well as weddings and social gatherings. You can go out there and invite your dear and distant ones to be a part of your special event.",
+    "venueCity": "Hyderabad",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737462901074_Edited%20JPG_JPG.avif?alt=media&token=7a22c3a3-367d-4d1f-b8a7-a12719b5d460",
+    "venueImageName": "1737462901074_Edited JPG_JPG.avif",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall A",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden ",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall D",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  },
+  {
+    "venueName": "Dhola Ri Dhani",
+    "venueDescription": "Host your wedding and reception ceremony at the beautiful Dhola Ri Dhani, Kompally, Hyderabad. The banquet hall here is spacious enough to accommodate a large gathering. The lush green lawns are an ideal place to have lavish open-air functions. The venue is located close to Medchal Road and is commutable by the public as well as private transport. The team of culinary experts at Dhola Ri Dhani, Hyderabad serves mouth-watering delicacies in a variety of cuisines but you also have the option of curating the menu as per your liking by hiring a separate catering team.",
+    "venueCity": "Hyderabad",
+    "venueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737463225652_06-min.jpg?alt=media&token=509f2d68-e3c1-45ba-8b8d-79810cd79a35",
+    "venueImageName": "1737463225652_06-min.jpg",
+    "subVenues": [
+      {
+        "subVenueName": "Banquet Hall A",
+        "subVenueDescription": "A spacious banquet hall ideal for weddings and large gatherings.",
+        "subVenuePrice": { "$numberInt": "50000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618564523_images%20(4).jpeg?alt=media&token=d8def59b-bd0b-41d9-885c-6c43957f25e5",
+        "subVenueImageName": "1737618564523_images (4).jpeg"
+      },
+      {
+        "subVenueName": "Outdoor Garden ",
+        "subVenueDescription": "An open-air garden perfect for receptions and outdoor events.",
+        "subVenuePrice": { "$numberInt": "100000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618614572_istockphoto-497039777-612x612-min.jpg?alt=media&token=8d19c26a-3616-42ca-9c46-c4c86972fc7d",
+        "subVenueImageName": "1737618614572_istockphoto-497039777-612x612-min.jpg"
+      },
+      {
+        "subVenueName": "Terrace Lounge",
+        "subVenueDescription": "A modern terrace lounge with stunning city views.",
+        "subVenuePrice": { "$numberInt": "75000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg?alt=media&token=06fdd387-7c20-4a36-8b11-71e69338e243",
+        "subVenueImageName": "1737618701486_3dd8449e814be3520bb5e0260775d9b9.jpg"
+      },
+      {
+        "subVenueName": "Party Hall D",
+        "subVenueDescription": "A cozy hall suitable for birthday parties and small celebrations.",
+        "subVenuePrice": { "$numberInt": "40000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg?alt=media&token=6d21587c-3b4a-44f6-bb44-3e10b77cbd68",
+        "subVenueImageName": "1737618747239_premium_photo-1661963123153-5471a95b7042-min.jpeg"
+      },
+      {
+        "subVenueName": "Conference Room",
+        "subVenueDescription": "A well-equipped conference room for corporate meetings.",
+        "subVenuePrice": { "$numberInt": "35000" },
+        "subVenueImage": "https://firebasestorage.googleapis.com/v0/b/event-toolkit-e2cc7.appspot.com/o/images%2F1737618786374_images%20(4).jpeg?alt=media&token=c3fcdd78-e854-494a-a937-03fb8a15966f",
+        "subVenueImageName": "1737618786374_images (4).jpeg"
+      }
+    ]
+  }
+]
