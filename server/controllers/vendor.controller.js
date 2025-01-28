@@ -54,6 +54,8 @@ const getVendorByUserId = asyncHandler(async (req, res) => {
     const vendorDetails = await Vendor.find({ userId })
       .populate("packages")
       .populate("ratingAndReview");
+      
+      console.log("Vendor details fetched", vendorDetails); 
     //
     console.log("overhere", vendorDetails);
     return res
@@ -73,43 +75,20 @@ const getVendorByUserId = asyncHandler(async (req, res) => {
 });
 
 const addServiceDetails = asyncHandler(async (req, res) => {
+  console.log("hello")
   try {
-    console.log(req.body);
-    const {
-      serviceName,
-      location,
-      about,
-      vendorType,
-      booking,
-      cancellation,
-      terms,
-      venue,
-      singleItems,
-      userId,
-    } = req.body;
-    console.log(
-      serviceName,
-      location,
-      about,
-      vendorType,
-      booking,
-      cancellation,
-      terms,
-      venue,
-      singleItems,
-      userId
-    );
+    const { serviceName, location, about, vendorType, booking, cancellation, terms, venue, singleItems, userId } = req.body;
+   // const file = req.file;
+
     if (!serviceName || !location || !about || !vendorType) {
-      throw new ApiError(400, "Everything is required to add service details");
+      throw new ApiError(400, "Missing required fields to add service details");
     }
 
-    //gallery handling remains
-    //  const vendorId = req.body;
-    // const vendorDetails = await User.findById(vendorId);
-
-    // if (!vendorDetails) {
-    //  throw new ApiError(404, "Vendor not found");
-    // }
+    // const fileName = `${Date.now()}_${file.originalname}`;
+    // const storageRef = ref(storage, `images/${fileName}`);
+    // const metadata = { contentType: file.mimetype };
+    // const uploadTask = await uploadBytesResumable(storageRef, file.buffer, metadata);
+    // const downloadURL = await getDownloadURL(uploadTask.ref);
 
     const createdService = await Vendor.create({
       serviceName,
@@ -122,23 +101,17 @@ const addServiceDetails = asyncHandler(async (req, res) => {
       venue,
       singleItems,
       userId,
+    
     });
-    console.log("balle balle shavs shava");
+
     return res
       .status(200)
-      .json(
-        new ApiResponse(
-          200,
-          { data: createdService },
-          "Service created succesfully"
-        )
-      );
+      .json({ message: "Service created successfully!", data: createdService });
   } catch (error) {
-    return res
-      .status(error.statusCode || 500)
-      .json(new ApiResponse(error.statusCode || 500, null, error.message));
+    res.status(500).json({ message: error.message });
   }
 });
+
 
 const updateServiceDetails = asyncHandler(async (req, res) => {
   try {
@@ -317,55 +290,62 @@ const getAllByServiceType = asyncHandler(async (req, res) => {
   }
 });
 
+const {  uploadBytes } = require("firebase/storage"); // Ensure correct imports
+
 const addImageToVendor = asyncHandler(async (req, res) => {
+  console.log("Inside addImageToVendor controller");
   try {
     const { vendorId } = req.body;
-    const file = req.file;
-    console.log(req.body, vendorId, file);
+    const files = req.files; // Files from multer
+
     if (!vendorId) {
-      throw new ApiError(404, "Vendor ID is required");
+      return res.status(400).json({ message: "Vendor ID is required" });
     }
 
-    if (!file) {
-      throw new ApiError(400, "Image file is required");
+    if (!files || files.length === 0) {
+      return res.status(400).json({ message: "At least one image file is required" });
     }
 
     const vendor = await Vendor.findById(vendorId);
 
     if (!vendor) {
-      throw new ApiError(404, "Vendor not found");
+      return res.status(404).json({ message: "Vendor not found" });
     }
 
-    // Upload the image to storage
-    const fileName = `${Date.now()}_${file.originalname}`;
-    const storageRef = ref(storage, `images/${fileName}`);
-    const metadata = { contentType: file.mimetype };
-    const uploadTask = await uploadBytesResumable(
-      storageRef,
-      file.buffer,
-      metadata
-    );
-    const downloadURL = await getDownloadURL(uploadTask.ref);
+    const imageUrls = []; // Store image URLs
 
-    // Add the image URL to the vendor's gallery
-    vendor.gallery.push(downloadURL);
+    for (const file of files) {
+      const fileName = `${Date.now()}_${file.originalname}`;
+      const storageRef = ref(storage, `images/${fileName}`);
+      const metadata = { contentType: file.mimetype };
 
-    // Save the vendor with the updated gallery
+      // Upload file to Firebase Storage
+      const uploadTask = await uploadBytes(storageRef, file.buffer, metadata);
+
+      // Get the download URL for the file
+      const downloadURL = await getDownloadURL(uploadTask.ref);
+      imageUrls.push({ imageUrl: downloadURL });
+    }
+
+    // Add URLs to the vendor's gallery
+    vendor.gallery.push(...imageUrls);
     await vendor.save();
 
-    return res
-      .status(200)
-      .json(
-        new ApiResponse(
-          200,
-          { data: vendor },
-          "Image added to vendor gallery successfully"
-        )
-      );
+    return res.status(200).json({
+      status: 200,
+      message: "Images added to vendor gallery successfully",
+      data: vendor.gallery,
+    });
   } catch (error) {
-    return res.status(500).json(new ApiResponse(500, null, error.message));
+    console.error("Error in addImageToVendor:", error.message);
+    return res.status(500).json({
+      status: 500,
+      message: error.message,
+    });
   }
 });
+
+
 
 module.exports = {
   getVendorDetails,
