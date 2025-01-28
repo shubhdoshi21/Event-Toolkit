@@ -17,7 +17,8 @@ const AddServices = () => {
   const { vendor, _id } = useSelector((state) => state.vendor);
   const vendorData = localStorage.getItem("vendor");
   const parsedVendorData = vendorData ? JSON.parse(vendorData) : {};
-  const [imageName, setImageName] = useState("");
+  const [images, setImages] = useState([]);
+
   const imageRef = useRef(null);
 
   const [serviceName, setServiceName] = useState(
@@ -49,6 +50,7 @@ const AddServices = () => {
   useEffect(() => {
     console.log("Vendor after addit:", vendor);
   }, [vendor]);
+  const [galleryImages, setGalleryImages] = useState(parsedVendorData.gallery || []);
 
   //getting all cities
   useEffect(() => {
@@ -88,6 +90,62 @@ const AddServices = () => {
     getVenues();
   }, [cityName]);
 
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log(
+  //     "in the frontend code",
+  //     serviceName,
+  //     location,
+  //     about,
+  //     vendorType,
+  //     booking,
+  //     cancellation,
+  //     terms,
+  //     venue,
+  //     singleItems,
+  //     user._id,images
+  //   );
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("serviceName", serviceName);
+  //     formData.append("location", location);
+  //     formData.append("about", about);
+  //     formData.append("vendorType", vendorType);
+  //     formData.append("booking", booking);
+  //     formData.append("cancellation", cancellation);
+  //     formData.append("terms", terms);
+  //     formData.append("venue", venue);
+  //     formData.append("userId", user._id);
+  //     singleItems.forEach((item, index) => {
+  //       formData.append(`singleItems[${index}][itemName]`, item.itemName);
+  //       formData.append(`singleItems[${index}][itemQuantity]`, item.itemQuantity);
+  //       formData.append(`singleItems[${index}][itemPrice]`, item.itemPrice);
+  //     });
+  // console.log(images)
+  // images.forEach((file) => formData.append("images", file));
+  //     const addedDetails = await axios.post(
+  //       `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/addServiceDetails`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data", // Required for FormData
+  //         },
+  //       }
+  //     );
+  
+  //     console.log("Service added successfully", addedDetails.data);
+  //     // Dispatch updated vendor details to state
+  //     dispatch(
+  //       setVendorDetails(addedDetails.data.data.data) // Assuming API response is structured as expected
+  //     );
+  //     setEditDetails(true);
+  //   } catch (error) {
+  //     console.error("Error adding service: ", error);
+  //     toast.error("Error adding the service");
+  //   }
+  // };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -119,20 +177,20 @@ const AddServices = () => {
           userId,
         }
       );
-      console.log(addedDetails.data);
+      console.log(addedDetails.data.data.serviceName);
       console.log("service added");
       dispatch(
         setVendorDetails({
-          _id: addedDetails.data.data.data._id,
-          serviceName: addedDetails.data.data.data.serviceName,
-          location: addedDetails.data.data.data.location,
-          about: addedDetails.data.data.data.about,
-          vendorType: addedDetails.data.data.data.vendorType,
-          booking: addedDetails.data.data.data.booking,
-          terms: addedDetails.data.data.data.terms,
-          cancellation: addedDetails.data.data.data.cancellation,
-          venue: addedDetails.data.data.data.venue,
-          singleItems: addedDetails.data.data.data.singleItems,
+          _id: addedDetails.data.data._id,
+          serviceName: addedDetails.data.data.serviceName,
+          location: addedDetails.data.data.location,
+          about: addedDetails.data.data.about,
+          vendorType: addedDetails.data.data.vendorType,
+          booking: addedDetails.data.data.booking,
+          terms: addedDetails.data.data.terms,
+          cancellation: addedDetails.data.data.cancellation,
+          venue: addedDetails.data.data.venue,
+          singleItems: addedDetails.data.data.singleItems,
         })
       );
       console.log("vendor after add", vendor);
@@ -167,14 +225,55 @@ const AddServices = () => {
     imageRef.current.click();
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageName(file.name);
-      // Optional: Add image preview or upload logic here
-    }
-  };
+const handleImageChange = (event) => {
+  const selectedFiles = Array.from(event.target.files); // Convert FileList to an array
+  setImages((prevImages) => [...prevImages, ...selectedFiles]);
+};
 
+
+  // const handleUpdateDetails = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("serviceName", serviceName);
+  //     formData.append("location", location);
+  //     formData.append("about", about);
+  //     formData.append("vendorType", vendorType);
+  //     formData.append("booking", booking);
+  //     formData.append("cancellation", cancellation);
+  //     formData.append("terms", terms);
+  //     formData.append("vendorId", _id);
+  //     formData.append("venue", venue);
+  //     singleItems.forEach((item, index) => {
+  //       formData.append(`singleItems[${index}][itemName]`, item.itemName);
+  //       formData.append(`singleItems[${index}][itemQuantity]`, item.itemQuantity);
+  //       formData.append(`singleItems[${index}][itemPrice]`, item.itemPrice);
+  //     });
+  
+  //     const imageFiles = imageRef.current.files;
+  //     Array.from(imageFiles).forEach((file) => formData.append("gallery", file));
+  
+  //     const updatedDetails = await axios.put(
+  //       `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/updateServiceDetails`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+  
+  //     console.log("Service updated successfully", updatedDetails.data);
+  //     // Dispatch updated vendor details to state
+  //     dispatch(
+  //       setVendorDetails(updatedDetails.data.data.data) // Assuming API response is structured as expected
+  //     );
+  //   } catch (error) {
+  //     console.error("Error updating service: ", error);
+  //     toast.error("Error updating the service");
+  //   }
+  // };
+  
   const handleUpdateDetails = async (e) => {
     e.preventDefault();
     try {
@@ -230,6 +329,7 @@ const AddServices = () => {
       toast.error("Error updating service.");
     }
   };
+  
   const handleSingleItemChange = (index, key, value) => {
     const newItems = [...singleItems];
     newItems[index][key] = value;
@@ -242,6 +342,48 @@ const AddServices = () => {
       { itemName: "", itemQuantity: 0, itemPrice: 0 },
     ]);
   };
+
+
+  const handleImageSubmit = async () => {
+    if (images.length === 0) {
+      alert('Please select images to upload.');
+      return;
+    }
+console.log(images)
+    const formData = new FormData();
+    images.forEach((image) => {
+      console.log(image);
+      formData.append('gallery[]', image); // Note the 'images' key
+    });
+    formData.append('vendorId', _id); // Include the vendorId in the form data
+console.log(_id)
+    try {
+      const response = await axios.post(`http://localhost:8080/api/v1/vendor/addImageToVendor`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log(response);
+
+      if (response.status === 200) {
+        alert('Images uploaded successfully');
+        setImages([]); // Clear images after successful upload
+      }
+    } catch (error) {
+      console.error('Error uploading images:', error);
+      alert('Failed to upload images. Please try again.');
+    }
+  };
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center justify-center  ">
       <div className="w-[80%] rounded-lg shadow-lg ">
@@ -357,23 +499,8 @@ const AddServices = () => {
               />
             </div>
 
-            <div
-              onClick={handleImageClick}
-              className="w-auto p-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg justify-center items-center flex cursor-pointer"
-            >
-              <input
-                type="file"
-                ref={imageRef}
-                onChange={handleImageChange}
-                style={{ display: "none" }}
-                accept="image/*"
-              />
-              Choose Image
-            </div>
-            {/* Display the selected image name */}
-            {imageName && (
-              <span className="ml-4 text-gray-300">{imageName}</span>
-            )}
+       
+
 
             <div className="flex flex-col">
               <label className="text-lightpurple font-semibold mb-2">
@@ -487,6 +614,43 @@ const AddServices = () => {
             </button>
           )}
         </form>
+        <div>
+      <div
+        onClick={handleImageClick}
+        className="w-auto p-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg justify-center items-center flex cursor-pointer"
+      >
+        <input
+          type="file"
+          ref={imageRef}
+          onChange={handleImageChange}
+          style={{ display: 'none' }}
+          accept="image/*"
+          multiple // Allows selecting multiple files
+        />
+        Choose Images
+      </div>
+
+      {/* Display the selected image names */}
+      {images.length > 0 && (
+        <div className="mt-4">
+          <h3 className="text-white mb-2">Selected Images:</h3>
+          <ul className="text-gray-300">
+            {images.map((image, index) => (
+              <li key={index}>{image.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Submit button */}
+      <button
+        onClick={handleImageSubmit}
+        className="mt-4 p-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg"
+      >
+        Upload Images
+      </button>
+    </div>
+
       </div>
       <ToastContainer
         style={{ zIndex: 9999 }} // Adjust the z-index as needed
