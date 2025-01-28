@@ -1,8 +1,11 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Sidebar from '../components/Panel/Sidebar';
 
 const Panel = () => {
+  const userToken = Cookies.get('accessToken');
+  const isAuthenticated = userToken ? true : false;
   return (
 
    <div className='relative w-[100vw] flex '>
