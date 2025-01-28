@@ -11,14 +11,15 @@ import { ToastContainer } from 'react-toastify';
 
 const GallerySlider = ({
   slides = 3,
-  height = 300,
+  height = 500,
   halls = [],
   btn = 'Book Now',
   userId,
 }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-const token = Cookies.get("accessToken");
+  const token = Cookies.get("accessToken");
+
   // Render a placeholder message if no valid `halls` data is provided
   if (!Array.isArray(halls) || halls.length === 0) {
     return (
@@ -34,7 +35,6 @@ const token = Cookies.get("accessToken");
       setLoading(true);
       setError(null);
 
-      // Check that required fields are available
       if (!hall.subVenueName || !hall.subVenuePrice) {
         setError('Incomplete hall information. Please check the details.');
         return;
@@ -46,6 +46,7 @@ const token = Cookies.get("accessToken");
           userId,
           isVenue: true,
           name: hall.subVenueName,
+          image: hall.subVenueImage,
           totalPrice: hall.subVenuePrice,
           items: [
             {
@@ -59,18 +60,17 @@ const token = Cookies.get("accessToken");
               packageQuantity: 1,
               packagePrice: hall.subVenuePrice,
             },
-          ], // Replace with actual package data if available
+          ],
         },
         {
           withCredentials: true,
           headers: {
-            Authorization: `Bearer ${token}`, // Send token in Authorization header
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      // Handle success (show a message, update the UI, etc.)
-      toast.success("Venue added to cart sucessfully");
+      toast.success("Venue added to cart successfully");
     } catch (error) {
       setError('Failed to add venue to cart. Please try again.');
     } finally {
@@ -102,13 +102,18 @@ const token = Cookies.get("accessToken");
     >
       {halls.map((hall, index) => (
         <SwiperSlide key={index}>
-          <div className="relative overflow-hidden rounded-lg">
-            <img
-              src={hall?.subVenueImage || 'placeholder-image-url.jpg'}
-              alt={`Slide ${index}`}
-              className="w-full object-cover transition-transform duration-300 ease-in-out"
-              style={{ height: `calc(100%)`, borderRadius: '8px' }}
-            />
+          <div className="relative overflow-hidden rounded-lg bg-gray-100">
+            {/* Enforce consistent dimensions */}
+            <div
+              className="w-full h-[350px] flex justify-center items-center overflow-hidden"
+              style={{ height: `${height}px` }}
+            >
+              <img
+                src={hall?.subVenueImage || 'placeholder-image-url.jpg'}
+                alt={`Slide ${index}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out">
               <h2 className="text-white text-2xl font-bold mb-2">
                 {hall?.subVenueName || 'Unnamed Hall'}
@@ -128,7 +133,6 @@ const token = Cookies.get("accessToken");
               </button>
               <ToastContainer />
             </div>
-            
           </div>
         </SwiperSlide>
       ))}
