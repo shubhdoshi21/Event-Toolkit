@@ -43,15 +43,13 @@ const vendorSchema = new Schema({
              }
         }
     ],
-
+ 
     packages:[{
         type:Schema.Types.ObjectId,
         ref:"Package"
     }],
 
-    gallery:[{
-        type:String,
-    }],
+ 
     vendorType:{
         type: String,
         enum: ["caterer", "photographer", "decorator"],
@@ -82,7 +80,14 @@ const vendorSchema = new Schema({
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
-    }
+    },
+
+    gallery:[
+          {imageUrl: {
+            type: String, // URL of the image
+            required: true,
+          }}
+    ]
 
 },
 {
