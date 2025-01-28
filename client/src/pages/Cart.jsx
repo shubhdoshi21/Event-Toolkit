@@ -47,14 +47,15 @@ const Cart = () => {
             `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/fetchCart`,
             { userId },
           );
-
+          console.log("API Response:", response.data); // Log the full response
           if (
             response.data &&
             response.data.data &&
             Array.isArray(response.data.data.data)
           ) {
-            const cartData = response.data.data.data; // Access the correct nested array
-            console.log(cartData);
+            const cartData = response.data.data.data;
+            console.log("Cart Data:", cartData); // Log cart items
+            console.log(cartData.image)
             setCartItems(cartData);
             calculateTotalPrice(cartData);
           } else {
@@ -62,17 +63,15 @@ const Cart = () => {
           }
         } catch (error) {
           setError('Error fetching cart items.');
-        } finally{
+        } finally {
           setLoading(false);
         }
       };
-
+  
       fetchCart();
-      cartItems.forEach((item, index) => {
-        console.log(`Package ${index + 1}:`, item.package);
-      });
     }
   }, [userId]);
+  
 
   const calculateTotalPrice = items => {
     const total = items.reduce((sum, item) => sum + (item.totalPrice || 0), 0);
@@ -124,7 +123,7 @@ const Cart = () => {
           >
             <div className="w-1/3">
               <img  
-                src={i1}
+                src={item.image}
                 alt={item.name}
                 className="w-full h-auto rounded-lg object-cover transform hover:scale-105 transition duration-300"
               />
@@ -134,7 +133,7 @@ const Cart = () => {
               <p className="text-pupll">
                 Price:{' '}
                 <span className="text-lg font-semibold">
-                  ${item.totalPrice}
+                ₹{item.totalPrice}
                 </span>
               </p>
 
@@ -179,7 +178,7 @@ const Cart = () => {
                 )}
 
                 <p className="font-bold text-lg ">
-                  Total: ${item.totalPrice}
+                  Total:  ₹{item.totalPrice}
                   <button onClick={() => handleDelete(item._id)} className='ml-5'><MdDelete /></button>
                 </p>
                <ToastContainer />
@@ -190,7 +189,7 @@ const Cart = () => {
       )}
 
       <div className="mt-6  font-bold">
-        <p className="text-2xl">Total Price: ${totalPrice}</p>
+        <p className="text-2xl">Total Price:  ₹{totalPrice}</p>
         <Payment />
       </div>
     </div>

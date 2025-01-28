@@ -49,7 +49,7 @@ const { asyncHandler } = require('../utils/asyncHandler.js');
 // });
 exports.addToCart = async (req, res) => {
   try {
-    const { userId, isVenue, name, totalPrice, items, package } = req.body;
+    const { userId, isVenue, name, image, totalPrice, items, package } = req.body;
 
     // Validate required fields
     if (
@@ -63,6 +63,7 @@ exports.addToCart = async (req, res) => {
       userId,
       isVenue,
       name,
+      image,    
       totalPrice,
       items,
       package,
