@@ -17,6 +17,7 @@ const Vendor = () => {
         );
         if (catererDetails.data.statusCode <= 200)
           setVendor(catererDetails?.data?.data?.data);
+        console.log(catererDetails?.data?.data?.data);
       } catch (error) {
         console.error('Error fetching caterer details:', error);
       }

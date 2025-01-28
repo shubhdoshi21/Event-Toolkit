@@ -22,6 +22,8 @@ const MyServices = () => {
           { userId }
         );
         setVendors(response.data.data.data);
+        console.log(response.data.data.data);
+
         console.log(vendors);
       } catch (error) {
         console.error('Error fetching vendors:', error);
@@ -165,22 +167,23 @@ const MyServices = () => {
               </div>
 
               <div className="mt-4">
-                <h4 className="text-xl font-semibold mb-2">Gallery</h4>
-                {vendor.gallery && vendor.gallery.length > 0 ? (
-                  <div className="flex gap-4">
-                    {vendor.gallery.map((image, imageIndex) => (
-                      <img
-                        key={imageIndex}
-                        src={image}
-                        alt="Gallery item"
-                        className="w-24 h-24 object-cover rounded-lg"
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <p>No images in the gallery</p>
-                )}
-              </div>
+  <h4 className="text-xl font-semibold mb-2">Gallery</h4>
+  {vendor.gallery && vendor.gallery.length > 0 ? (
+    <div className="flex gap-4">
+      {vendor.gallery.map((imageObj, imageIndex) => (
+        <img
+          key={imageIndex}
+          src={imageObj.imageUrl} // Access the imageUrl property
+          alt={`Gallery item ${imageIndex + 1}`}
+          className="w-24 h-24 object-cover rounded-lg"
+        />
+      ))}
+    </div>
+  ) : (
+    <p>No images in the gallery</p>
+  )}
+</div>
+
               <p className="mt-4">
                 <strong>Venue ID:</strong> {vendor.venue}
               </p>
