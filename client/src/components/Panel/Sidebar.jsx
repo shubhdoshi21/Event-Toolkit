@@ -26,6 +26,7 @@ const Sidebar = () => {
           },
         },
       );
+      Cookies.remove("accessToken");
       dispatch(logoutUser());
       toast.success('Logged out successfully!', {
         autoClose: 1500,
