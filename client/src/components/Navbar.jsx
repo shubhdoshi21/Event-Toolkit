@@ -138,7 +138,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`h-16 w-full flex items-center justify-between p-4 bg-opacity-10 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
+      className={`h-16 w-full flex items-center justify-between pr-2 pt-2 pb-2 sm:p-4 bg-opacity-10 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
     >
       <div className="text-xl font-bold ">
         <Link to="/home">
