@@ -37,14 +37,14 @@ const Navbar = () => {
     const userToken = Cookies.get('accessToken');
     setIsLoggedIn(!!userToken);
 
-    const storedTheme = localStorage.getItem('theme') === 'true';
+    const storedTheme = localStorage.getItem('selectedTheme') === 'light';
     setTheme(storedTheme);
   }, [theme]);
 
   const handleThemeChange = () => {
     setTheme(currTheme => {
       const newTheme = !currTheme;
-      localStorage.setItem('theme', newTheme);
+      localStorage.setItem('selectedTheme', newTheme ? 'light' : 'dark');
     });
   };
 
