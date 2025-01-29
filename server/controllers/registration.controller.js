@@ -148,8 +148,8 @@ exports.payment = async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "http://localhost:5173/payment/success",
-      cancel_url: "http://localhost:5173/payment/failed",
+      success_url: "https://eventtoolkit.onrender.com/payment/success",
+      cancel_url: "https://eventtoolkit.onrender.com/payment/failed",
     });
 
     res.json({ id: session.id });
