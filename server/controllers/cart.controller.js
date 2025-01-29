@@ -62,7 +62,7 @@ exports.addToCart = async (req, res) => {
     let cart = await Cart.create({
       userId,
       isVenue,
-      name,
+      name, 
       image,    
       totalPrice,
       items,

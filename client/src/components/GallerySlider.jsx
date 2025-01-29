@@ -69,7 +69,8 @@ const GallerySlider = ({
           },
         }
       );
-
+      console.log(response);
+      console.log(hall.subVenueImage);
       toast.success("Venue added to cart successfully");
     } catch (error) {
       setError('Failed to add venue to cart. Please try again.');
@@ -122,7 +123,7 @@ const GallerySlider = ({
                 {hall?.subVenueDescription || 'Description not available.'}
               </p>
               <p className="text-white text-xl mb-4">
-                Price: ${hall?.subVenuePrice || 'N/A'}
+                Price:  ₹{hall?.subVenuePrice || 'N/A'}
               </p>
               <button
                 className="bg-mauve text-white px-4 py-2 rounded-full hover:scale-105 transition-transform duration-300"
