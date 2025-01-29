@@ -1,12 +1,6 @@
 import React from "react";
 
-const Modal = ({
-  isOpen,
-  handleExploreClick,
-  city,
-  onClose,
-  children,
-}) => {
+const Modal = ({ isOpen, handleExploreClick, city, onClose, children }) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (e) => {
@@ -18,11 +12,11 @@ const Modal = ({
   return (
     <div
       onClick={handleOverlayClick}
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-30 backdrop-blur-sm"
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-30 backdrop-blur-sm p-4"
     >
-      <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
+      <div className="bg-white w-full max-w-[90%] sm:max-w-md md:max-w-lg p-6 rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
-          <h2 className=" text-3xl font-bold text-black capitalize">{city.cityName}</h2>
+          <h2 className="text-3xl font-bold text-black uppercase">{city.cityName}</h2>
           <button onClick={onClose} className="text-gray-600 hover:text-black">
             ✖
           </button>
