@@ -323,8 +323,8 @@ const Home = () => {
             ))}
           </div>
           {/* images carousal */}
-          <div className="py-8">
-            <h2 className="relative mb-6 text-[25px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
+          <div className="py-8 px-2">
+            <h2 className="relative mb-6 text-[20px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
               Recent Events
             </h2>
             {images.length !== 0 ? (
@@ -339,8 +339,8 @@ const Home = () => {
             )}
           </div>
           {/* exploring locations */}
-          <div className="py-8">
-            <h2 className="relative mb-6 text-[25px] sm:text-[40px] font-bold sm:text-center ml-3 text-left uppercase gradient-border">
+          <div className="py-8 px-2">
+            <h2 className="relative mb-6 text-[20px] sm:text-[40px] font-bold sm:text-center ml-3 text-left uppercase gradient-border">
               {`Explore locations at ${selectedCity?.cityName}`}
             </h2>
             {venues.length !== 0 ? (
@@ -365,8 +365,8 @@ const Home = () => {
             )}
           </div>
           {/* reviews */}
-          <div className="py-8">
-            <h2 className="relative mb-6 text-[25px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
+          <div className="py-8 px-2">
+            <h2 className="relative mb-6 text-[20px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
               Reviews
             </h2>
             {reviews.length !== 0 ? (
