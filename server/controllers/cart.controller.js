@@ -47,7 +47,7 @@ const { asyncHandler } = require('../utils/asyncHandler.js');
 //     throw new ApiError(500, "Something went wrong", error.message);
 //   }
 // });
-exports.addToCart = async (req, res) => {
+exports.addToCart =asyncHandler( async (req, res) => {
   try {
     const { userId, isVenue, name, image, totalPrice, items, package } = req.body;
 
@@ -75,9 +75,9 @@ exports.addToCart = async (req, res) => {
   } catch (error) {
     throw new ApiError(500, 'Something went wrong', error.message);
   }
-};
+});
 
-exports.removeFromCart = async (req, res) => {
+exports.removeFromCart =asyncHandler( async (req, res) => {
   try {
     console.log("inside");
     const { id } = req.body; 
@@ -108,9 +108,9 @@ exports.removeFromCart = async (req, res) => {
       error: error.message,
     });
   }
-};
+});
 
-exports.fetchCart = async (req, res) => {
+exports.fetchCart =asyncHandler( async (req, res) => {
   try {
     const { userId } = req.body; // Assuming userId is sent in the request body
 
@@ -136,9 +136,9 @@ exports.fetchCart = async (req, res) => {
   } catch (error) {
     throw new ApiError(500, 'Something went wrong', error.message);
   }
-};
+});
 
-exports.fetchCartTotalPrice = async (req, res) => {
+exports.fetchCartTotalPrice =asyncHandler( async (req, res) => {
   try {
     const { userId } = req.body;
 
@@ -169,4 +169,23 @@ exports.fetchCartTotalPrice = async (req, res) => {
   } catch (error) {
     throw new ApiError(500, 'Something went wrong', error.message);
   }
-};
+});
+
+exports.clearCart = asyncHandler(async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    if (!userId) {
+      throw new ApiError(400, "User ID is required");
+    }
+
+    // Delete all cart items for the given userId
+    await Cart.deleteMany({ userId });
+
+    return res
+      .status(200)
+      .json(new ApiResponse(200, {}, "Cart cleared successfully"));
+  } catch (error) {
+    throw new ApiError(500, "Something went wrong", error.message);
+  }
+});
