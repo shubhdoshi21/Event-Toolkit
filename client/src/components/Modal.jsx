@@ -12,7 +12,7 @@ const Modal = ({ isOpen, handleExploreClick, city, onClose, children }) => {
   return (
     <div
       onClick={handleOverlayClick}
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-30 backdrop-blur-sm p-4"
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-30 backdrop-blur-sm p-4 mt-16"
     >
       <div className="bg-white w-full max-w-[90%] sm:max-w-md md:max-w-lg p-6 rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-4">

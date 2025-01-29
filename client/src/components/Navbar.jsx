@@ -37,13 +37,15 @@ const Navbar = () => {
     const userToken = Cookies.get('accessToken');
     setIsLoggedIn(!!userToken);
 
-    const storedTheme = localStorage.getItem('theme') || 'true';
+    const storedTheme = localStorage.getItem('theme') === 'true';
     setTheme(storedTheme);
   }, [theme]);
 
   const handleThemeChange = () => {
-    setTheme(currTheme => !currTheme);
-    localStorage.setItem('theme', !theme);
+    setTheme(currTheme => {
+      const newTheme = !currTheme;
+      localStorage.setItem('theme', newTheme);
+    });
   };
 
   const handleCityClick = city => {
@@ -132,13 +134,13 @@ const Navbar = () => {
   const searchProps = getSearchProps();
 
   const navbarClass =
-    theme === 'false'
+    theme === false
       ? 'bg-gray text-white shadow-lg shadow-pupll/40'
-      : 'bg-lgrey text-black shadow-lg shadow-pupll/40';
+      : 'bg-lightgrey text-black shadow-lg shadow-pupll/40';
 
   return (
     <nav
-      className={`h-16 w-full flex items-center justify-between pr-2 pt-2 pb-2 sm:p-4 bg-opacity-10 backdrop-blur-lg fixed z-50 top-0 ${navbarClass}`}
+      className={`h-16 w-full flex items-center justify-between pr-2 pt-2 pb-2 sm:p-4  ${navbarClass} bg-opacity-10 backdrop-blur-lg fixed z-50 top-0`}
     >
       <div className="text-xl font-bold ">
         <Link to="/home">
