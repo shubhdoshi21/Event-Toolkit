@@ -165,7 +165,7 @@ const AddPackages = () => {
     
   // }
   return (
-    <div className=" w-[100%] min-h-[100vh] flex flex-col items-center">
+    <div className=" w-[100%] min-h-[100vh] flex flex-col items-center pl-8">
       <h2 className="text-4xl pt-10 font-bold text-center text-primaryPeach mb-6">
         Add Packages
       </h2>
@@ -207,7 +207,7 @@ const AddPackages = () => {
             Items
           </h3>
           {items.map((item, index) => (
-            <div key={index} className="flex items-center mb-4">
+            <div key={index} className="flex-col space-y-2 items-center mb-4">
               <input
                 type="text"
                 value={item.itemName}

@@ -63,7 +63,7 @@ const MyServices = () => {
   };
 
   return (
-    <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center p-6">
+    <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center p-6 ">
       <h2 className="text-4xl pt-10 font-bold text-center text-lightpurple mb-6">
         My Services
       </h2>
@@ -72,7 +72,7 @@ const MyServices = () => {
           vendors.map((vendor, index) => (
             <div
               key={index}
-              className="bg-lgrey/80 text-gray/60 shadow-md rounded-md p-6 mb-6 min-h-[60%]"
+              className="bg-lgrey/80 overflow-hidden text-gray/60 shadow-md rounded-md p-6 mb-6 min-h-[60%]"
             >
               <h3 className="text-2xl font-semibold text-primaryPeach mb-4">
                 {vendor.serviceName}
@@ -166,8 +166,8 @@ const MyServices = () => {
                 </div>
               </div>
 
-              <div className="mt-4">
-  <h4 className="text-xl font-semibold mb-2">Gallery</h4>
+              <div className="mt-4 flex flex-wrap border-teal-300">
+  <h4 className="text-xl font-semibold mb-2 ">Gallery</h4>
   {vendor.gallery && vendor.gallery.length > 0 ? (
     <div className="flex gap-4">
       {vendor.gallery.map((imageObj, imageIndex) => (
