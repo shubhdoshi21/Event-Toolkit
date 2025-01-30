@@ -180,7 +180,7 @@ const Profile = () => {
 
   return (
     <div className="w-[100%] min-h-[100vh] flex items-center justify-center pl-[0%] sm:pl-[17%] md:pl-[10%] lg:pl-[5%]">
-      <div className="w-full p-8">
+      <div className="w-full p-12">
         <form onSubmit={handleUpdateAccountDetails}>
           <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1 mb-4">
             <div>

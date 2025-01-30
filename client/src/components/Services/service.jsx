@@ -95,6 +95,7 @@ const Service = ({
   const handleAddToCart = async () => {
     try {
       console.log(user);
+      console.log(gallery[0]);
       const addedResponse = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/addToCart`,
         {
@@ -104,6 +105,7 @@ const Service = ({
           totalPrice: grandTotal, // Changed to 'totalAmount'
           items: itmArr, // Changed to 'items'
           package: pkgArr, // Changed to 'packages'
+          image: gallery[0].imageUrl
         },
       );
       if (addedResponse.status === 200) {

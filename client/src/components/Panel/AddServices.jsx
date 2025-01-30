@@ -358,7 +358,7 @@ console.log(images)
     formData.append('vendorId', _id); // Include the vendorId in the form data
 console.log(_id)
     try {
-      const response = await axios.post(`http://localhost:8080/api/v1/vendor/addImageToVendor`, formData, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/addImageToVendor`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -386,7 +386,7 @@ console.log(_id)
 
   return (
     <div className="w-[100%] min-h-[100vh] flex flex-col gap-30 items-center justify-center  ">
-      <div className="w-[80%] rounded-lg shadow-lg ">
+      <div className="w-[80%] rounded-lg shadow-lg pl-8">
         <h2 className="text-4xl pt-10 font-bold text-center text-lightpurple mb-6">
           Add New Service
         </h2>
@@ -508,7 +508,7 @@ console.log(_id)
               </label>
               <select
                 name="cities"
-                value={cities}
+                value={cityName}
                 onChange={(e) => setCityName(e.target.value)}
               >
                 <option value="" disabled>
