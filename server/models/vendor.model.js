@@ -71,11 +71,11 @@ const vendorSchema = new Schema({
         required:true,
         trim:true,
     },
-    venue:{
+    venue:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Venues",
         required:true,
-    },
+    }],
    
     userId:{
         type:mongoose.Schema.Types.ObjectId,
