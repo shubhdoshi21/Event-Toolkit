@@ -105,7 +105,7 @@ const Service = ({
           totalPrice: grandTotal, // Changed to 'totalAmount'
           items: itmArr, // Changed to 'items'
           package: pkgArr, // Changed to 'packages'
-          image: gallery[0].imageUrl
+          image: gallery[0]
         },
       );
       if (addedResponse.status === 200) {

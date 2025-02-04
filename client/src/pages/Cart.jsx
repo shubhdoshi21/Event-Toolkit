@@ -98,7 +98,7 @@ cartItems.forEach(item => console.log("Image URL:", item.image));
           <div key={item._id} className="bg-gray-800 shadow-2xl rounded-lg p-6 mt-6 flex hover:bg-gray-700 transition duration-300 lg:pl-20">             
             <div className="w-1/3">               
               <img 
-                src={item.image} 
+                src={item.image}  
                 alt={item.name} 
                 className="w-full h-auto rounded-lg object-cover transform hover:scale-105 transition duration-300" 
               />             
