@@ -82,12 +82,11 @@ const vendorSchema = new Schema({
         ref:"User"
     },
 
-    gallery:[
-          {imageUrl: {
-            type: String, // URL of the image
-            required: true,
-          }}
-    ]
+   gallery: [{
+  type: String,
+  required: true
+}]
+
 
 },
 {
