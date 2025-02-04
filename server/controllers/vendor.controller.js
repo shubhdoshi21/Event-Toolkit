@@ -27,6 +27,7 @@ const getVendorDetails = asyncHandler(async (req, res) => {
       .populate("packages")
       .populate("ratingAndReview");
     //
+    console.log("vendor details", vendorDetails);
 
     return res
       .status(200)
@@ -210,6 +211,7 @@ const getAllCaterer = asyncHandler(async (req, res) => {
     const catererList = await Vendor.find({ vendorType: "caterer" })
       .populate("packages")
       .populate("ratingAndReview");
+    console.log("catererList",catererList);
     return res
       .status(200)
       .json(
