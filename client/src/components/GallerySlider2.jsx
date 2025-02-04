@@ -42,7 +42,7 @@ const GallerySlider = ({ slides, height, halls, btn }) => {
         <SwiperSlide key={index}>
           <div className="relative overflow-hidden rounded-lg">
             <img
-              src={hall.subVenueImage}
+              src={hall.gallery[0]}
               alt={`Slide ${index}`}
               className="w-full h-auto object-cover transition-transform duration-300 ease-in-out"
               style={{ height: `${height}px`, borderRadius: "8px" }}
@@ -57,7 +57,7 @@ const GallerySlider = ({ slides, height, halls, btn }) => {
                 onClick={() => Navigate(`/vendor/${hall._id}`)}
               >
                 {btn}
-              </button>
+              </button> 
             </div>
           </div>
         </SwiperSlide>

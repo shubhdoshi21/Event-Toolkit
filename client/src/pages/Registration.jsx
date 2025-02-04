@@ -130,7 +130,7 @@ const Registration = () => {
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/vendor/getAllByServiceType`,
         { venue: selectedVenue._id, vendorType: 'caterer' },
       );
-      console.log(response);
+      console.log("caterer",response);
       setCaterers(response?.data?.data?.data);
       dispatch(setVendorDetails(response?.data?.data?.data || []));
     };
