@@ -242,7 +242,7 @@ const Service = ({
 
       {/* header section */}
       <div className="sm:flex-row flex flex-col gap-10">
-        <div className="flex flex-col gap-10 sm:w-[60%]">
+        <div className="flex flex-col gap-10 sm:w-[100%]">
 
           <div className="bg-lightGray/10 rounded-md p-5 flex justify-between items-center">
             <div className="flex flex-col gap-3">
