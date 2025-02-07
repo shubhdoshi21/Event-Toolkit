@@ -82,7 +82,7 @@ const AddPackages = () => {
     console.log(packageName, price, items, vendorId);
     try {
       const packageDetails = await axios.post(
-        "http://localhost:8080/api/v1/package/createPackages",
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/package/createPackages`,
         {
           packageName,
           price,
@@ -132,7 +132,7 @@ const AddPackages = () => {
   };
   const handleDeletePackage = async (packageId) => {
     try {
-      const deletePackage = await axios.delete("http://localhost:8080/api/v1/package/deletePackages",{
+      const deletePackage = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/package/deletePackages`,{
         data: { packageId, vendorId: _id } // Sending the data as part of request body
     });
       
