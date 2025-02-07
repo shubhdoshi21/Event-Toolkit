@@ -259,9 +259,9 @@ const Service = ({
             <div>{about}</div>
           </div>
         </div>
-        <div className="sm:w-[40%]">
+        {/* <div className="sm:w-[40%]">
           <Recommended />
-        </div>
+        </div>*/}
       </div>
 
       {/* single items */}
