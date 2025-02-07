@@ -322,22 +322,8 @@ const Home = () => {
               </Modal>
             ))}
           </div>
-          {/* images carousal */}
-          <div className="py-8 px-2">
-            <h2 className="relative mb-6 text-[20px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
-              Recent Events
-            </h2>
-            {images.length !== 0 ? (
-              <Carousal images={images} />
-            ) : (
-              <div className="flex flex-col items-center text-center p-6 w-screen">
-                <CiImageOff className="text-6xl text-gray-400 mb-4" />
-                <h1 className="text-2xl font-semibold uppercase">
-                  No Recent events available at the city...
-                </h1>
-              </div>
-            )}
-          </div>
+        
+         
           {/* exploring locations */}
           <div className="py-8 px-2">
             <h2 className="relative mb-6 text-[20px] sm:text-[40px] font-bold sm:text-center ml-3 text-left uppercase gradient-border">
@@ -382,6 +368,22 @@ const Home = () => {
           </div>
         </>
       )}
+        {/* images carousal */}
+       <div className="py-8 px-2">
+            <h2 className="relative mb-6 text-[20px] sm:text-[40px] font-bold sm:text-center text-left ml-3 uppercase gradient-border">
+              Recent Events
+            </h2>
+            {images.length !== 0 ? (
+              <Carousal images={images} />
+            ) : (
+              <div className="flex flex-col items-center text-center p-6 w-screen">
+                <CiImageOff className="text-6xl text-gray-400 mb-4" />
+                <h1 className="text-2xl font-semibold uppercase">
+                  No Recent events available at the city...
+                </h1>
+              </div>
+            )}
+          </div>
       {/* footer */}
       <Footer />
     </div>
