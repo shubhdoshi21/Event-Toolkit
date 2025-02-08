@@ -14,7 +14,7 @@ const Carousal = ({ images }) => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden m-5">
       <div
         className="z-10  p-4 flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
