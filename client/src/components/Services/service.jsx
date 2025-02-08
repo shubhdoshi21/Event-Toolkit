@@ -272,8 +272,8 @@ const Service = ({
     {/* Header */}
     <div className="p-2 grid grid-cols-3 sm:grid-cols-[2fr_1fr_1fr] items-center text-black">
       <div className="font-bold">Item Name</div>
-      <div className="font-bold text-center">Quantity</div>
-      <div className="font-bold text-center">Price</div>
+      <div className="font-bold ">Quantity</div>
+      <div className="font-bold ">Price</div>
     </div>
     <span className="bg-mediumGray h-[1px] w-[100%] my-1 block"></span>
 
